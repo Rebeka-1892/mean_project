@@ -1,0 +1,126 @@
+#GET http://localhost:5000/unites
+
+
+#POST http://localhost:5000/unites
+#Content-Type: application/json
+#
+#{
+#    "nom": "PCS"
+#}
+
+#POST http://localhost:5000/roles
+#Content-Type: application/json
+#
+#{
+#    "nom": "Manager"
+#}
+
+#POST http://localhost:5000/roles
+#Content-Type: application/json
+#
+#{
+#    "nom": "Mécanicien"
+#}
+
+#POST http://localhost:5000/roles
+#Content-Type: application/json
+#
+#{
+#    "nom": "Peintre",
+#    "idRole": "67d31ff78e5d492de37e20be"
+#}
+
+#POST http://localhost:5000/employes
+#Content-Type: application/json
+#
+#{
+#    "nom": "John Doe",
+#    "salaire": 50000,
+#    "idRole": "67d31ff78e5d492de37e20be"
+#}
+
+#POST http://localhost:5000/postes
+#Content-Type: application/json
+#
+#{
+#    "idEmploye": "67d3209a8e5d492de37e20c2",
+#    "idRole": "67d320158e5d492de37e20c0"
+#}
+
+#POST http://localhost:5000/salaires
+#Content-Type: application/json
+#
+#{
+#    "idEmploye": "67d3209a8e5d492de37e20c2",
+#    "montant": 50000,
+#    "date": "2023-10-01"
+#}
+
+#POST http://localhost:5000/materiels
+#Content-Type: application/json
+#
+#{
+#    "nom": "Ordinateur",
+#    "prix": 1000,
+#    "idUnite": "67d31a308c0914904693b6c6"
+#}
+
+#POST http://localhost:5000/stocks
+#Content-Type: application/json
+#
+#{
+#    "idMateriel": "67d322158e5d492de37e20c8",
+#    "date": "2023-10-01",
+#    "entree": 10,
+#    "sortie": 2
+#}
+
+#POST http://localhost:5000/services
+#Content-Type: application/json
+#
+#{
+#    "nom": "Consulting",
+#    "marge": 20
+#}
+
+#POST http://localhost:5000/formulesMateriel
+#Content-Type: application/json
+#
+#{
+#    "idService": "67d322a68e5d492de37e20cc",
+#    "idMateriel": "67d322158e5d492de37e20c8",
+#    "quantite": 5
+#}
+
+#POST http://localhost:5000/formulesPoste
+#Content-Type: application/json
+#
+#{
+#    "idService": "67d322a68e5d492de37e20cc",
+#    "idPoste": "67d320de8e5d492de37e20c4",
+#    "quantite": 3
+#}
+
+#POST http://localhost:5000/clients
+#Content-Type: application/json
+#
+#{
+#    "nom": "Entreprise XYZ"
+#}
+
+#POST http://localhost:5000/factures
+#Content-Type: application/json
+#
+#{
+#    "idClient": "67d3230e8e5d492de37e20d2",
+#    "montant": 1500
+#}
+
+#POST http://localhost:5000/detailsFacture
+#Content-Type: application/json
+#
+#{
+#    "idFacture": "67d3232a8e5d492de37e20d4",
+#    "montant": 500,
+#    "date": "2023-10-01"
+#}
