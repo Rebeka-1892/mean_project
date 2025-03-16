@@ -1,13 +1,114 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="utf-8">
   <title>Frontend</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/css/bulma/css/bulma.min.css">
+  <link rel="stylesheet" href="assets/css/bulma-extensions/bulma-dashboard/dist/bulma-dashboard.min.css">
+  <link rel="stylesheet" href="assets/css/bulma-extensions/bulma-list/css/bulma-list.css">
+  <link rel="stylesheet" href="assets/css/bulma-extensions/dist/css/bulma-extensions.min.css">
+  <link rel="stylesheet" href="assets/css/fontawesome-free-6.5.1-web/css/all.min.css">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <app-root></app-root>
+<body class="dashboard is-full-height">
+<div class="pageloader is-link is-active"></div>
+<aside class="dashboard-panel is-scrollable is-medium box">
+  <header class="dashboard-panel-header">
+    <h3 class="title has-text-info-bold">
+      Bulma
+    </h3>
+  </header>
+  <section class="dashboard-panel-content">
+    <aside class="menu">
+      <p class="menu-label">
+        General
+      </p>
+      <ul class="menu-list">
+        <li><a>Dashboard</a></li>
+        <li><a>Customers</a></li>
+      </ul>
+      <p class="menu-label">
+        Administration
+      </p>
+      <ul class="menu-list">
+        <li><a>Team Settings</a></li>
+        <li>
+          <a class="is-active">Manage Your Team</a>
+          <ul>
+            <li><a>Members</a></li>
+            <li><a>Plugins</a></li>
+            <li><a>Add a member</a></li>
+          </ul>
+        </li>
+        <li><a>Invitations</a></li>
+        <li><a>Cloud Storage Environment Settings</a></li>
+        <li><a>Authentication</a></li>
+      </ul>
+      <p class="menu-label">
+        Transactions
+      </p>
+      <ul class="menu-list">
+        <li><a>Payments</a></li>
+        <li><a>Transfers</a></li>
+        <li><a>Balance</a></li>
+      </ul>
+    </aside>
+  </section>
+  <footer class="dashboard-panel-footer">
+
+  </footer>
+</aside>
+<main class="dashboard-main is-scrollable hero is-fullheight">
+  <header class="hero-head">
+    <nav class="navbar has-shadow is-transparent">
+      <div class="navbar-menu">
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="list has-visible-pointer-controls">
+              <div class="list-item">
+                <div class="list-item-image">
+                  <figure class="image">
+                    <img class="is-rounded"
+                         src="https://via.placeholder.com/128x128.png?text=Image" alt="">
+                  </figure>
+                </div>
+                <div class="list-item-content">
+                  <div class="list-item-title">Name</div>
+                  <div class="list-item-description">First Name</div>
+                </div>
+                <div class="list-item-controls">
+                  <a href="#">
+                    <span class="icon is-large">
+                        <i class="fas fs-lg fa-sign-out-alt"></i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main class="hero-body">
+    <app-root></app-root>
+  </main>
+  <footer class="hero-foot has-background-white-ter">
+    <div class="section is-flex is-justify-content-space-between">
+      <span>
+          2025
+      </span>
+      <span>
+          © IT Student
+      </span>
+    </div>
+  </footer>
+</main>
+<script src="assets/js/site.js"></script>
+<script src="assets/css/bulma-extensions/dist/js/bulma-extensions.min.js"></script>
+</body>
 </body>
 </html>
