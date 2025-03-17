@@ -18,6 +18,7 @@ mongoose.connect(process.env.MONGO_URI, {
   .catch(err => console.log(err)); 
 
  // Routes
+app.use('/articles', require('./routes/articleRoutes'));
 app.use('/unites', require('./routes/uniteRoutes'));
 app.use('/roles', require('./routes/roleRoutes'));
 app.use('/employes', require('./routes/employeRoutes'));

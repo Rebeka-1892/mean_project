@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const FactureSchema = new mongoose.Schema({
-    idClient: { type: mongoose.Schema.Types.ObjectId, ref: 'Client', required: true },
+    idclient: { type: mongoose.Schema.Types.ObjectId, ref: 'Client', required: true },
     montant: { type: Number, required: true }
 }, { timestamps: true });
 
