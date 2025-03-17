@@ -1,16 +1,39 @@
 const express = require('express');
 const router = express.Router();
 const Employe = require('../models/Employe');
+const jwt = require('jsonwebtoken');
+
+const Role = require('../models/Role');
+
+// se connecter
+router.post('/login', async (req, res) => {
+    try {
+        const { nom, motdepasse } = req.body;
+
+        const employe = await Employe.findOne({ nom });
+        if (!employe) return res.status(400).json({ message: 'Utilisateur non trouvé' });
+
+        const estValide = await employe.verifierMotDePasse(motdepasse);
+        if (!estValide) return res.status(400).json({ message: 'Mot de passe incorrect' });
+
+		const role = await Role.findById(employe.idrole);
+
+        const token = jwt.sign({ id: employe._id, role: role.nom }, 'SECRET_KEY', { expiresIn: '1h' });
+		res.json({ token });
+    } catch (error) {
+		res.status(400).json({ message: error.message });
+    }
+});
 
 // Créer un employé
-router.post('/', async (req, res) => {
-	try {
+router.post('/register', async (req, res) => {
+    try {
 		const employe = new Employe(req.body);
 		await employe.save();
 		res.status(201).json(employe);
-	} catch (error) {
+    } catch (error) {
 		res.status(400).json({ message: error.message });
-	}
+    }
 });
 
 // Lire tous les employés
