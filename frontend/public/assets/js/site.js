@@ -46,10 +46,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.querySelector('.pageloader').classList.remove('is-active');
 });
-
-// TODO la facon pour stocker la valeur du switch du dark mode
-const switchMode = document.querySelector('#switch-mode');
-switchMode.addEventListener('change', () => {
-    // document.documentElement.setAttribute('data-theme', 'dark');
-    if (this.checked) document.documentElement.setAttribute('data-theme', 'dark');
-});
