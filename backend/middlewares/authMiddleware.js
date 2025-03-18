@@ -9,13 +9,9 @@ const authMiddleware = (rolesAutorisés = []) => {
     }
 
     try {
-      // Vérification du token
-      const decoded = jwt.verify(token, "SECRET_KEY");
-      req.user = decoded; // Ajoute l'utilisateur à la requête
+      const decoded = jwt.verify(token.split(' ')[1], process.env.JWT_SECRET);
+      req.user = decoded;
       
-      console.log("Token décodé :", req.user); // 🔍 Vérifie s'il y a le rôle
-      
-      // Vérification des rôles
       if (rolesAutorisés.length && !rolesAutorisés.includes(decoded.role)) {
         return res.status(403).json({ message: "Accès interdit" });
       }

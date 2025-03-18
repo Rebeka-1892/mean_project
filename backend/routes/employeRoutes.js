@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const Employe = require('../models/Employe');
@@ -17,8 +18,7 @@ router.post('/login', async (req, res) => {
         if (!estValide) return res.status(400).json({ message: 'Mot de passe incorrect' });
 
 		const role = await Role.findById(employe.idrole);
-
-        const token = jwt.sign({ id: employe._id, role: role.nom }, 'SECRET_KEY', { expiresIn: '1h' });
+		const token = jwt.sign({ id: employe._id, role: role.nom }, process.env.JWT_SECRET, { expiresIn: '1h' });
 		res.json({ token });
     } catch (error) {
 		res.status(400).json({ message: error.message });
