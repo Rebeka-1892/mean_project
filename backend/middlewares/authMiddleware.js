@@ -3,7 +3,9 @@ const jwt = require("jsonwebtoken");
 // Middleware d'authentification avec gestion des rôles
 const authMiddleware = (rolesAutorisés = []) => {
   return (req, res, next) => {
-    const token = req.header("Authorization");
+    // const token = req.header("Authorization");
+    const token = req.cookies.token;
+
     if (!token) {
       return res.status(401).json({ message: "Accès refusé, token manquant" });
     }
