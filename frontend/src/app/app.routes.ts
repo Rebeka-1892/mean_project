@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { ArticleListComponent } from './components/article-list/article-list.component';
+import {LoginComponent} from './components/login/login.component';
 export const routes: Routes = [
-    { path: 'articles', component: ArticleListComponent },  // Route pour article - list 
-    { path: '', redirectTo: 'articles', pathMatch: 'full' }  // Redirection  par défaut 
-]; 
+    // { path: '', redirectTo: 'login', pathMatch: 'full' }  // Redirection  par défaut
+    { path: '', component: LoginComponent }
+];

@@ -3632,7 +3632,7 @@ bell-concierge:
       - hotel
       - receptionist
       - request
-      - service
+      - service.ts
       - support
   styles:
     - solid
@@ -37756,7 +37756,7 @@ taxi:
       - cab
       - cabbie
       - car
-      - car service
+      - car service.ts
       - lyft
       - machine
       - oncoming

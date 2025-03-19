@@ -14,7 +14,7 @@
 </head>
 <body>
 <body class="dashboard is-full-height">
-<div class="pageloader is-link is-active"></div>
+<div class="pageloader is-link is-active" [class.is-active]="isLoading"></div>
 <aside class="dashboard-panel is-scrollable is-medium box">
   <header class="dashboard-panel-header">
     <h3 class="title has-text-info-bold">
@@ -71,8 +71,7 @@
               <div class="list-item">
                 <div class="list-item-image">
                   <figure class="image">
-                    <img class="is-rounded"
-                         src="https://via.placeholder.com/128x128.png?text=Image" alt="">
+                    <img class="is-rounded" src="https://via.placeholder.com/128x128.png?text=Image" alt="">
                   </figure>
                 </div>
                 <div class="list-item-content">
@@ -95,7 +94,7 @@
   </header>
   <main class="hero-body">
     <div class="container">
-      <app-root></app-root>
+      <app-root class="content"></app-root>
     </div>
   </main>
   <footer class="hero-foot has-background-white-ter">

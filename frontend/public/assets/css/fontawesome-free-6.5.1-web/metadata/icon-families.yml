@@ -4443,7 +4443,7 @@ bell-concierge:
       - hotel
       - receptionist
       - request
-      - service
+      - service.ts
       - support
   unicode: f562
   voted: false
@@ -46284,7 +46284,7 @@ taxi:
       - cab
       - cabbie
       - car
-      - car service
+      - car service.ts
       - lyft
       - machine
       - oncoming
