@@ -1,0 +1,9 @@
+<div class="box">
+    <form method="post" (ngSubmit)="add[MajClass]()" #[MinClass]Form="ngForm">
+        [input]
+
+        <div class="buttons">
+            <button class="button is-link" type="submit" [disabled]="[MinClass]Form.invalid">Ajouter</button>
+        </div>
+    </form>
+</div>
