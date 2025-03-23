@@ -3,10 +3,6 @@
   publish = "dist/frontend"
   command = "ng build --configuration production"
 
-[[plugins]]
-  package = "@netlify/angular-runtime"
-  version = "2.2.0"
-
 [[redirects]]
   from = "/*"
   to = "/index.html"
