@@ -9,7 +9,7 @@ import { LoadingService } from './services/loading.service';
   standalone: true,
   styleUrls: ['./app.component.css']
 })
-export class AppComponent
+export class AppComponent {
   title = 'frontend';
   isLoading;
 
