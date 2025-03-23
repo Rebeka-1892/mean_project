@@ -4,7 +4,7 @@ const Role = require('../models/Role');
 const authMiddleware = require('../middlewares/authMiddleware');
 
 // Créer un rôle
-router.post('/', authMiddleware(['manager']), async (req, res) => {
+router.post('/', async (req, res) => {
 	try {
 		const role = new Role(req.body);
 		await role.save();
