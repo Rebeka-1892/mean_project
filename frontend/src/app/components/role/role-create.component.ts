@@ -5,9 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'app-role-create',
-    imports: [CommonModule, FormsModule],
-    templateUrl: './role-create.component.html'
+  selector: 'app-role-create',
+  imports: [CommonModule, FormsModule],
+  standalone: true,
+  templateUrl: './role-create.component.html'
 })
 export class RoleCreateComponent {
     roles: any[] = [];
@@ -22,5 +23,5 @@ export class RoleCreateComponent {
                 this.router.navigate(['/roles']);
             });
         }
-    }    
+    }
 }

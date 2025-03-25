@@ -5,9 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'app-role-edit',
-    imports: [CommonModule, FormsModule],
-    templateUrl: './role-edit.component.html'
+  selector: 'app-role-edit',
+  imports: [CommonModule, FormsModule],
+  standalone: true,
+  templateUrl: './role-edit.component.html'
 })
 export class RoleEditComponent {
     newRole: any = { nom: '', idrole: '', };
