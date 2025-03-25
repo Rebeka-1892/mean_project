@@ -12,16 +12,15 @@ import { CommonModule } from '@angular/common';
 export class [MajClass]CreateComponent {
     [MinClass]s: any[] = [];
     [MinClass]: any;
-    constructor(private[MinClass]Service: [MajClass]Service, private router: Router) { }
+    constructor(private [MinClass]Service: [MajClass]Service, private router: Router) { }
 
-    new [MajClass] = { title: '', content: '' };
+    new[MajClass] = {[data] };
 
     add[MajClass](): void {
-        if(this.new[MajClass].title && this.new[MajClass].content) {
-        this.[MinClass]Service.add[MajClass](this.new[MajClass]).subscribe(() => {
-            this.router.navigate(['/[MinClass]s']);
-        });
-    }
-}
-    
+        if([condition]) {
+            this.[MinClass]Service.add[MajClass](this.new[MajClass]).subscribe(() => {
+                this.router.navigate(['/[MinClass]s']);
+            });
+        }
+    }    
 }

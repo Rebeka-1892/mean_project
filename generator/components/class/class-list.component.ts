@@ -10,7 +10,7 @@ import { [MajClass]Service } from '../../services/[MinClass].service';
 export class [MajClass]ListComponent implements OnInit {
   [MinClass]s: any[] = [];
   [MinClass]: any;
-  constructor(private[MinClass]Service: [MajClass]Service, private router: Router) { }
+  constructor(private [MinClass]Service: [MajClass]Service, private router: Router) { }
   ngOnInit(): void {
     this.load[MajClass]s();
   }
@@ -20,9 +20,8 @@ export class [MajClass]ListComponent implements OnInit {
       data);
   }
 
-  delete [MajClass](id: string): void {
-    this.[MinClass]Service.delete[MajClass](id).subscribe(() =>
-      this.load[MajClass]s());
+  delete[MajClass](id: string): void {
+    this.[MinClass]Service.delete[MajClass](id).subscribe(() => this.load[MajClass]s());
   }
 
   update[MajClass](id: string): void {

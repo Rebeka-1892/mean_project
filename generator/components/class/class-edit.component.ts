@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
     templateUrl: './[MinClass]-edit.component.html'
 })
 export class [MajClass]EditComponent {
-    new [MajClass]: any = { title: '', content: '' }; // Initialisation
+    new[MajClass]: any = {[data] };
 
     constructor(
         private [MinClass]Service: [MajClass]Service,
@@ -19,7 +19,7 @@ export class [MajClass]EditComponent {
     ) { }
 
     ngOnInit(): void {
-        const id = this.route.snapshot.paramMap.get('id'); // Récupère l'ID depuis l'URL
+        const id = this.route.snapshot.paramMap.get('id');
         if(id) {
             this.[MinClass]Service.get[MajClass]ById(id).subscribe((data) => {
                 this.new[MajClass] = data;
@@ -28,14 +28,14 @@ export class [MajClass]EditComponent {
     }
 
     update[MajClass](): void {
-        if(this.new[MajClass].title && this.new[MajClass].content) {
-        this.[MinClass]Service.update[MajClass](this.new[MajClass]._id, this.new[MajClass]).subscribe(() => {
-            this.router.navigate(['/[MinClass]']); // Redirige vers la liste après modification
-        });
+        if([condition]) {
+            this.[MinClass]Service.update[MajClass](this.new[MajClass]._id, this.new[MajClass]).subscribe(() => {
+                this.router.navigate(['/[MinClass]']);
+            });
+        }
     }
-}
 
-goBackToList() {
-    this.router.navigate(['/[MinClass]s']);
-}
+    goBackToList() {
+        this.router.navigate(['/[MinClass]s']);
+    }
 }

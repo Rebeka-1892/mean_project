@@ -1,0 +1,34 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { RoleService } from '../../services/role.service';
+
+@Component({
+  selector: 'app-role-list',
+  imports: [],
+  templateUrl: './role-list.component.html'
+})
+export class RoleListComponent implements OnInit {
+  roles: any[] = [];
+  role: any;
+  constructor(private roleService: RoleService, private router: Router) { }
+  ngOnInit(): void {
+    this.loadRoles();
+  }
+
+  loadRoles(): void {
+    this.roleService.getRoles().subscribe(data => this.roles =
+      data);
+  }
+
+  deleteRole(id: string): void {
+    this.roleService.deleteRole(id).subscribe(() => this.loadRoles());
+  }
+
+  updateRole(id: string): void {
+    this.router.navigate(['/roles-edit', id]); // Redirige vers la page d'édition avec l'ID
+  }
+
+  goToRoleCreate() {
+    this.router.navigate(['/roles-create']);
+  }
+}
