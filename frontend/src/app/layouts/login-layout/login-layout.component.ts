@@ -28,7 +28,7 @@ import BaseComponent from '../../components/BaseComponent';
           this.router.navigate(['/roles']);
         },
         error => {
-          this.error = error;
+          this.error = error.error.message;
         }
       );
     }

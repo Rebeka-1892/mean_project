@@ -23,7 +23,7 @@ export class MainLayoutComponent extends BaseComponent {
         this.router.navigate(['/login']);
       },
       error => {
-        this.error = error;
+        this.error = error.error.message;
       }
     );
   }

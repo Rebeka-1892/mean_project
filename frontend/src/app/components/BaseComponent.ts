@@ -1,8 +1,5 @@
-import {HttpErrorResponse} from '@angular/common/http';
-
 export default class BaseComponent {
-    error?: HttpErrorResponse;
+    error?: string;
     message?: string;
-    errorMessage?: string = this.error?.error.message;
     constructor() {}
 }
