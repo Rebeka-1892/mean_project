@@ -13,9 +13,9 @@
         <input class="input" type="password" id="password" name="motdepasse" [(ngModel)]="utilisateur.motdepasse" required />
       </div>
     </div>
-    <div class="field">
+    <div *ngIf="error" class="field">
       <div class="control">
-        <span class="help has-text-danger-40">Identifiant ou mot de passe incorrecte.</span>
+        <span class="help has-text-danger-40">{{ errorMessage }}</span>
       </div>
     </div>
     <div class="field">
