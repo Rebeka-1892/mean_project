@@ -1,0 +1,18 @@
+<div class="box">
+    <form method="post" (ngSubmit)="addUnite()" #uniteForm="ngForm">
+        <div class="field">
+    <label for="nom" class="label">
+        Nom
+    </label>
+    <div class="control">
+        <input type="text" class="input" id="nom" name="nom" [(ngModel)]="newUnite.nom" required />
+        <span class="help is-color-danger-40">Help</span>
+    </div>
+</div>
+
+
+        <div class="buttons">
+            <button class="button is-link" type="submit" [disabled]="uniteForm.invalid">Ajouter</button>
+        </div>
+    </form>
+</div>

@@ -24,7 +24,7 @@ export class [MajClass]EditComponent implements OnInit {
         const id = this.route.snapshot.paramMap.get('id');
         if(id) {
             this.[MinClass]Service.get[MajClass]ById(id).subscribe(data => this.new[MajClass] = data);
-            this.[MinClass]Service.get[MajClass]().subscribe(data => this.list = data);            
+            this.[MinClass]Service.get[MajClass]s().subscribe(data => this.list = data);            
         }
     }
 
