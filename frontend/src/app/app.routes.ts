@@ -12,7 +12,7 @@ export const routes: Routes = [
     path: '',
     component: MainLayoutComponent,
     children: [
-      { path: 'roles-edit/:id', component: RoleEditComponent },
+      { path: 'roles-edit/:id', component: RoleEditComponent, data: { prerender: false } }, // Désactiver le pré-rendu pour cette route
       { path: 'roles-create', component: RoleCreateComponent },
       { path: 'roles', component: RoleListComponent },
     ]
