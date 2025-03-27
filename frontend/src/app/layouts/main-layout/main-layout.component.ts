@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {Router, RouterOutlet} from '@angular/router';
 import BaseComponent from '../../components/BaseComponent';
 import {LoginService} from '../../services/login.service';
+import {SharedService} from '../../services/shared.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -13,8 +14,11 @@ import {LoginService} from '../../services/login.service';
   styleUrl: './main-layout.component.css'
 })
 export class MainLayoutComponent extends BaseComponent {
-  constructor(private loginService: LoginService, private router: Router) {
+  utilisateur: any = {};
+
+  constructor(private loginService: LoginService, private router: Router, private sharedService: SharedService) {
     super();
+    this.utilisateur = sharedService.getUtilisateur();
   }
 
   logout(): void {

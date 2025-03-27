@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import {NgIf} from '@angular/common';
 import {Router} from '@angular/router';
 import BaseComponent from '../../components/BaseComponent';
+import {SharedService} from '../../services/shared.service';
 
   @Component({
     selector: 'app-login',
@@ -18,13 +19,14 @@ import BaseComponent from '../../components/BaseComponent';
   export class LoginComponent extends BaseComponent {
     utilisateur: any = {};
 
-    constructor(private loginService: LoginService, private router: Router) {
+    constructor(private loginService: LoginService, private router: Router, private sharedService: SharedService) {
       super();
     }
 
     login(): void {
       this.loginService.login(this.utilisateur).subscribe(
         data => {
+          this.sharedService.setUtilisateur(data);
           this.router.navigate(['/roles']);
         },
         error => {

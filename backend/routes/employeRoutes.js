@@ -21,8 +21,7 @@ router.post('/login', async (req, res) => {
 		const token = jwt.sign({ id: employe._id, role: role.nom }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
 		res.cookie('token', token, { httpOnly: true, secure: true, maxAge: 3600000 });
-		// res.json({ token });
-		res.status(200).json({ message: 'Connexion réussie' });
+		res.status(201).json(employe);
     } catch (error) {
 		res.status(400).json({ message: error.message });
     }
