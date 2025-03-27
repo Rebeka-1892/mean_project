@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware 
 app.use((req, res, next) => {
-    if (req.path === '/login') {
+    if (req.path === '/employes/login') {
         cors()(req, res, next);
     } else {
         cors({ origin: process.env.FRONTEND_URL, credentials: true })(req, res, next);
