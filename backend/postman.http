@@ -124,3 +124,5 @@
 #    "montant": 500,
 #    "date": "2023-10-01"
 #}
+
+DELETE localhost:5000/roles/67d882acd8d727167d36cd3f

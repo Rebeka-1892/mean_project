@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { RoleService } from '../../services/role.service';
 import { FormsModule } from '@angular/forms';
@@ -7,20 +7,19 @@ import { CommonModule } from '@angular/common';
 @Component({
     selector: 'app-role-create',
     imports: [CommonModule, FormsModule],
-    templateUrl: './role-create.component.html', 
+    templateUrl: './role-create.component.html',
     standalone: true
 })
-export class RoleCreateComponent {
-    list : any;    
-    selectedOption: number | null = null;
+export class RoleCreateComponent implements OnInit{
+    list : any;
     role: any;
     constructor(private roleService: RoleService, private router: Router) { }
 
     ngOnInit(): void {
-        this.list = this.roleService.getRoles();
+      this.roleService.getRoles().subscribe(data => this.list = data);
     }
 
-    newRole = { nom: '', idrole: '', };
+    newRole = { nom: '', idrole: '' };
 
     addRole(): void {
         if(this.newRole.nom && this.newRole.idrole) {
