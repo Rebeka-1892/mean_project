@@ -6,10 +6,12 @@ import { RoleEditComponent } from './components/role/role-edit.component';
 //new_import
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' }, // Redirection  par défaut,
-    { path: '**', redirectTo: 'login', pathMatch: 'full' }, // Redirection  par défaut,
     { path: 'login', component: LoginComponent },
     { path: 'roles-edit/:id', component: RoleEditComponent },
     { path: 'roles-create', component: RoleCreateComponent },
     { path: 'roles', component: RoleListComponent },
     //new_path
+
+    // url pour les URLs inconnues
+    { path: '**', redirectTo: 'login' } // Redirection  par défaut,
 ];
