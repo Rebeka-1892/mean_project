@@ -31,7 +31,7 @@ export class [MajClass]EditComponent implements OnInit {
     update[MajClass](): void {
         if([condition]) {
             this.[MinClass]Service.update[MajClass](this.new[MajClass]._id, this.new[MajClass]).subscribe(() => {
-                this.router.navigate(['/[MinClass]']);
+                this.router.navigate(['/[MinClass]s']);
             });
         }
     }

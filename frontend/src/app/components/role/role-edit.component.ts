@@ -31,7 +31,7 @@ export class RoleEditComponent implements OnInit {
     updateRole(): void {
         if(this.newRole.nom && this.newRole.idrole) {
             this.roleService.updateRole(this.newRole._id, this.newRole).subscribe(() => {
-                this.router.navigate(['/role']);
+                this.router.navigate(['/roles']);
             });
         }
     }
