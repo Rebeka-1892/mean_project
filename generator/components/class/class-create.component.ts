@@ -7,7 +7,8 @@ import { CommonModule } from '@angular/common';
 @Component({
     selector: 'app-[MinClass]-create',
     imports: [CommonModule, FormsModule],
-    templateUrl: './[MinClass]-create.component.html'
+    templateUrl: './[MinClass]-create.component.html',
+    standalone: true
 })
 export class [MajClass]CreateComponent {
     [MinClass]s: any[] = [];

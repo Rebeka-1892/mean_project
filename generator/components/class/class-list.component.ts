@@ -5,7 +5,8 @@ import { [MajClass]Service } from '../../services/[MinClass].service';
 @Component({
   selector: 'app-[MinClass]-list',
   imports: [],
-  templateUrl: './[MinClass]-list.component.html'
+  templateUrl: './[MinClass]-list.component.html',
+  standalone: true
 })
 export class [MajClass]ListComponent implements OnInit {
   [MinClass]s: any[] = [];
