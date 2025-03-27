@@ -4,12 +4,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class SharedService {
-  private _utilisateur: any;
+  private _utilisateur = 'utilisateur';
   getUtilisateur(): any {
-    return this._utilisateur;
+      const utilisateur = localStorage.getItem(this._utilisateur);
+      return utilisateur ? JSON.parse(utilisateur) : null;
   }
 
   setUtilisateur(value: any) {
-    this._utilisateur = value;
+    localStorage.setItem(this._utilisateur, JSON.stringify(value));
   }
 }
