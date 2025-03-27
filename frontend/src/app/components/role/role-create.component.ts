@@ -28,5 +28,5 @@ export class RoleCreateComponent {
                 this.router.navigate(['/roles']);
             });
         }
-    }    
+    }
 }
