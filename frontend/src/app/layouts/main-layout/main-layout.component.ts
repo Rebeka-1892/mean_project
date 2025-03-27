@@ -24,6 +24,7 @@ export class MainLayoutComponent extends BaseComponent {
   logout(): void {
     this.loginService.logout().subscribe(
       data => {
+        this.sharedService.clearUtilisateur();
         this.router.navigate(['/login']);
       },
       error => {
