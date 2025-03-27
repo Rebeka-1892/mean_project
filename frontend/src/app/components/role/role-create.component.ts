@@ -5,15 +5,20 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-role-create',
-  imports: [CommonModule, FormsModule],
-  standalone: true,
-  templateUrl: './role-create.component.html'
+    selector: 'app-role-create',
+    imports: [CommonModule, FormsModule],
+    templateUrl: './role-create.component.html', 
+    standalone: true
 })
 export class RoleCreateComponent {
-    roles: any[] = [];
+    list : any;    
+    selectedOption: number | null = null;
     role: any;
     constructor(private roleService: RoleService, private router: Router) { }
+
+    ngOnInit(): void {
+        this.list = this.roleService.getRoles();
+    }
 
     newRole = { nom: '', idrole: '', };
 

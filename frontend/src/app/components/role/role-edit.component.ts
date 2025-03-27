@@ -5,13 +5,15 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-role-edit',
-  imports: [CommonModule, FormsModule],
-  standalone: true,
-  templateUrl: './role-edit.component.html'
+    selector: 'app-role-edit',
+    imports: [CommonModule, FormsModule],
+    templateUrl: './role-edit.component.html', 
+    standalone: true
 })
 export class RoleEditComponent {
     newRole: any = { nom: '', idrole: '', };
+    list : any;
+    selectedOption: number | null = null;
 
     constructor(
         private roleService: RoleService,
@@ -25,6 +27,7 @@ export class RoleEditComponent {
             this.roleService.getRoleById(id).subscribe((data) => {
                 this.newRole = data;
             });
+            this.list = this.roleService.getRoles();
         }
     }
 
