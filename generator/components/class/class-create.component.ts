@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { [MajClass]Service } from '../../services/[MinClass].service';
 import { FormsModule } from '@angular/forms';
@@ -10,12 +10,15 @@ import { CommonModule } from '@angular/common';
     templateUrl: './[MinClass]-create.component.html',
     standalone: true
 })
-export class [MajClass]CreateComponent {
-    [MinClass]s: any[] = [];
-    [MinClass]: any;
+export class [MajClass]CreateComponent implements OnInit{
+    list : any;
+    new[MajClass] = {[data] };
+    
     constructor(private [MinClass]Service: [MajClass]Service, private router: Router) { }
 
-    new[MajClass] = {[data] };
+    ngOnInit(): void {
+        this.[MinClass]Service.get[MajClass]s().subscribe(data => this.list = data);
+    }
 
     add[MajClass](): void {
         if([condition]) {

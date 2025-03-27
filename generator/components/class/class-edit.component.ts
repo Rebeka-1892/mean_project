@@ -11,7 +11,8 @@ import { CommonModule } from '@angular/common';
     standalone: true
 })
 export class [MajClass]EditComponent implements OnInit {
-    new[MajClass]: any = {[data] };
+    new[MajClass]: any;
+    list: any;
 
     constructor(
         private [MinClass]Service: [MajClass]Service,
@@ -22,9 +23,8 @@ export class [MajClass]EditComponent implements OnInit {
     ngOnInit(): void {
         const id = this.route.snapshot.paramMap.get('id');
         if(id) {
-            this.[MinClass]Service.get[MajClass]ById(id).subscribe((data) => {
-                this.new[MajClass] = data;
-            });
+            this.[MinClass]Service.get[MajClass]ById(id).subscribe(data => this.new[MajClass] = data);
+            this.[MinClass]Service.get[MajClass]().subscribe(data => this.list = data);            
         }
     }
 

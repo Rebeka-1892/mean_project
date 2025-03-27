@@ -12,15 +12,14 @@ import { CommonModule } from '@angular/common';
 })
 export class RoleCreateComponent implements OnInit{
     list : any;
-    role: any;
+    newRole = { nom: '', idrole: '' };
+
     constructor(private roleService: RoleService, private router: Router) { }
 
     ngOnInit(): void {
       this.roleService.getRoles().subscribe(data => this.list = data);
     }
-
-    newRole = { nom: '', idrole: '' };
-
+    
     addRole(): void {
         if(this.newRole.nom && this.newRole.idrole) {
             this.roleService.addRole(this.newRole).subscribe(() => {

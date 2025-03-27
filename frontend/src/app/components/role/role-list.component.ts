@@ -10,7 +10,7 @@ import { RoleService } from '../../services/role.service';
 })
 export class RoleListComponent implements OnInit {
   roles: any[] = [];
-  role: any;
+
   constructor(private roleService: RoleService, private router: Router) { }
   ngOnInit(): void {
     this.loadRoles();
@@ -26,7 +26,7 @@ export class RoleListComponent implements OnInit {
   }
 
   updateRole(id: string): void {
-    this.router.navigate(['/roles-edit', id]); // Redirige vers la page d'édition avec l'ID
+    this.router.navigate(['/roles-edit', id]);
   }
 
   goToRoleCreate() {

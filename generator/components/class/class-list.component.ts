@@ -10,7 +10,7 @@ import { [MajClass]Service } from '../../services/[MinClass].service';
 })
 export class [MajClass]ListComponent implements OnInit {
   [MinClass]s: any[] = [];
-  [MinClass]: any;
+  
   constructor(private [MinClass]Service: [MajClass]Service, private router: Router) { }
   ngOnInit(): void {
     this.load[MajClass]s();
@@ -26,7 +26,7 @@ export class [MajClass]ListComponent implements OnInit {
   }
 
   update[MajClass](id: string): void {
-    this.router.navigate(['/[MinClass]s-edit', id]); // Redirige vers la page d'édition avec l'ID
+    this.router.navigate(['/[MinClass]s-edit', id]);
   }
 
   goTo[MajClass]Create() {
