@@ -13,4 +13,8 @@ export class SharedService {
   setUtilisateur(value: any) {
     localStorage.setItem(this._utilisateur, JSON.stringify(value));
   }
+
+  clearUtilisateur() {
+    localStorage.removeItem(this._utilisateur);
+  }
 }

@@ -7,6 +7,8 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
 import { UniteListComponent } from './components/unite/unite-list.component';
 import { UniteCreateComponent } from './components/unite/unite-create.component';
 import { UniteEditComponent } from './components/unite/unite-edit.component';
+import {AuthGuard} from './guards/auth.guard';
+
 //new_import
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' }, // Redirection par défaut
@@ -14,11 +16,12 @@ export const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: 'roles-edit/:id', component: RoleEditComponent, data: { prerender: false } }, // Désactiver le pré-rendu pour cette route
       { path: 'roles-create', component: RoleCreateComponent },
       { path: 'roles', component: RoleListComponent },
-      { path: 'unites-edit/:id', component: UniteEditComponent },
+      { path: 'unites-edit/:id', component: UniteEditComponent, data: { prerender: false } }, // Désactiver le pré-rendu pour cette route
       { path: 'unites-create', component: UniteCreateComponent },
       { path: 'unites', component: UniteListComponent },
       //new_path
