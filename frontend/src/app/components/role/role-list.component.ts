@@ -5,7 +5,8 @@ import { RoleService } from '../../services/role.service';
 @Component({
   selector: 'app-role-list',
   imports: [],
-  templateUrl: './role-list.component.html'
+  templateUrl: './role-list.component.html', 
+  standalone: true
 })
 export class RoleListComponent implements OnInit {
   roles: any[] = [];
