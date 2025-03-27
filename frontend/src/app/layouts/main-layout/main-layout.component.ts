@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import {RouterOutlet} from '@angular/router';
+import {Router, RouterOutlet} from '@angular/router';
+import BaseComponent from '../../components/BaseComponent';
+import {LoginService} from '../../services/login.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -10,6 +12,19 @@ import {RouterOutlet} from '@angular/router';
   standalone: true,
   styleUrl: './main-layout.component.css'
 })
-export class MainLayoutComponent {
+export class MainLayoutComponent extends BaseComponent {
+  constructor(private loginService: LoginService, private router: Router) {
+    super();
+  }
 
+  logout(): void {
+    this.loginService.logout().subscribe(
+      data => {
+        this.router.navigate(['/login']);
+      },
+      error => {
+        this.error = error;
+      }
+    );
+  }
 }

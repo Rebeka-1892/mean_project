@@ -8,10 +8,14 @@ import {environment} from '../../environments/environment';
 })
 
 export class LoginService {
-  protected apiUrl = `${environment.apiUrl}/employes/login`;
+  protected apiUrl = `${environment.apiUrl}/employes`;
   constructor(protected http: HttpClient) { }
 
   login(user: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}`, user);
+    return this.http.post(`${this.apiUrl}/login`, user);
+  }
+
+  logout(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/logout`);
   }
 }

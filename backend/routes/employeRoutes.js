@@ -28,6 +28,16 @@ router.post('/login', async (req, res) => {
     }
 });
 
+// Déconnexion
+router.post('/logout', (req, res) => {
+	try {
+		res.clearCookie('token', { httpOnly: true, secure: true });
+		res.status(200).json({ message: 'Déconnexion réussie' });
+	} catch (error) {
+		res.status(400).json({ message: error.message });
+	}
+});
+
 // Créer un employé
 router.post('/register', async (req, res) => {
     try {
