@@ -12,10 +12,10 @@ export class LoginService {
   constructor(protected http: HttpClient) { }
 
   login(user: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, user);
+    return this.http.post(`${this.apiUrl}/login`, user, { withCredentials: true });
   }
 
   logout(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/logout`);
+    return this.http.get(`${this.apiUrl}/logout`, { withCredentials: true });
   }
 }

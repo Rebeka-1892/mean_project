@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {Router, RouterOutlet} from '@angular/router';
 import BaseComponent from '../../components/BaseComponent';
 import {LoginService} from '../../services/login.service';
-import {SharedService} from '../../services/shared.service';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-main-layout',
@@ -14,17 +14,13 @@ import {SharedService} from '../../services/shared.service';
   styleUrl: './main-layout.component.css'
 })
 export class MainLayoutComponent extends BaseComponent {
-  utilisateur: any = {};
-
-  constructor(private loginService: LoginService, private router: Router, private sharedService: SharedService) {
+  constructor(private loginService: LoginService, private router: Router) {
     super();
-    this.utilisateur = sharedService.getUtilisateur();
   }
 
   logout(): void {
     this.loginService.logout().subscribe(
       data => {
-        this.sharedService.clearUtilisateur();
         this.router.navigate(['/login']);
       },
       error => {
