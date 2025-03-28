@@ -1,0 +1,106 @@
+<div class="box">
+    <div class="field has-addons has-addons-centered is-hidden-desktop">
+        <div class="control has-icons-left has-icons-right">
+            <label>
+                <input type="text" class="input" placeholder="Rechercher..." />
+            </label>
+            <span class="icon is-left is-ghost">
+                <i class="fas fa-magnifying-glass"></i>
+            </span>
+            <span class="icon is-right is-clickable is-ghost reset">
+                <i class="fas fa-delete-left"></i>
+            </span>
+        </div>
+    </div>
+    <div class="is-flex is-justify-content-space-between">
+        <h3 class="subtitle has-text-weight-bold">
+            Materiel
+        </h3>
+        <div class="field is-grouped">
+            <div class="field">
+                <div class="control">
+                    <button class="button" (click)="goToMaterielCreate()">
+                        <span class="icon is-clickable add">
+                            <i class="fas fa-add"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-container">
+        <table class="table is-fullwidth">
+            <thead>
+                <tr>
+                    <th class="has-text-left">Nom</th>
+                    <th class="has-text-left">Prix</th>
+                    <th class="has-text-left">Idunite</th>
+
+                    <td>
+                        <div class="field is-hidden-touch">
+                            <div class="control has-icons-left has-icons-right is-pulled-right">
+                                <label>
+                                    <input type="text" class="input" placeholder="Rechercher..." />
+                                </label>
+                                <span class="icon is-left is-ghost">
+                                    <i class="fas fa-magnifying-glass"></i>
+                                </span>
+                                <span class="icon is-right is-clickable is-ghost reset">
+                                    <i class="fas fa-delete-left"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                @for (materiel of materiels; track materiel._id) {
+                <tr>
+                    <td>{{ materiel.nom }}</td>
+                    <td>{{ materiel.prix }}</td>
+                    <td>{{ materiel.idunite }}</td>
+
+                    <td>
+                        <div class="buttons is-pulled-right">
+                            <a (click)="updateMateriel(materiel._id)"
+                                class="button is-dark is-background-grey has-text-white is-hidden-touch">
+                                <div class="icon-text">
+                                    <span class="icon">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </span>
+                                    <span>
+                                        Modifier
+                                    </span>
+                                </div>
+                            </a>
+                            <a (click)="deleteMateriel(materiel._id)"
+                                class="button is-danger is-background-danger-40 has-text-white is-hidden-touch">
+                                <div class="icon-text">
+                                    <span class="icon">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </span>
+                                    <span>
+                                        Supprimer
+                                    </span>
+                                </div>
+                            </a>
+                            <a (click)="updateMateriel(materiel._id)"
+                                class="button is-dark is-background-grey has-text-white is-hidden-desktop">
+                                <span class="icon">
+                                    <i class="fa-solid fa-pen"></i>
+                                </span>
+                            </a>
+                            <a (click)="deleteMateriel(materiel._id)"
+                                class="button is-danger is-background-danger-40 has-text-white is-hidden-desktop">
+                                <span class="icon">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </span>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -13,7 +13,10 @@ import { CommonModule } from '@angular/common';
 export class UniteCreateComponent implements OnInit{
     newUnite = { nom: '' };
     
-    constructor(private uniteService: UniteService, private router: Router) { }
+    constructor(
+        private uniteService: UniteService, 
+        private router: Router
+    ) { }
 
     ngOnInit(): void {
     }

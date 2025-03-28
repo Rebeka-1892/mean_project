@@ -1,0 +1,43 @@
+<div class="box">
+    <form method="post" (ngSubmit)="addMateriel()" #materielForm="ngForm">
+        <div class="field">
+            <label for="nom" class="label">
+                Nom
+            </label>
+            <div class="control">
+                <input type="text" class="input" id="nom" name="nom" [(ngModel)]="newMateriel.nom" required />
+                <span class="help is-color-danger-40">Help</span>
+            </div>
+        </div>
+        <div class="field">
+            <label for="prix" class="label">
+                Prix
+            </label>
+            <div class="control">
+                <input type="number" class="input" id="prix" name="prix" [(ngModel)]="newMateriel.prix" required />
+                <span class="help is-color-danger-40">Help</span>
+            </div>
+        </div>
+        <div class="field">
+            <label for="idunite" class="label">
+                Idunite
+            </label>
+            <div class="control">
+                <div class="select is-fullwidth">
+                    <select id="idunite" name="idunite" [(ngModel)]="newMateriel.idunite">
+                        <option *ngIf="!newMateriel.idunite" value="" disabled selected>Selectionner Unite</option>
+                        <option *ngFor="let row of list" [value]="row._id">
+                            {{ row.nom }}
+                        </option>
+                    </select>
+                </div>
+                <span class="help is-color-danger-40">Help</span>
+            </div>
+        </div>
+
+
+        <div class="buttons">
+            <button class="button is-link" type="submit" [disabled]="materielForm.invalid">Ajouter</button>
+        </div>
+    </form>
+</div>

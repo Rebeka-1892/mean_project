@@ -14,7 +14,10 @@ export class [MajClass]CreateComponent implements OnInit{
     list : any;
     new[MajClass] = {[data] };
     
-    constructor(private [MinClass]Service: [MajClass]Service, private router: Router) { }
+    constructor(
+        private [MinClass]Service: [MajClass]Service, 
+        private router: Router
+    ) { }
 
     ngOnInit(): void {
         this.[MinClass]Service.get[MajClass]s().subscribe(data => this.list = data);

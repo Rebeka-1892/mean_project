@@ -1,0 +1,28 @@
+<div class="box">
+    <form method="post" (ngSubmit)="updateService()" #serviceForm="ngForm">
+        <div class="field">
+    <label for="nom" class="label">
+        Nom
+    </label>
+    <div class="control">
+        <input type="text" class="input" id="nom" name="nom" [(ngModel)]="newService.nom" required />
+        <span class="help is-color-danger-40">Help</span>
+    </div>
+</div>
+<div class="field">
+    <label for="marge" class="label">
+        Marge
+    </label>
+    <div class="control">
+        <input type="number" class="input" id="marge" name="marge" [(ngModel)]="newService.marge" required />
+        <span class="help is-color-danger-40">Help</span>
+    </div>
+</div>
+
+
+        <div class="buttons">
+            <button class="button is-link" type="submit" [disabled]="serviceForm.invalid">Modifier</button>
+            <button class="button is-background-danger-40 has-text-white" type="button" (click)="goBackToList()">Annuler</button>
+        </div>
+    </form>
+</div>

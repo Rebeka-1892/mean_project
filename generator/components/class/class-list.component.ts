@@ -11,7 +11,11 @@ import { [MajClass]Service } from '../../services/[MinClass].service';
 export class [MajClass]ListComponent implements OnInit {
   [MinClass]s: any[] = [];
   
-  constructor(private [MinClass]Service: [MajClass]Service, private router: Router) { }
+  constructor(
+    private [MinClass]Service: [MajClass]Service, 
+    private router: Router
+  ) { }
+
   ngOnInit(): void {
     this.load[MajClass]s();
   }
