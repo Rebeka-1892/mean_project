@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const Role = require('../models/Role');
-const authMiddleware = require('../middlewares/authMiddleware');
 
 // Créer un rôle
 router.post('/', async (req, res) => {
