@@ -4,7 +4,7 @@ const authMiddleware = require('../middlewares/authMiddleware');
 const fs = require('fs');
 const path = require('path');
 
-router.get('/', authMiddleware(['Manager', 'Mécanicien', 'Client']),(req, res) => {
+router.get('/', authMiddleware(['manager', 'mecanicien', 'client']),(req, res) => {
   const role = req.user.role;
   const menusPath = path.join(__dirname, '../config/menus.json');
 

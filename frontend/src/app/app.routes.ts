@@ -7,9 +7,11 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
 import { UniteListComponent } from './components/unite/unite-list.component';
 import { UniteCreateComponent } from './components/unite/unite-create.component';
 import { UniteEditComponent } from './components/unite/unite-edit.component';
-import {AuthGuard} from './guards/auth.guard';
-import {UnauthorizedComponent} from './components/unauthorized/unauthorized.component';
-
+import { AuthGuard } from './guards/auth.guard';
+import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
+import { EmployeListComponent } from './components/employe/employe-list.component';
+import { EmployeCreateComponent } from './components/employe/employe-create.component';
+import { EmployeEditComponent } from './components/employe/employe-edit.component';
 //new_import
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' }, // Redirection par défaut
@@ -26,6 +28,9 @@ export const routes: Routes = [
       { path: 'unites-edit/:id', component: UniteEditComponent, data: { prerender: false } }, // Désactiver le pré-rendu pour cette route
       { path: 'unites-create', component: UniteCreateComponent },
       { path: 'unites', component: UniteListComponent },
+      { path: 'employes-edit/:id', component: EmployeEditComponent },
+      { path: 'employes-create', component: EmployeCreateComponent },
+      { path: 'employes', component: EmployeListComponent },
       //new_path
     ]
   },
