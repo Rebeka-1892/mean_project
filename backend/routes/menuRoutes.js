@@ -1,0 +1,22 @@
+const express = require('express');
+const router = express.Router();
+const authMiddleware = require('../middlewares/authMiddleware');
+const fs = require('fs');
+const path = require('path');
+
+router.get('/', authMiddleware(['Manager', 'Mécanicien', 'Client']),(req, res) => {
+  const role = 'Manager';
+  const menusPath = path.join(__dirname, '../config/menus.json');
+
+  fs.readFile(menusPath, 'utf8', (err, data) => {
+    if (err) {
+      return res.status(500).json({ message: 'Erreur lors de la lecture des menus' });
+    }
+
+    const menus = JSON.parse(data);
+    const menu = menus[role];
+    res.json(menu);
+  });
+});
+
+module.exports = router;

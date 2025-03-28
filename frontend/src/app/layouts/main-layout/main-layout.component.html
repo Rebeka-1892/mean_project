@@ -6,44 +6,23 @@
       </h3>
     </header>
     <section class="dashboard-panel-content">
-      <aside class="menu">
-        <p class="menu-label">
-          General
-        </p>
-        <ul class="menu-list">
-          <li><a>Dashboard</a></li>
-          <li><a>Customers</a></li>
-        </ul>
-        <p class="menu-label">
-          Administration
-        </p>
-        <ul class="menu-list">
-          <li><a>Team Settings</a></li>
-          <li>
-            <a class="is-active">Manage Your Team</a>
-            <ul>
-              <li><a>Members</a></li>
-              <li><a>Plugins</a></li>
-              <li><a>Add a member</a></li>
-            </ul>
-          </li>
-          <li><a>Invitations</a></li>
-          <li><a>Cloud Storage Environment Settings</a></li>
-          <li><a>Authentication</a></li>
-        </ul>
-        <p class="menu-label">
-          Transactions
-        </p>
-        <ul class="menu-list">
-          <li><a>Payments</a></li>
-          <li><a>Transfers</a></li>
-          <li><a>Balance</a></li>
-        </ul>
+      <aside class="menu" *ngIf="menus.length">
+        <ng-container *ngFor="let menu of menus">
+          <p class="menu-label">{{ menu.name }}</p>
+          <ul class="menu-list">
+            <li *ngFor="let item of menu.submenus">
+              <a [routerLink]="item.path">{{ item.name }}</a>
+              <ul *ngIf="item.submenus">
+                <li *ngFor="let submenu of item.submenus">
+                  <a [routerLink]="submenu.path">{{ submenu.name }}</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </ng-container>
       </aside>
     </section>
-    <footer class="dashboard-panel-footer">
-
-    </footer>
+    <footer class="dashboard-panel-footer"></footer>
   </aside>
   <main class="dashboard-main is-scrollable hero is-fullheight">
     <header class="hero-head">
