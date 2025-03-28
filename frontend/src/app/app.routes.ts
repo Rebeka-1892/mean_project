@@ -8,6 +8,7 @@ import { UniteListComponent } from './components/unite/unite-list.component';
 import { UniteCreateComponent } from './components/unite/unite-create.component';
 import { UniteEditComponent } from './components/unite/unite-edit.component';
 import {AuthGuard} from './guards/auth.guard';
+import {UnauthorizedComponent} from './components/unauthorized/unauthorized.component';
 
 //new_import
 export const routes: Routes = [
@@ -18,6 +19,7 @@ export const routes: Routes = [
     component: MainLayoutComponent,
     canActivate: [AuthGuard],
     children: [
+      { path: 'unauthorized', component: UnauthorizedComponent },
       { path: 'roles-edit/:id', component: RoleEditComponent, data: { prerender: false } }, // Désactiver le pré-rendu pour cette route
       { path: 'roles-create', component: RoleCreateComponent },
       { path: 'roles', component: RoleListComponent },
