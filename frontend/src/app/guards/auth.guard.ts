@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import {SharedService} from '../services/shared.service';
+import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private sharedService: SharedService, private router: Router) {}
+  constructor(private cookieService: CookieService, private router: Router) {}
 
   canActivate(): boolean {
-    if (this.sharedService.getUtilisateur()) {
+    if (this.cookieService.get('token')) {
       return true;
-    } else {
-      this.router.navigate(['/login']);
-      return false;
     }
+    this.router.navigate(['/login']);
+    return false;
   }
 }
