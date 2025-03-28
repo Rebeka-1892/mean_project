@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 
 router.get('/', authMiddleware(['Manager', 'Mécanicien', 'Client']),(req, res) => {
-  const role = 'Manager';
+  const role = req.user.role;
   const menusPath = path.join(__dirname, '../config/menus.json');
 
   fs.readFile(menusPath, 'utf8', (err, data) => {
