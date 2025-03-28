@@ -1,0 +1,31 @@
+{
+    "Manager": [
+        {
+            "name": "Général",
+            "path": "/general",
+            "submenus": [
+                { "name": "Dashboard", "path": "/general/dashboard" }
+            ]
+        },
+        { "name": "Paramètre", "path": "/parametre" },
+        {
+            "name": "Users",
+            "path": "/users",
+            "submenus": [
+                { "name": "Add User", "path": "/users/add" },
+                {
+                    "name": "Manage Users",
+                    "path": "/users/manage",
+                    "submenus": [
+                        { "name": "Active Users", "path": "/users/manage/active" },
+                        { "name": "Inactive Users", "path": "/users/manage/inactive" }
+                    ]
+                }
+            ]
+        }
+    ],
+    "Mécanicien": [
+        { "name": "Dashboard", "path": "/dashboard" },
+        { "name": "Profile", "path": "/profile" }
+    ]
+}
