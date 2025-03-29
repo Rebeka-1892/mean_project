@@ -6,7 +6,8 @@ const authMiddleware = (rolesAutorises = []) => {
     const token = req.cookies.token;
 
     if (!token) {
-      return res.status(401).json({ message: 'Accès refusé. Veuillez vous connecter.' });
+      res.setHeader('X-Redirect', '/login');
+      return res.status(200).json({ message: 'Unauthorized' });
     }
 
     try {
@@ -14,12 +15,14 @@ const authMiddleware = (rolesAutorises = []) => {
       req.user = decoded;
       
       if (rolesAutorises.length && !rolesAutorises.includes(decoded.role)) {
-        return res.status(403).json({ message: "Accès interdit" });
+        res.setHeader('X-Redirect', '/unauthorized');
+        return res.status(200).json({ message: 'Forbidden' });
       }
 
       next();
     } catch (error) {
-      res.status(401).json({ message: "Token invalide" });
+      res.setHeader('X-Redirect', '/login');
+      return res.status(200).json({ message: 'Invalid Token' });
     }
   };
 };
