@@ -22,13 +22,13 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       { path: 'unauthorized', component: UnauthorizedComponent },
-      { path: 'roles-edit/:id', component: RoleEditComponent, data: { prerender: false } }, // Désactiver le pré-rendu pour cette route
+      { path: 'roles-edit', component: RoleEditComponent }, // Désactiver le pré-rendu pour cette route
       { path: 'roles-create', component: RoleCreateComponent },
       { path: 'roles', component: RoleListComponent },
-      { path: 'unites-edit/:id', component: UniteEditComponent, data: { prerender: false } }, // Désactiver le pré-rendu pour cette route
+      { path: 'unites-edit', component: UniteEditComponent }, // Désactiver le pré-rendu pour cette route
       { path: 'unites-create', component: UniteCreateComponent },
       { path: 'unites', component: UniteListComponent },
-      { path: 'employes-edit/:id', component: EmployeEditComponent },
+      { path: 'employes-edit', component: EmployeEditComponent },
       { path: 'employes-create', component: EmployeCreateComponent },
       { path: 'employes', component: EmployeListComponent },
       //new_path
