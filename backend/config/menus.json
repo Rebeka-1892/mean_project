@@ -2,25 +2,18 @@
     "manager": [
         {
             "name": "Général",
-            "path": "/general",
             "submenus": [
-                { "name": "Dashboard", "path": "/general/dashboard" }
+                { "name": "Roles", "path": "/roles" },
+                { "name": "Employés", "path": "/employes" },
+                { "name": "Unités", "path": "/unites" },
+                { "name": "Matériels", "path": "/materiels" },
+                { "name": "Services", "path": "/services" },
+                { "name": "Postes", "path": "/postes" }
             ]
         },
-        { "name": "Paramètre", "path": "/parametre" },
         {
-            "name": "Users",
-            "path": "/users",
+            "name": "Paramètres",
             "submenus": [
-                { "name": "Add User", "path": "/users/add" },
-                {
-                    "name": "Manage Users",
-                    "path": "/users/manage",
-                    "submenus": [
-                        { "name": "Active Users", "path": "/users/manage/active" },
-                        { "name": "Inactive Users", "path": "/users/manage/inactive" }
-                    ]
-                }
             ]
         }
     ],

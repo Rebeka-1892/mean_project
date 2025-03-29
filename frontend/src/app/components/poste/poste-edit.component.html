@@ -1,0 +1,43 @@
+<div class="box">
+    <form method="post" (ngSubmit)="updatePoste()" #posteForm="ngForm">
+        <div class="field">
+            <label for="idemploye" class="label">
+                Employe
+            </label>
+            <div class="control">
+                <div class="select is-fullwidth">
+                    <select id="idemploye" name="idemploye" [(ngModel)]="newPoste.idemploye">
+                        <option *ngIf="!newPoste.idemploye" value="" disabled selected>Selectionner Employe</option>
+                        <option *ngFor="let row of list" [value]="row._id">
+                            {{ row.nom }}
+                        </option>
+                    </select>
+                </div>
+                <span class="help is-color-danger-40">Help</span>
+            </div>
+        </div>
+        <div class="field">
+            <label for="idrole" class="label">
+                Role
+            </label>
+            <div class="control">
+                <div class="select is-fullwidth">
+                    <select id="idrole" name="idrole" [(ngModel)]="newPoste.idrole">
+                        <option *ngIf="!newPoste.idrole" value="" disabled selected>Selectionner Role</option>
+                        <option *ngFor="let row of roles" [value]="row._id">
+                            {{ row.nom }}
+                        </option>
+                    </select>
+                </div>
+                <span class="help is-color-danger-40">Help</span>
+            </div>
+        </div>
+
+
+        <div class="buttons">
+            <button class="button is-link" type="submit" [disabled]="posteForm.invalid">Modifier</button>
+            <button class="button is-background-danger-40 has-text-white" type="button"
+                (click)="goBackToList()">Annuler</button>
+        </div>
+    </form>
+</div>

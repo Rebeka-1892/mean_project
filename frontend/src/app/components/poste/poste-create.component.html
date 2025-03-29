@@ -1,0 +1,37 @@
+<div class="box">
+    <form method="post" (ngSubmit)="addPoste()" #posteForm="ngForm">
+        <div class="field">
+            <label for="idemploye" class="label">
+                Idemploye
+            </label>
+            <div class="control">
+                <div class="select is-fullwidth">
+                    <select id="idemploye" name="idemploye" [(ngModel)]="newPoste.idemploye">
+                        <option *ngIf="!newPoste.idemploye" value="" disabled selected>Selectionner Idemploye</option>
+                        <option *ngFor="let row of list" [value]="row._id">
+                            {{ row.nom }}
+                        </option>
+                    </select>
+                </div>
+                <span class="help is-color-danger-40">Help</span>
+            </div>
+        </div>
+        <div class="field">
+            <label for="idrole" class="label">
+                Role
+            </label>
+            <div class="control" *ngFor="let row of roles">
+                <label for="checkbox" class="checkbox">
+                    <input type="checkbox" name="idrole[]" [value]="row._id" (change)="toggleRole(row._id, $event)"
+                        [checked]="newPoste.idrole?.includes(row._id)" />
+                    {{ row.nom }}
+                </label>
+                <span class="help is-color-danger-40">Help</span>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button class="button is-link" type="submit" [disabled]="posteForm.invalid">Ajouter</button>
+        </div>
+    </form>
+</div>
