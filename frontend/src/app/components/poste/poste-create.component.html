@@ -16,12 +16,12 @@
             </div>
         </div>
         <div class="field">
-            <label for="idrole" class="label">
+            <label class="label">
                 Role
             </label>
             <div class="control" *ngFor="let row of roles">
                 <label for="checkbox" class="checkbox">
-                    <input type="checkbox" name="idrole[]" [value]="row._id" (change)="toggleRole(row._id, $event)"
+                    <input type="checkbox" id="checkbox" name="idrole[]" [value]="row._id" (change)="toggleRole(row._id, $event)"
                         [checked]="newPoste.idrole.includes(row._id)" />
                     {{ row.nom }}
                 </label>
