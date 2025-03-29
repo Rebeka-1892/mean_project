@@ -17,7 +17,7 @@
             ]
         }
     ],
-    "Mécanicien": [
+    "mecanicien": [
         { "name": "Dashboard", "path": "/dashboard" },
         { "name": "Profile", "path": "/profile" }
     ]

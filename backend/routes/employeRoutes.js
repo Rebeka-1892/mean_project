@@ -21,7 +21,7 @@ router.post('/login', async (req, res) => {
 		const token = jwt.sign({id: employe._id, role: role.nom}, process.env.JWT_SECRET, {expiresIn: '1h'});
 
 		res.cookie('token', token, {httpOnly: false, secure: true, sameSite: 'strict', maxAge: 3600000});
-		res.status(201).json({message: 'Connexion réussie'});
+		res.status(200).end();
 	} catch (error) {
 		res.status(400).json({message: error.message});
 	}
@@ -31,7 +31,7 @@ router.post('/login', async (req, res) => {
 router.get('/logout', (req, res) => {
 	try {
 		res.clearCookie('token', {httpOnly: false, secure: true});
-		res.status(200).json({message: 'Déconnexion réussie'});
+		res.status(200).end();
 	} catch (error) {
 		res.status(400).json({message: error.message});
 	}
