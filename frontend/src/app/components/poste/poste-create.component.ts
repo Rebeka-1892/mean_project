@@ -5,7 +5,6 @@ import { EmployeService } from '../../services/employe.service';
 import { RoleService } from '../../services/role.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { log } from 'console';
 
 @Component({
     selector: 'app-poste-create',
