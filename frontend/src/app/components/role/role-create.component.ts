@@ -14,7 +14,10 @@ export class RoleCreateComponent implements OnInit{
     list : any;
     newRole = { nom: '', idrole: '' };
 
-    constructor(private roleService: RoleService, private router: Router) { }
+    constructor(
+        private roleService: RoleService, 
+        private router: Router
+    ) { }
 
     ngOnInit(): void {
       this.roleService.getRoles().subscribe(data => this.list = data);

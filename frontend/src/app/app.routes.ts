@@ -24,6 +24,9 @@ import { PosteEditComponent } from './components/poste/poste-edit.component';
 import { FormulematerielListComponent } from './components/formulemateriel/formulemateriel-list.component';
 import { FormulematerielCreateComponent } from './components/formulemateriel/formulemateriel-create.component';
 import { FormulematerielEditComponent } from './components/formulemateriel/formulemateriel-edit.component';
+import { FormuleroleListComponent } from './components/formulerole/formulerole-list.component';
+import { FormuleroleCreateComponent } from './components/formulerole/formulerole-create.component';
+import { FormuleroleEditComponent } from './components/formulerole/formulerole-edit.component';
 //new_import
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -55,6 +58,9 @@ export const routes: Routes = [
       { path: 'formulemateriels-edit/:id', component: FormulematerielEditComponent },
       { path: 'formulemateriels-create', component: FormulematerielCreateComponent },
       { path: 'formulemateriels', component: FormulematerielListComponent },
+      { path: 'formuleroles-edit/:id', component: FormuleroleEditComponent },
+      { path: 'formuleroles-create', component: FormuleroleCreateComponent },
+      { path: 'formuleroles', component: FormuleroleListComponent },
       //new_path
     ]
   },

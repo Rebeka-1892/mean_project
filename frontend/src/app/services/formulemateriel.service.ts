@@ -6,7 +6,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class FormulematerielService {
-  private apiUrl = `${environment.apiUrl}/formulesMateriel`;
+  private apiUrl = `${environment.apiUrl}/formulemateriels`;
   constructor(private http: HttpClient) { }
   getFormulemateriels(): Observable<any> {
     return this.http.get(this.apiUrl, {withCredentials: true});
