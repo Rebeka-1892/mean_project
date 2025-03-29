@@ -1,0 +1,26 @@
+<div class="box">
+    <form method="post" (ngSubmit)="addClient()" #clientForm="ngForm">
+        <div class="field">
+    <label for="nom" class="label">
+        Nom
+    </label>
+    <div class="control">
+        <input type="text" class="input" id="nom" name="nom" [(ngModel)]="newClient.nom" required />
+    </div>
+</div>
+<div class="field">
+    <label for="motdepasse" class="label">
+        Motdepasse
+    </label>
+    <div class="control">
+        <input type="text" class="input" id="motdepasse" name="motdepasse" [(ngModel)]="newClient.motdepasse" required />
+    </div>
+</div>
+
+
+        <div class="buttons">
+            <button class="button is-link" type="submit" [disabled]="clientForm.invalid">Ajouter</button>
+            <button class="button is-background-danger-40 has-text-white" type="button" (click)="goBackToList()">Annuler</button>
+        </div>
+    </form>
+</div>

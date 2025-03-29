@@ -32,6 +32,8 @@ app.use('/services', require('./routes/serviceRoutes'));
 app.use('/formulemateriels', require('./routes/formuleMaterielRoutes'));
 app.use('/formuleroles', require('./routes/formuleRoleRoutes'));
 app.use('/clients', require('./routes/clientRoutes'));
+app.use('/demandes', require('./routes/demandeRoutes'));
+app.use('/devis', require('./routes/devisRoutes'));
 app.use('/factures', require('./routes/factureRoutes'));
 app.use('/detailfactures', require('./routes/detailFactureRoutes'));
 

@@ -27,6 +27,15 @@ import { FormulematerielEditComponent } from './components/formulemateriel/formu
 import { FormuleroleListComponent } from './components/formulerole/formulerole-list.component';
 import { FormuleroleCreateComponent } from './components/formulerole/formulerole-create.component';
 import { FormuleroleEditComponent } from './components/formulerole/formulerole-edit.component';
+import { ClientListComponent } from './components/client/client-list.component';
+import { ClientCreateComponent } from './components/client/client-create.component';
+import { ClientEditComponent } from './components/client/client-edit.component';
+import { DemandeListComponent } from './components/demande/demande-list.component';
+import { DemandeCreateComponent } from './components/demande/demande-create.component';
+import { DemandeEditComponent } from './components/demande/demande-edit.component';
+import { DevisListComponent } from './components/devis/devis-list.component';
+import { DevisCreateComponent } from './components/devis/devis-create.component';
+import { DevisEditComponent } from './components/devis/devis-edit.component';
 //new_import
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -61,7 +70,16 @@ export const routes: Routes = [
       { path: 'formuleroles-edit/:id', component: FormuleroleEditComponent },
       { path: 'formuleroles-create', component: FormuleroleCreateComponent },
       { path: 'formuleroles', component: FormuleroleListComponent },
-      //new_path
+      { path: 'clients-edit/:id', component: ClientEditComponent },
+      { path: 'clients-create', component: ClientCreateComponent },
+      { path: 'clients', component: ClientListComponent },
+      { path: 'demandes-edit/:id', component: DemandeEditComponent },
+      { path: 'demandes-create', component: DemandeCreateComponent },
+      { path: 'demandes', component: DemandeListComponent },
+      { path: 'devis-edit/:id', component: DevisEditComponent },
+    { path: 'devis-create', component: DevisCreateComponent }, 
+    { path: 'devis', component: DevisListComponent },
+    //new_path
     ]
   },
   { path: '**', redirectTo: 'login' }

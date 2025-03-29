@@ -10,7 +10,10 @@
                 { "name": "Services", "path": "/services" },
                 { "name": "Postes", "path": "/postes" },
                 { "name": "Formules matériels", "path": "/formulemateriels" },
-                { "name": "Formules roles", "path": "/formuleroles" }
+                { "name": "Formules roles", "path": "/formuleroles" },
+                { "name": "Clients", "path": "/clients"},
+                { "name": "Demandes", "path": "/demandes"},
+                { "name": "Devis", "path": "/devis"}
             ]
         },
         {

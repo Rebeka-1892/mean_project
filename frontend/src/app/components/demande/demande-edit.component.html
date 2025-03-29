@@ -1,0 +1,46 @@
+<div class="box">
+    <form method="post" (ngSubmit)="updateDemande()" #demandeForm="ngForm">
+        <div class="field">
+            <label for="idclient" class="label">
+                Idclient
+            </label>
+            <div class="control">
+                <div class="select is-fullwidth">
+                    <select id="idclient" name="idclient" [(ngModel)]="newDemande.idclient">
+                        <option *ngIf="!newDemande.idclient" value="" disabled selected>Selectionner Idclient</option>
+                        <option *ngFor="let row of list" [value]="row._id">
+                            {{ row.nom }}
+                        </option>
+                    </select>
+                </div>
+                
+            </div>
+        </div>
+        <div class="field">
+            <label for="description" class="label">
+                Description
+            </label>
+            <div class="control">
+                <input type="text" class="input" id="description" name="description"
+                    [(ngModel)]="newDemande.description" required />
+                
+            </div>
+        </div>
+        <div class="field">
+            <label for="date" class="label">
+                Date
+            </label>
+            <div class="control">
+                <input type="date" class="input" id="date" name="date" [(ngModel)]="newDemande.date" required />
+                
+            </div>
+        </div>
+
+
+        <div class="buttons">
+            <button class="button is-link" type="submit" [disabled]="demandeForm.invalid">Modifier</button>
+            <button class="button is-background-danger-40 has-text-white" type="button"
+                (click)="goBackToList()">Annuler</button>
+        </div>
+    </form>
+</div>
