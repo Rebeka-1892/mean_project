@@ -1,9 +1,9 @@
-import { HttpInterceptorFn, HttpResponse } from '@angular/common/http';
-import { tap } from 'rxjs';
-import { Router } from '@angular/router';
-import { inject } from '@angular/core';
+import {HttpInterceptorFn, HttpResponse} from '@angular/common/http';
+import {inject} from '@angular/core';
+import {Router} from '@angular/router';
+import {tap} from 'rxjs/operators';
 
-export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
+export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
   return next(req).pipe(tap(event => {
     if (event instanceof HttpResponse) {
@@ -13,4 +13,4 @@ export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
       }
     }
   }));
-}
+};
