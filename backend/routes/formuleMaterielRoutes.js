@@ -16,8 +16,42 @@ router.post('/', async (req, res) => {
 // Lire toutes les formules de matériel
 router.get('/', async (req, res) => {
     try {
-        const formulesMateriel = await FormuleMateriel.find();
-        res.json(formulesMateriel);
+        // const formulesMateriel = await FormuleMateriel.find();
+        // res.json(formulesMateriel);
+        const result = await FormuleMateriel.aggregate([
+            {
+                $lookup: {
+                    from: 'services',
+                    localField: 'idservice',
+                    foreignField: '_id',
+                    as: 'service'
+                }
+            },
+            {
+                $unwind: '$service'
+            },
+            {
+                $lookup: {
+                    from: 'materiels',
+                    localField: 'idmateriel',
+                    foreignField: '_id',
+                    as: 'materiel'
+                }
+            },
+            {
+                $unwind: '$materiel'
+            },
+            {
+                $project: {
+                    'service.nom': 1,
+                    'service._id': 1,
+                    'materiel.nom': 1,
+                    'materiel._id': 1,
+                    'quantite': 1
+                }
+            }
+        ]);
+        res.json(result);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import {authGuard} from './guards/auth.guard';
+import { authGuard } from './guards/auth.guard';
 import { LoginComponent } from './layouts/login-layout/login-layout.component';
 import { RoleListComponent } from './components/role/role-list.component';
 import { RoleCreateComponent } from './components/role/role-create.component';
@@ -21,6 +21,9 @@ import { ServiceEditComponent } from './components/service/service-edit.componen
 import { PosteListComponent } from './components/poste/poste-list.component';
 import { PosteCreateComponent } from './components/poste/poste-create.component';
 import { PosteEditComponent } from './components/poste/poste-edit.component';
+import { FormulematerielListComponent } from './components/formulemateriel/formulemateriel-list.component';
+import { FormulematerielCreateComponent } from './components/formulemateriel/formulemateriel-create.component';
+import { FormulematerielEditComponent } from './components/formulemateriel/formulemateriel-edit.component';
 //new_import
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -49,6 +52,9 @@ export const routes: Routes = [
       { path: 'postes-edit/:id', component: PosteEditComponent },
       { path: 'postes-create', component: PosteCreateComponent },
       { path: 'postes', component: PosteListComponent },
+      { path: 'formulemateriels-edit/:id', component: FormulematerielEditComponent },
+      { path: 'formulemateriels-create', component: FormulematerielCreateComponent },
+      { path: 'formulemateriels', component: FormulematerielListComponent },
       //new_path
     ]
   },

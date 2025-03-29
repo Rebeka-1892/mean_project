@@ -8,7 +8,8 @@
                 { "name": "Unités", "path": "/unites" },
                 { "name": "Matériels", "path": "/materiels" },
                 { "name": "Services", "path": "/services" },
-                { "name": "Postes", "path": "/postes" }
+                { "name": "Postes", "path": "/postes" },
+                { "name": "Formules matériels", "path": "/formulemateriels" }
             ]
         },
         {

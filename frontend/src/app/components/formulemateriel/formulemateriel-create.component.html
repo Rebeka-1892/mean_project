@@ -1,0 +1,52 @@
+<div class="box">
+    <form method="post" (ngSubmit)="addFormulemateriel()" #formulematerielForm="ngForm">
+        <div class="field">
+            <label for="idservice" class="label">
+                Idservice
+            </label>
+            <div class="control">
+                <div class="select is-fullwidth">
+                    <select id="idservice" name="idservice" [(ngModel)]="newFormulemateriel.idservice">
+                        <option *ngIf="!newFormulemateriel.idservice" value="" disabled selected>Selectionner Idservice
+                        </option>
+                        <option *ngFor="let row of list" [value]="row._id">
+                            {{ row.nom }}
+                        </option>
+                    </select>
+                </div>
+                <span class="help is-color-danger-40">Help</span>
+            </div>
+        </div>
+        <div class="field">
+            <label for="idmateriel" class="label">
+                Idmateriel
+            </label>
+            <div class="control" *ngFor="let row of materiels">
+                <label for="checkbox" class="checkbox">
+                    <input type="checkbox" name="idmateriel[]" [value]="row._id"
+                        (change)="toggleFormulemateriel(row._id, $event)"
+                        [checked]="newFormulemateriel.idmateriel.includes(row._id)" />
+                    {{ row.nom }}
+                </label>
+                <span class="help is-color-danger-40">Help</span>
+            </div>
+        </div>
+        <div class="field">
+            <label for="quantite" class="label">
+                Quantite
+            </label>
+            <div class="control">
+                <input type="number" class="input" id="quantite" name="quantite"
+                    [(ngModel)]="newFormulemateriel.quantite" required />
+                <span class="help is-color-danger-40">Help</span>
+            </div>
+        </div>
+
+
+        <div class="buttons">
+            <button class="button is-link" type="submit" [disabled]="formulematerielForm.invalid">Ajouter</button>
+            <button class="button is-background-danger-40 has-text-white" type="button"
+                (click)="goBackToList()">Annuler</button>
+        </div>
+    </form>
+</div>
