@@ -31,4 +31,8 @@ export class EmployeCreateComponent implements OnInit {
             });
         }
     }
+
+    goBackToList() {
+        this.router.navigate(['/employes']);
+    }
 }

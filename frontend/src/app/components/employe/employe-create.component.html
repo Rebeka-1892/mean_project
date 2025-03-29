@@ -6,7 +6,6 @@
             </label>
             <div class="control">
                 <input type="text" class="input" id="nom" name="nom" [(ngModel)]="newEmploye.nom" required />
-                <span class="help is-color-danger-40">Help</span>
             </div>
         </div>
         <div class="field">
@@ -16,7 +15,6 @@
             <div class="control">
                 <input type="number" class="input" id="salaire" name="salaire" [(ngModel)]="newEmploye.salaire"
                     required />
-                <span class="help is-color-danger-40">Help</span>
             </div>
         </div>
         <div class="field">
@@ -26,7 +24,6 @@
             <div class="control">
                 <input type="password" class="input" id="motdepasse" name="motdepasse"
                     [(ngModel)]="newEmploye.motdepasse" required />
-                <span class="help is-color-danger-40">Help</span>
             </div>
         </div>
         <div class="field">
@@ -42,13 +39,14 @@
                         </option>
                     </select>
                 </div>
-                <span class="help is-color-danger-40">Help</span>
             </div>
         </div>
 
 
         <div class="buttons">
             <button class="button is-link" type="submit" [disabled]="employeForm.invalid">Ajouter</button>
+            <button class="button is-background-danger-40 has-text-white" type="button"
+                (click)="goBackToList()">Annuler</button>
         </div>
     </form>
 </div>

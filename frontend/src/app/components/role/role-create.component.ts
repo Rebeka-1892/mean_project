@@ -27,4 +27,8 @@ export class RoleCreateComponent implements OnInit{
             });
         }
     }
+
+    goBackToList() {
+        this.router.navigate(['/roles']);
+    }
 }

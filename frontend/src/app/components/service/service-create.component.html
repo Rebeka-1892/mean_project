@@ -22,6 +22,8 @@
 
         <div class="buttons">
             <button class="button is-link" type="submit" [disabled]="serviceForm.invalid">Ajouter</button>
+            <button class="button is-background-danger-40 has-text-white" type="button"
+                (click)="goBackToList()">Annuler</button>
         </div>
     </form>
 </div>

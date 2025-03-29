@@ -54,4 +54,8 @@ export class PosteCreateComponent implements OnInit {
                 .catch(error => console.error('Erreur lors de l’ajout des postes :', error));
         }
     }
+
+    goBackToList() {
+        this.router.navigate(['/postes']);
+    }
 }

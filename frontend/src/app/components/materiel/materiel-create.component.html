@@ -6,7 +6,6 @@
             </label>
             <div class="control">
                 <input type="text" class="input" id="nom" name="nom" [(ngModel)]="newMateriel.nom" required />
-                <span class="help is-color-danger-40">Help</span>
             </div>
         </div>
         <div class="field">
@@ -15,7 +14,6 @@
             </label>
             <div class="control">
                 <input type="number" class="input" id="prix" name="prix" [(ngModel)]="newMateriel.prix" required />
-                <span class="help is-color-danger-40">Help</span>
             </div>
         </div>
         <div class="field">
@@ -31,13 +29,14 @@
                         </option>
                     </select>
                 </div>
-                <span class="help is-color-danger-40">Help</span>
             </div>
         </div>
 
 
         <div class="buttons">
             <button class="button is-link" type="submit" [disabled]="materielForm.invalid">Ajouter</button>
+            <button class="button is-background-danger-40 has-text-white" type="button"
+                (click)="goBackToList()">Annuler</button>
         </div>
     </form>
 </div>

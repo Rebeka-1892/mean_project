@@ -28,4 +28,8 @@ export class UniteCreateComponent implements OnInit{
             });
         }
     }    
+
+    goBackToList() {
+        this.router.navigate(['/unites']);
+    }
 }
