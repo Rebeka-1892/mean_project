@@ -32,4 +32,8 @@ export class MaterielCreateComponent implements OnInit {
             });
         }
     }
+
+    goBackToList() {
+        this.router.navigate(['/materiels']);
+    }
 }

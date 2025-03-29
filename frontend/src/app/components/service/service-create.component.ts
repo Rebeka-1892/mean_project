@@ -30,4 +30,8 @@ export class ServiceCreateComponent implements OnInit{
             });
         }
     }    
+
+    goBackToList() {
+        this.router.navigate(['/services']);
+    }
 }

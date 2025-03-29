@@ -29,5 +29,9 @@ export class [MajClass]CreateComponent implements OnInit{
                 this.router.navigate(['/[MinClass]s']);
             });
         }
-    }    
+    }
+
+    goBackToList() {
+        this.router.navigate(['/[MinClass]s']);
+    }
 }
