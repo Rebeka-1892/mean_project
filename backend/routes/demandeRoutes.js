@@ -72,4 +72,14 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+// Récupérer tous les IDs des détails de facture
+router.get('/ids', async (req, res) => {
+  try {
+    const detailsFacture = await DetailFacture.find({}, '_id');
+    res.json(detailsFacture);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 module.exports = router;

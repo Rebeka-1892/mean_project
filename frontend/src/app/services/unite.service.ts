@@ -23,4 +23,8 @@ export class UniteService {
   deleteUnite(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`, {withCredentials: true});
   }
-} 
+  async getIds(): Promise<string[]> {
+    const unites = await this.getUnites().toPromise();
+    return unites.map((unite: any) => unite._id);
+  }
+}

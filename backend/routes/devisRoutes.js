@@ -84,4 +84,14 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+// Récupérer tous les IDs des devis
+router.get('/ids', async (req, res) => {
+  try {
+    const devis = await Devis.find({}, '_id');
+    res.json(devis);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 module.exports = router;

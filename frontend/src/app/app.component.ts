@@ -8,4 +8,6 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {}
+export class AppComponent {
+  title = 'm1p12mean-jeremie-rebeka-frontend';
+}

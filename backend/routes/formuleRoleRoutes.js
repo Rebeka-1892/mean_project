@@ -88,4 +88,14 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
+// Récupérer tous les IDs des formules de poste
+router.get('/ids', async (req, res) => {
+    try {
+        const formulesRole = await FormuleRole.find({}, '_id');
+        res.json(formulesRole);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 module.exports = router;

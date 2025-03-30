@@ -23,4 +23,8 @@ export class ServiceService {
   deleteService(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`, {withCredentials: true});
   }
-} 
+  async getIds(): Promise<string[]> {
+    const services = await this.getServices().toPromise();
+    return services.map((service: any) => service.id);
+  }
+}

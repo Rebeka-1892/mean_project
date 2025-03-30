@@ -53,4 +53,14 @@ router.delete('/:id', async (req, res) => {
 	}
 });
 
+// Récupérer tous les IDs
+router.get('/ids', async (req, res) => {
+	try {
+		const roles = await Role.find({}, '_id');
+		res.json(roles);
+	} catch (error) {
+		res.status(500).json({ message: error.message });
+	}
+});
+
 module.exports = router;

@@ -53,4 +53,14 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
+// Récupérer tous les IDs des matériels
+router.get('/ids', async (req, res) => {
+    try {
+        const materiels = await Materiel.find({}, '_id');
+        res.json(materiels);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 module.exports = router;
