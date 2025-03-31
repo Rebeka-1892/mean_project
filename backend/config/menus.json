@@ -17,8 +17,12 @@
             ]
         },
         {
-            "name": "Paramètres",
+            "name": "Client",
             "submenus": [
+                { "name": "Créer une demande", "path": "/devis-create" },
+                { "name": "Liste des devis", "path": "/devis" },
+                { "name": "Liste des factures", "path": "/devis-create" },
+                { "name": "Liste des taches", "path": "/devis-create" }
             ]
         }
     ],

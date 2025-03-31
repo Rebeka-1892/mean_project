@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Devis = require("../models/Devis");
+const DetailDevis = require("../models/DetailDevis");
 
 router.post("/", async (req, res) => {
   try {
@@ -27,7 +28,8 @@ router.get("/", async (req, res) => {
       },
       {
         $unwind: "$client",
-      },{
+      },
+      {
         $lookup: {
           from: "demandes",
           localField: "iddemande",
@@ -42,13 +44,54 @@ router.get("/", async (req, res) => {
         $project: {
           "client.nom": 1,
           "client._id": 1,
-          "date": 1,
+          date: 1,
           "demande.description": 1,
           "demande.date": 1,
           "demande._id": 1,
         },
       },
     ]);
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.get("/idclient/:id", async (req, res) => {
+  try {
+    const devis = await Devis.find({ idclient: req.params.id }).populate(
+      "iddemande"
+    );
+    const devisIds = devis.map((d) => d._id);
+
+    const detailDevisList = await DetailDevis.aggregate([
+      { $match: { iddevis: { $in: devisIds } } }, // Filtrer par les devis récupérés
+      {
+        $lookup: {
+          from: "services",
+          localField: "idservice",
+          foreignField: "_id",
+          as: "service",
+        },
+      },
+      {
+        $unwind: "$service",
+      },
+      {
+        $project: {
+          iddevis: 1,
+          "service.nom": 1,
+          "service._id": 1,
+        },
+      },
+    ]);
+
+    const result = devis.map((d) => {
+      d = d.toObject(); // Convertir Mongoose Document en objet JS
+      d.detailDevis = detailDevisList.filter((dd) => dd.iddevis.equals(d._id)); // Associer les détails
+      return d;
+    });
+
     res.json(result);
   } catch (error) {
     res.status(500).json({ message: error.message });
