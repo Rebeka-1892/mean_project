@@ -2,6 +2,17 @@ const express = require('express');
 const router = express.Router();
 const Materiel = require('../models/Materiel');
 
+// Récupérer tous les IDs
+router.get('/ids', async (req, res) => {
+    try {
+        const materiels = await Materiel.find({}, '_id');
+        const ids = materiels.map(materiel => materiel._id.toString());
+        res.json(ids);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 // Créer un matériel
 router.post('/', async (req, res) => {
     try {
@@ -48,16 +59,6 @@ router.delete('/:id', async (req, res) => {
     try {
         await Materiel.findByIdAndDelete(req.params.id);
         res.json({ message: "Matériel supprimé" });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-});
-
-// Récupérer tous les IDs des matériels
-router.get('/ids', async (req, res) => {
-    try {
-        const materiels = await Materiel.find({}, '_id');
-        res.json(materiels);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

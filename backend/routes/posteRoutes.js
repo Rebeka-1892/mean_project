@@ -2,6 +2,17 @@ const express = require("express");
 const router = express.Router();
 const Poste = require("../models/Poste");
 
+// Récupérer tous les IDs
+router.get('/ids', async (req, res) => {
+  try {
+    const postes = await Poste.find({}, '_id');
+    const ids = postes.map(poste => poste._id.toString());
+    res.json(ids);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 // Créer un poste
 router.post("/", async (req, res) => {
   try {
@@ -83,16 +94,6 @@ router.delete("/:id", async (req, res) => {
   try {
     await Poste.findByIdAndDelete(req.params.id);
     res.json({ message: "Poste supprimé" });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
-// Récupérer tous les IDs
-router.get('/ids', async (req, res) => {
-  try {
-    const postes = await Poste.find({}, '_id');
-    res.json(postes);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

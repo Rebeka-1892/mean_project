@@ -28,6 +28,6 @@ export class MaterielService {
     if (!Array.isArray(response)) {
       return [];
     }
-    return response.map(item => item.id);
+    return response.map(item => item._id);
   }
 }

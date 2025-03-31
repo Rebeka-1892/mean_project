@@ -2,6 +2,17 @@ const express = require('express');
 const router = express.Router();
 const Tache = require('../models/Tache');
 
+// Récupérer tous les IDs
+router.get('/ids', async (req, res) => {
+    try {
+        const taches = await Tache.find({}, '_id');
+        const ids = taches.map(tache => tache._id.toString());
+        res.json(ids);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 // Créer un détail de tache
 router.post('/', async (req, res) => {
     try {

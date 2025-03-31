@@ -2,6 +2,17 @@ const express = require('express');
 const router = express.Router();
 const DetailDevis = require('../models/DetailDevis');
 
+// Récupérer tous les IDs
+router.get('/ids', async (req, res) => {
+    try {
+        const detailDevis = await DetailDevis.find({}, '_id');
+        const ids = detailDevis.map(detail => detail._id.toString());
+        res.json(ids);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 // Créer un détail de Devis
 router.post('/', async (req, res) => {
     try {

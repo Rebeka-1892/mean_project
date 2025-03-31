@@ -2,6 +2,17 @@ const express = require('express');
 const router = express.Router();
 const FormuleRole = require('../models/FormuleRole');
 
+// Récupérer tous les IDs
+router.get('/ids', async (req, res) => {
+    try {
+        const formuleRoles = await FormuleRole.find({}, '_id');
+        const ids = formuleRoles.map(formuleRole => formuleRole._id.toString());
+        res.json(ids);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 // Créer une formule de poste
 router.post('/', async (req, res) => {
     try {
@@ -83,16 +94,6 @@ router.delete('/:id', async (req, res) => {
     try {
         await FormuleRole.findByIdAndDelete(req.params.id);
         res.json({ message: "Formule de poste supprimée" });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-});
-
-// Récupérer tous les IDs des formules de poste
-router.get('/ids', async (req, res) => {
-    try {
-        const formulesRole = await FormuleRole.find({}, '_id');
-        res.json(formulesRole);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

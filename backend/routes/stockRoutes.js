@@ -2,6 +2,17 @@ const express = require('express');
 const router = express.Router();
 const Stock = require('../models/Stock');
 
+// Récupérer tous les IDs
+router.get('/ids', async (req, res) => {
+    try {
+        const stocks = await Stock.find({}, '_id');
+        const ids = stocks.map(stock => stock._id.toString());
+        res.json(ids);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 // Créer un stock
 router.post('/', async (req, res) => {
     try {
@@ -48,16 +59,6 @@ router.delete('/:id', async (req, res) => {
     try {
         await Stock.findByIdAndDelete(req.params.id);
         res.json({ message: "Stock supprimé" });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-});
-
-// Récupérer tous les IDs des stocks
-router.get('/ids', async (req, res) => {
-    try {
-        const stocks = await Stock.find({}, '_id');
-        res.json(stocks);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

@@ -2,6 +2,17 @@ const express = require('express');
 const router = express.Router();
 const Unite = require('../models/Unite');
 
+// Récupérer tous les IDs
+router.get('/ids', async (req, res) => {
+	try {
+		const unites = await Unite.find({}, '_id');
+		const ids = unites.map(unite => unite._id.toString());
+		res.json(ids);
+	} catch (error) {
+		res.status(500).json({ message: error.message });
+	}
+});
+
 // Créer une unité
 router.post('/', async (req, res) => {
 	try {
@@ -48,16 +59,6 @@ router.delete('/:id', async (req, res) => {
 	try {
 		await Unite.findByIdAndDelete(req.params.id);
 		res.json({ message: "Unité supprimée" });
-	} catch (error) {
-		res.status(500).json({ message: error.message });
-	}
-});
-
-// Récupérer tous les IDs
-router.get('/ids', async (req, res) => {
-	try {
-		const unites = await Unite.find({}, '_id');
-		res.json(unites);
 	} catch (error) {
 		res.status(500).json({ message: error.message });
 	}

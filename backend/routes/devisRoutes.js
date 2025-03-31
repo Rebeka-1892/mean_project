@@ -3,6 +3,17 @@ const router = express.Router();
 const Devis = require("../models/Devis");
 const DetailDevis = require("../models/DetailDevis");
 
+// Récupérer tous les IDs
+router.get('/ids', async (req, res) => {
+  try {
+    const devis = await Devis.find({}, '_id');
+    const ids = devis.map(item => item._id.toString());
+    res.json(ids);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 router.post("/", async (req, res) => {
   try {
     const devis = new Devis(req.body);
@@ -122,16 +133,6 @@ router.delete("/:id", async (req, res) => {
   try {
     await Devis.findByIdAndDelete(req.params.id);
     res.json({ message: "Devis supprimée" });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
-// Récupérer tous les IDs des devis
-router.get('/ids', async (req, res) => {
-  try {
-    const devis = await Devis.find({}, '_id');
-    res.json(devis);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

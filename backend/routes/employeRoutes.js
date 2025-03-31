@@ -6,6 +6,17 @@ const jwt = require('jsonwebtoken');
 
 const Role = require('../models/Role');
 
+// Récupérer tous les IDs
+router.get('/ids', async (req, res) => {
+	try {
+		const employes = await Employe.find({}, '_id');
+		const ids = employes.map(employes => employes._id.toString());
+		res.json(ids);
+	} catch (error) {
+		res.status(500).json({ message: error.message });
+	}
+});
+
 // se connecter
 router.post('/login', async (req, res) => {
 	try {
@@ -85,16 +96,6 @@ router.delete('/:id', async (req, res) => {
 		res.json({message: "Employé supprimé"});
 	} catch (error) {
 		res.status(500).json({message: error.message});
-	}
-});
-
-// Récupérer tous les IDs
-router.get('/ids', async (req, res) => {
-	try {
-		const employes = await Employe.find({}, '_id');
-		res.json(employes);
-	} catch (error) {
-		res.status(500).json({ message: error.message });
 	}
 });
 

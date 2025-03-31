@@ -26,7 +26,10 @@ export class RoleService {
     return this.http.delete(`${this.apiUrl}/${id}`, {withCredentials: true});
   }
   async getIds(): Promise<string[]> {
-    const roles = await this.getRoles().toPromise();
-    return roles.map((role: any) => role.id);
+    const response: string[] | undefined = await this.http.get<any[]>(`${this.apiUrl}/ids`, { withCredentials: true }).toPromise();
+    if (!Array.isArray(response)) {
+      return [];
+    }
+    return response;
   }
 }

@@ -24,7 +24,10 @@ export class UniteService {
     return this.http.delete(`${this.apiUrl}/${id}`, {withCredentials: true});
   }
   async getIds(): Promise<string[]> {
-    const unites = await this.getUnites().toPromise();
-    return unites.map((unite: any) => unite._id);
+    const response: any[] | undefined = await this.http.get<any[]>(`${this.apiUrl}/ids`, { withCredentials: true }).toPromise();
+    if (!Array.isArray(response)) {
+      return [];
+    }
+    return response.map(item => item._id);
   }
 }

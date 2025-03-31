@@ -24,7 +24,10 @@ export class ServiceService {
     return this.http.delete(`${this.apiUrl}/${id}`, {withCredentials: true});
   }
   async getIds(): Promise<string[]> {
-    const services = await this.getServices().toPromise();
-    return services.map((service: any) => service.id);
+    const response: any[] | undefined = await this.http.get<any[]>(`${this.apiUrl}/ids`, { withCredentials: true }).toPromise();
+    if (!Array.isArray(response)) {
+      return [];
+    }
+    return response.map(item => item._id);
   }
 }

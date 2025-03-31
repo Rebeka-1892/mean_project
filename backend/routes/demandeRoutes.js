@@ -2,6 +2,17 @@ const express = require("express");
 const router = express.Router();
 const Demande = require("../models/Demande");
 
+// Récupérer tous les IDs
+router.get('/ids', async (req, res) => {
+  try {
+    const demandes = await Demande.find({}, '_id');
+    const ids = demandes.map(demande => demande._id.toString());
+    res.json(ids);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 router.post("/", async (req, res) => {
   try {
     const demande = new Demande(req.body);
@@ -67,16 +78,6 @@ router.delete("/:id", async (req, res) => {
   try {
     await Demande.findByIdAndDelete(req.params.id);
     res.json({ message: "Demande supprimée" });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
-// Récupérer tous les IDs des détails de facture
-router.get('/ids', async (req, res) => {
-  try {
-    const detailsFacture = await DetailFacture.find({}, '_id');
-    res.json(detailsFacture);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

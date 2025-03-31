@@ -3,6 +3,17 @@ const router = express.Router();
 const Facture = require("../models/Facture");
 const Tache = require("../models/Tache");
 
+// Récupérer tous les IDs
+router.get('/ids', async (req, res) => {
+  try {
+    const factures = await Facture.find({}, '_id');
+    const ids = factures.map(facture => facture._id.toString());
+    res.json(ids);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 // Créer une facture
 router.post("/", async (req, res) => {
   try {
@@ -107,15 +118,4 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-
-// Récupérer tous les IDs des détails de facture
-router.get('/ids', async (req, res) => {
-    try {
-        const detailsFacture = await Facture.find({}, '_id');
-        res.json(detailsFacture);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-});
-
 module.exports = router;

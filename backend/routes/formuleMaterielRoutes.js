@@ -2,6 +2,17 @@ const express = require('express');
 const router = express.Router();
 const FormuleMateriel = require('../models/FormuleMateriel');
 
+// Récupérer tous les IDs
+router.get('/ids', async (req, res) => {
+    try {
+        const formuleMateriels = await FormuleMateriel.find({}, '_id');
+        const ids = formuleMateriels.map(formuleMateriel => formuleMateriel._id.toString());
+        res.json(ids);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 // Créer une formule de matériel
 router.post('/', async (req, res) => {
     try {
@@ -82,16 +93,6 @@ router.delete('/:id', async (req, res) => {
     try {
         await FormuleMateriel.findByIdAndDelete(req.params.id);
         res.json({ message: "Formule de matériel supprimée" });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-});
-
-// Récupérer tous les IDs des formules de matériel
-router.get('/ids', async (req, res) => {
-    try {
-        const formulesMateriel = await FormuleMateriel.find({}, '_id');
-        res.json(formulesMateriel);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

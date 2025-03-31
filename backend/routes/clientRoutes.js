@@ -4,6 +4,17 @@ const router = express.Router();
 const Client = require('../models/Client');
 const jwt = require('jsonwebtoken');
 
+// Récupérer tous les IDs
+router.get('/ids', async (req, res) => {
+	try {
+		const clients = await Client.find({}, '_id');
+		const ids = clients.map(client => client._id.toString());
+		res.json(ids);
+	} catch (error) {
+		res.status(500).json({ message: error.message });
+	}
+});
+
 // se connecter
 router.post('/login', async (req, res) => {
 	try {
@@ -79,16 +90,6 @@ router.delete('/:id', async (req, res) => {
 		res.json({message: "Client supprimé"});
 	} catch (error) {
 		res.status(500).json({message: error.message});
-	}
-});
-
-// Récupérer tous les IDs des détails de facture
-router.get('/ids', async (req, res) => {
-	try {
-		const detailsFacture = await Client.find({}, '_id');
-		res.json(detailsFacture);
-	} catch (error) {
-		res.status(500).json({ message: error.message });
 	}
 });
 
