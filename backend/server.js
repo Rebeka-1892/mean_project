@@ -34,7 +34,8 @@ app.use('/formuleroles', require('./routes/formuleRoleRoutes'));
 app.use('/clients', require('./routes/clientRoutes'));
 app.use('/demandes', require('./routes/demandeRoutes'));
 app.use('/devis', require('./routes/devisRoutes'));
+app.use('/detaildevis', require('./routes/detaildevisRoutes'));
 app.use('/factures', require('./routes/factureRoutes'));
-app.use('/detailfactures', require('./routes/detailFactureRoutes'));
+app.use('/taches', require('./routes/tacheRoutes'));
 
 app.listen(PORT, () => console.log(`Serveur démarré sur le port ${PORT}`)); 
