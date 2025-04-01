@@ -5,5 +5,5 @@
 
 [[redirects]]
   from = "/"
-  to = "/login"
+  to = "/sign-in"
   status = 200
