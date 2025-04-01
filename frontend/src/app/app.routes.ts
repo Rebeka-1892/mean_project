@@ -36,9 +36,13 @@ import { DemandeEditComponent } from './components/demande/demande-edit.componen
 import { DevisListComponent } from './components/devis/devis-list.component';
 import { DevisCreateComponent } from './components/devis/devis-create.component';
 import { DevisEditComponent } from './components/devis/devis-edit.component';
+import {SignInLayoutComponent} from './layouts/sign-in-layout/sign-in-layout.component';
+import {SignUpLayoutComponent} from './layouts/sign-up-layout/sign-up-layout.component';
 //new_import
 export const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
+  { path: 'sign-in', component: SignInLayoutComponent },
+  { path: 'sign-up', component: SignUpLayoutComponent },
   { path: 'login', component: LoginComponent },
   {
     path: '',

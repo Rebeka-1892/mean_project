@@ -8,6 +8,15 @@ import { environment } from '../../environments/environment';
 export class ClientService {
   private apiUrl = `${environment.apiUrl}/clients`;
   constructor(private http: HttpClient) { }
+  login(user: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/login`, user, { withCredentials: true });
+  }
+  logout(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/logout`, { withCredentials: true });
+  }
+  register(user: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, user, { withCredentials: true });
+  }
   getClients(): Observable<any> {
     return this.http.get(this.apiUrl, {withCredentials: true});
   }

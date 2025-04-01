@@ -9,7 +9,7 @@ import {environment} from '../../environments/environment';
 
 export class LoginService {
   private apiUrl = `${environment.apiUrl}/employes`;
-  constructor(protected http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   login(user: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, user, { withCredentials: true });

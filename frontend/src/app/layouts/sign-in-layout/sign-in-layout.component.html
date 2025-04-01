@@ -1,0 +1,35 @@
+<form (ngSubmit)="login()" class="container columns is-flex is-justify-content-center is-align-items-center" #loginForm="ngForm">
+  <div class="box column is-6 p-5">
+    <h3 class="title has-text-info-bold has-text-centered">Bienvenue</h3>
+    <div class="field">
+      <label for="nom" class="label">Nom</label>
+      <div class="control">
+        <input class="input" type="text" id="nom" name="nom" [(ngModel)]="utilisateur.nom" required />
+      </div>
+    </div>
+    <div class="field">
+      <label for="password" class="label">Mot de passe</label>
+      <div class="control">
+        <input class="input" type="password" id="password" name="motdepasse" [(ngModel)]="utilisateur.motdepasse" required />
+      </div>
+    </div>
+    <div *ngIf="error" class="field">
+      <div class="control">
+        <span class="help has-text-danger-40">{{ error }}</span>
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <button type="submit" class="button is-fullwidth is-link" [disabled]="loginForm.invalid">
+          Se connecter
+        </button>
+      </div>
+    </div>
+    <div class="field">
+      <div class="content">
+        Vous n'avez pas de compte?
+        <a routerLink="/sign-up">Créer un compte</a>
+      </div>
+    </div>
+  </div>
+</form>

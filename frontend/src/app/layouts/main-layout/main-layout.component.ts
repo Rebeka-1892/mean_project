@@ -30,7 +30,7 @@ export class MainLayoutComponent extends BaseComponent implements OnInit {
   logout(): void {
     this.loginService.logout().subscribe(
       data => {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/']);
       },
       error => {
         this.error = error.error.message;
