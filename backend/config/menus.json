@@ -3,6 +3,7 @@
         {
             "name": "Général",
             "submenus": [
+                { "name": "Dashboard", "path": "/dashboard" },
                 { "name": "Roles", "path": "/roles" },
                 { "name": "Employés", "path": "/employes" },
                 { "name": "Unités", "path": "/unites" },

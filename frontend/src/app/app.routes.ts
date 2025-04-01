@@ -39,6 +39,7 @@ import { DevisCreateComponent } from './components/devis/devis-create.component'
 import { DevisEditComponent } from './components/devis/devis-edit.component';
 import { SignInLayoutComponent } from './layouts/sign-in-layout/sign-in-layout.component';
 import { SignUpLayoutComponent } from './layouts/sign-up-layout/sign-up-layout.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
 //new_import
 export const routes: Routes = [
   { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
@@ -85,6 +86,7 @@ export const routes: Routes = [
       { path: 'devis-create', component: DevisCreateComponent },
       { path: 'devis', component: DevisListComponent },
       { path: 'devis-client', component: DevisListClientComponent },
+      { path: 'dashboard', component: DashboardComponent },
       //new_path
     ]
   },

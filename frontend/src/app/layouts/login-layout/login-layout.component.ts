@@ -21,7 +21,7 @@ import BaseComponent from '../../components/BaseComponent';
 
     constructor(private loginService: LoginService, private route: ActivatedRoute, private router: Router) {
       super();
-      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/roles';
+      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
     }
 
     login(): void {
