@@ -6,7 +6,7 @@ const authMiddleware = (rolesAutorises = []) => {
     const token = req.cookies.token;
 
     if (!token) {
-      res.setHeader('X-Redirect', '/login');
+      res.setHeader('X-Redirect', '/sign-in');
       return res.status(200).json({ message: 'Unauthorized' });
     }
 
@@ -21,7 +21,7 @@ const authMiddleware = (rolesAutorises = []) => {
 
       next();
     } catch (error) {
-      res.setHeader('X-Redirect', '/login');
+      res.setHeader('X-Redirect', '/sign-in');
       return res.status(200).json({ message: 'Invalid Token' });
     }
   };
