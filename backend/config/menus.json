@@ -15,9 +15,15 @@
                 { "name": "Demandes", "path": "/demandes"},
                 { "name": "Devis", "path": "/devis"}
             ]
-        },
+        }
+    ],
+    "mecanicien": [
+        { "name": "Dashboard", "path": "/dashboard" },
+        { "name": "Profile", "path": "/profile" }
+    ],
+    "client": [
         {
-            "name": "Client",
+            "name": "",
             "submenus": [
                 { "name": "Créer une demande", "path": "/devis-create" },
                 { "name": "Liste des devis", "path": "/devis" },
@@ -25,9 +31,5 @@
                 { "name": "Liste des taches", "path": "/devis-create" }
             ]
         }
-    ],
-    "mecanicien": [
-        { "name": "Dashboard", "path": "/dashboard" },
-        { "name": "Profile", "path": "/profile" }
     ]
 }
