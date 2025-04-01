@@ -22,7 +22,7 @@ export class SignInLayoutComponent extends BaseComponent {
 
   constructor(private clientService: ClientService, private route: ActivatedRoute, private router: Router) {
     super();
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/sign-in';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/devis';
   }
 
   login(): void {
