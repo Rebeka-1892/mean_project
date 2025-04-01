@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
 // Lire tous les rôles
 router.get('/', async (req, res) => {
 	try {
-		const roles = await Role.find();
+		const roles = await Role.find().populate('idrole');
 		res.json(roles);
 	} catch (error) {
 		res.status(500).json({ message: error.message });

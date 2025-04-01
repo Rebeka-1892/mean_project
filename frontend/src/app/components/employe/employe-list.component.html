@@ -33,7 +33,6 @@
             <thead>
                 <tr>
                     <th class="has-text-left">Nom</th>
-                    <th class="has-text-left">Salaire</th>
                     <th class="has-text-left">Motdepasse</th>
                     <th class="has-text-left">Idrole</th>
 
@@ -58,9 +57,8 @@
                 @for (employe of employes; track employe._id) {
                 <tr>
                     <td>{{ employe.nom }}</td>
-                    <td>{{ employe.salaire }}</td>
                     <td>{{ employe.motdepasse }}</td>
-                    <td>{{ employe.idrole }}</td>
+                    <td>{{ employe.idrole.nom }}</td>
 
                     <td>
                         <div class="buttons is-pulled-right">

@@ -34,6 +34,8 @@
                 <tr>
                     <th class="has-text-left">Nom</th>
                     <th class="has-text-left">Idrole</th>
+                    <th class="has-text-left">Salaire</th>
+
 
                     <td>
                         <div class="field is-hidden-touch">
@@ -56,7 +58,8 @@
                 @for (role of roles; track role._id) {
                 <tr>
                     <td>{{ role.nom }}</td>
-                    <td>{{ role._id }}</td>
+                    <td>{{ role.idrole?.nom }}</td>
+                    <td>{{ role.salaire }}</td>
 
                     <td>
                         <div class="buttons is-pulled-right">

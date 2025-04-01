@@ -23,6 +23,15 @@
                 </div>
             </div>
         </div>
+        <div class="field">
+          <label for="salaire" class="label">
+            Salaire
+          </label>
+          <div class="control">
+            <input type="number" class="input" id="salaire" name="salaire" [(ngModel)]="newRole.salaire"
+                   required />
+          </div>
+        </div>
         <div class="buttons">
             <button class="button is-link" type="submit" [disabled]="roleForm.invalid">Ajouter</button>
             <button class="button is-background-danger-40 has-text-white" type="button"

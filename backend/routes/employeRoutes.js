@@ -62,7 +62,7 @@ router.post('/register', async (req, res) => {
 // Lire tous les employés
 router.get('/', async (req, res) => {
 	try {
-		const employes = await Employe.find();
+		const employes = await Employe.find().populate('idrole');
 		res.json(employes);
 	} catch (error) {
 		res.status(500).json({message: error.message});

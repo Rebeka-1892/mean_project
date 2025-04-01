@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 
 const EmployeSchema = new mongoose.Schema({
 	nom: { type: String, required: true },
-	salaire: { type: Number, required: true },
     motdepasse: { type: String, required: true },
 	idrole: { type: mongoose.Schema.Types.ObjectId, ref: 'Role', required: true }
 }, { timestamps: true });

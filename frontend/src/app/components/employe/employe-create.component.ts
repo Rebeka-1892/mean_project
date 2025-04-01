@@ -13,10 +13,10 @@ import { CommonModule } from '@angular/common';
 })
 export class EmployeCreateComponent implements OnInit {
     list: any;
-    newEmploye = { nom: '', salaire: '', motdepasse: '', idrole: '' };
+    newEmploye = { nom: '', motdepasse: '', idrole: '' };
 
     constructor(
-        private employeService: EmployeService, 
+        private employeService: EmployeService,
         private roleService: RoleService,
         private router: Router) { }
 
@@ -25,7 +25,7 @@ export class EmployeCreateComponent implements OnInit {
     }
 
     addEmploye(): void {
-        if (this.newEmploye.nom && this.newEmploye.salaire && this.newEmploye.motdepasse && this.newEmploye.idrole) {
+        if (this.newEmploye.nom && this.newEmploye.motdepasse && this.newEmploye.idrole) {
             this.employeService.addEmploye(this.newEmploye).subscribe(() => {
                 this.router.navigate(['/employes']);
             });

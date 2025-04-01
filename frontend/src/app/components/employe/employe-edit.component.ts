@@ -31,7 +31,7 @@ export class EmployeEditComponent implements OnInit {
     }
 
     updateEmploye(): void {
-        if (this.newEmploye.nom && this.newEmploye.salaire && this.newEmploye.motdepasse && this.newEmploye.idrole) {
+        if (this.newEmploye.nom && this.newEmploye.motdepasse && this.newEmploye.idrole) {
             this.employeService.updateEmploye(this.newEmploye._id, this.newEmploye).subscribe(() => {
                 this.router.navigate(['/employes']);
             });

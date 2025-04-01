@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
 // Lire tous les matériels
 router.get('/', async (req, res) => {
     try {
-        const materiels = await Materiel.find();
+        const materiels = await Materiel.find().populate('idunite');
         res.json(materiels);
     } catch (error) {
         res.status(500).json({ message: error.message });
