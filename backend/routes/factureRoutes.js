@@ -4,10 +4,10 @@ const Facture = require("../models/Facture");
 const Tache = require("../models/Tache");
 
 // Récupérer tous les IDs
-router.get('/ids', async (req, res) => {
+router.get("/ids", async (req, res) => {
   try {
-    const factures = await Facture.find({}, '_id');
-    const ids = factures.map(facture => facture._id.toString());
+    const factures = await Facture.find({}, "_id");
+    const ids = factures.map((facture) => facture._id.toString());
     res.json(ids);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -35,13 +35,34 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/facture_sans_taches", async (req, res) => {
+  try {
+    const factures = await Facture.aggregate([
+      {
+        $lookup: {
+          from: "taches",
+          localField: "_id",
+          foreignField: "idfacture",
+          as: "taches",
+        },
+      },
+      {
+        $match: { taches: { $size: 0 } }, // Filtrer les factures sans tâches
+      },
+    ]);
+    res.json(factures);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 router.get("/idclient/:id", async (req, res) => {
   try {
     const factures = await Facture.find({ idclient: req.params.id })();
     const factureIds = factures.map((d) => d._id);
 
     const tacheList = await Tache.aggregate([
-      { $match: { idfacture: { $in: factureIds } } }, 
+      { $match: { idfacture: { $in: factureIds } } },
       {
         $lookup: {
           from: "employes",
@@ -52,7 +73,8 @@ router.get("/idclient/:id", async (req, res) => {
       },
       {
         $unwind: "$employe",
-      },{
+      },
+      {
         $lookup: {
           from: "roles",
           localField: "idrole",
@@ -67,7 +89,7 @@ router.get("/idclient/:id", async (req, res) => {
         $project: {
           idfacture: 1,
           statut: 1,
-          heure : 1,
+          heure: 1,
           "employe.nom": 1,
           "employe._id": 1,
           "role.nom": 1,

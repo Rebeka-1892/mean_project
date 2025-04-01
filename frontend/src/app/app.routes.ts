@@ -34,10 +34,11 @@ import { DemandeListComponent } from './components/demande/demande-list.componen
 import { DemandeCreateComponent } from './components/demande/demande-create.component';
 import { DemandeEditComponent } from './components/demande/demande-edit.component';
 import { DevisListComponent } from './components/devis/devis-list.component';
+import { DevisListClientComponent } from './components/devis/devis-list-client.component';
 import { DevisCreateComponent } from './components/devis/devis-create.component';
 import { DevisEditComponent } from './components/devis/devis-edit.component';
-import {SignInLayoutComponent} from './layouts/sign-in-layout/sign-in-layout.component';
-import {SignUpLayoutComponent} from './layouts/sign-up-layout/sign-up-layout.component';
+import { SignInLayoutComponent } from './layouts/sign-in-layout/sign-in-layout.component';
+import { SignUpLayoutComponent } from './layouts/sign-up-layout/sign-up-layout.component';
 //new_import
 export const routes: Routes = [
   { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
@@ -50,22 +51,22 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       { path: 'unauthorized', component: UnauthorizedComponent },
-      { path: 'roles-edit/:id', component: RoleEditComponent},
+      { path: 'roles-edit/:id', component: RoleEditComponent },
       { path: 'roles-create', component: RoleCreateComponent },
       { path: 'roles', component: RoleListComponent },
-      { path: 'unites-edit/:id', component: UniteEditComponent},
+      { path: 'unites-edit/:id', component: UniteEditComponent },
       { path: 'unites-create', component: UniteCreateComponent },
       { path: 'unites', component: UniteListComponent },
-      { path: 'employes-edit/:id', component: EmployeEditComponent},
+      { path: 'employes-edit/:id', component: EmployeEditComponent },
       { path: 'employes-create', component: EmployeCreateComponent },
       { path: 'employes', component: EmployeListComponent },
-      { path: 'materiels-edit/:id', component: MaterielEditComponent},
+      { path: 'materiels-edit/:id', component: MaterielEditComponent },
       { path: 'materiels-create', component: MaterielCreateComponent },
       { path: 'materiels', component: MaterielListComponent },
-      { path: 'services-edit/:id', component: ServiceEditComponent},
+      { path: 'services-edit/:id', component: ServiceEditComponent },
       { path: 'services-create', component: ServiceCreateComponent },
       { path: 'services', component: ServiceListComponent },
-      { path: 'postes-edit/:id', component: PosteEditComponent},
+      { path: 'postes-edit/:id', component: PosteEditComponent },
       { path: 'postes-create', component: PosteCreateComponent },
       { path: 'postes', component: PosteListComponent },
       { path: 'formulemateriels-edit/:id', component: FormulematerielEditComponent },
@@ -83,7 +84,8 @@ export const routes: Routes = [
       { path: 'devis-edit/:id', component: DevisEditComponent },
       { path: 'devis-create', component: DevisCreateComponent },
       { path: 'devis', component: DevisListComponent },
-    //new_path
+      { path: 'devis-client', component: DevisListClientComponent },
+      //new_path
     ]
   },
   { path: '**', redirectTo: 'login' }

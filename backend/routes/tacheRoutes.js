@@ -34,6 +34,26 @@ router.get('/', async (req, res) => {
     }
 });
 
+// details taches par facture
+router.get('/facture/:id', async (req, res) => {
+    try {
+        const tache = await Tache.find({ idfacture: req.params.id })();
+        res.json(tache);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+// mecanicien
+router.get('/employe/:id', async (req, res) => {
+    try {
+        const tache = await Tache.find({ idemploye: req.params.id })();
+        res.json(tache);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 // Lire un détail de tache
 router.get('/:id', async (req, res) => {
     try {

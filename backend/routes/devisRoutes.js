@@ -4,10 +4,10 @@ const Devis = require("../models/Devis");
 const DetailDevis = require("../models/DetailDevis");
 
 // Récupérer tous les IDs
-router.get('/ids', async (req, res) => {
+router.get("/ids", async (req, res) => {
   try {
-    const devis = await Devis.find({}, '_id');
-    const ids = devis.map(item => item._id.toString());
+    const devis = await Devis.find({}, "_id");
+    const ids = devis.map((item) => item._id.toString());
     res.json(ids);
   } catch (error) {
     res.status(500).json({ message: error.message });
