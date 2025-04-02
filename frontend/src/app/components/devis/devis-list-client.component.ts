@@ -73,8 +73,10 @@ export class DevisListClientComponent implements OnInit {
   }
 
   updateStatutDevis(id: string): void {
-    // statut = 2 : refuser
-    this.devisService.updateStatutDevis(id, {statut: 2}).subscribe(() => this.loadDeviss());
+    this.devisService.deleteDevis(id).subscribe(() =>
+      this.detaildevisService.getDetaildevis({iddevis: id}).subscribe((detailDevis) =>
+        this.detaildevisService.deleteDetaildevis(detailDevis[0]._id).subscribe(() => this.loadDeviss()))
+    );
   }
 
   goToDetailDevisCreate() {
