@@ -23,6 +23,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+// demandes sans devis
 router.get("/", async (req, res) => {
   try {
     const result = await Demande.aggregate([
@@ -36,6 +37,18 @@ router.get("/", async (req, res) => {
       },
       {
         $unwind: "$client",
+      },
+      {
+        $lookup: {
+          from: "devis",
+          localField: "_id",
+          foreignField: "iddemande",
+          as: "devisAssocie",
+        },
+      },
+      // Filtrer pour ne garder que les demandes qui n'ont pas encore de devis
+      {
+        $match: { devisAssocie: { $size: 0 } },
       },
       {
         $project: {
