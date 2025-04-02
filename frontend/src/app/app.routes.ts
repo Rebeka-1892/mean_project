@@ -92,7 +92,7 @@ export const routes: Routes = [
       { path: 'demandes-create', component: DemandeCreateComponent },
       { path: 'demandes', component: DemandeListComponent },
       { path: 'devis-edit/:id', component: DevisEditComponent },
-      { path: 'devis-create', component: DevisCreateComponent },
+      { path: 'devis-create/:iddemande/:idclient', component: DevisCreateComponent },
       { path: 'devis', component: DevisListComponent },
       { path: 'devis-client', component: DevisListClientComponent },
       { path: 'dashboard', component: DashboardComponent },

@@ -25,6 +25,14 @@ export class DemandeListComponent implements OnInit {
       data);
   }
 
+  formatDate(dateString: string): string {
+    return new Date(dateString).toLocaleDateString('fr-FR', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  }
+
   deleteDemande(id: string): void {
     this.demandeService.deleteDemande(id).subscribe(() => this.loadDemandes());
   }
@@ -33,8 +41,8 @@ export class DemandeListComponent implements OnInit {
     this.router.navigate(['/demandes-edit', id]);
   }
 
-  createDevis(id: string){
-    this.router.navigate(['/devis-create']);
+  createDevis(iddemande: string, idclient: string){
+    this.router.navigate(['/devis-create', iddemande, idclient]);
   }
 
   goToDemandeCreate() {
