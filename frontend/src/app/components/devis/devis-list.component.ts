@@ -25,6 +25,14 @@ export class DevisListComponent implements OnInit {
       data);
   }
 
+  formatDate(dateString: string): string {
+    return new Date(dateString).toLocaleDateString('fr-FR', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  }
+
   deleteDevis(id: string): void {
     this.devisService.deleteDevis(id).subscribe(() => this.loadDeviss());
   }

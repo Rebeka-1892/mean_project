@@ -25,6 +25,14 @@ export class DemandeListComponent implements OnInit {
       data);
   }
 
+  formatDate(dateString: string): string {
+    return new Date(dateString).toLocaleDateString('fr-FR', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  }
+
   deleteDemande(id: string): void {
     this.demandeService.deleteDemande(id).subscribe(() => this.loadDemandes());
   }
