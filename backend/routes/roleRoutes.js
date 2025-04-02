@@ -24,10 +24,16 @@ router.post('/', async (req, res) => {
 	}
 });
 
-// Lire tous les rôles
+// Lire tous les rôles avec filtres optionnels
 router.get('/', async (req, res) => {
 	try {
-		const roles = await Role.find().populate('idrole');
+		const filters = {};
+		for (const key in req.query) {
+			if (req.query.hasOwnProperty(key)) {
+				filters[key] = req.query[key];
+			}
+		}
+		const roles = await Role.find(filters).populate('idrole');
 		res.json(roles);
 	} catch (error) {
 		res.status(500).json({ message: error.message });

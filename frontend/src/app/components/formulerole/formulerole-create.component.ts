@@ -26,7 +26,13 @@ export class FormuleroleCreateComponent implements OnInit {
 
     ngOnInit(): void {
         this.serviceService.getServices().subscribe(data => this.list = data);
-        this.roleService.getRoles().subscribe(data => this.roles = data);
+        this.roleService.getRoles({ nom: 'mecanicien' }).subscribe(data => {
+            if (data.length > 0) {
+                this.roleService.getRoles({ idrole: data[0]._id }).subscribe(subRoles =>
+                  this.roles = subRoles
+                );
+            }
+        });
     }
 
     toggleFormulerole(id: string, event: Event) {

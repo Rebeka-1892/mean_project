@@ -10,8 +10,8 @@ import { map } from 'rxjs/operators';
 export class RoleService {
   private apiUrl = `${environment.apiUrl}/roles`;
   constructor(private http: HttpClient) { }
-  getRoles(): Observable<any> {
-    return this.http.get(this.apiUrl, {withCredentials: true});
+  getRoles(params?: any): Observable<any> {
+    return this.http.get(this.apiUrl, {withCredentials: true, params: params});
   }
   getRoleById(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`, {withCredentials: true});

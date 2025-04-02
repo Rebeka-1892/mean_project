@@ -30,7 +30,13 @@ export class FormuleroleEditComponent implements OnInit {
         if(id) {
             this.formuleroleService.getFormuleroleById(id).subscribe(data => this.newFormulerole = data);
             this.serviceService.getServices().subscribe(data => this.list = data);
-            this.roleService.getRoles().subscribe(data => this.roles = data); 
+            this.roleService.getRoles({ nom: 'mecanicien' }).subscribe(data => {
+                if (data.length > 0) {
+                    this.roleService.getRoles({ idrole: data[0]._id }).subscribe(subRoles =>
+                      this.roles = subRoles
+                    );
+                }
+            });
         }
     }
 
