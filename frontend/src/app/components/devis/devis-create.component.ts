@@ -71,6 +71,6 @@ export class DevisCreateComponent implements OnInit {
     }
 
     goBackToList() {
-        this.router.navigate(['/devis']);
+        this.router.navigate(['/demandes']);
     }
 }
