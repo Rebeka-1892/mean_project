@@ -38,15 +38,15 @@ export class FactureListClientComponent implements OnInit {
     });
   }
 
-  deleteFacture(id: string): void {
-    this.factureService.deleteFacture(id).subscribe(() => this.loadFactures());
-  }
+  // deleteFacture(id: string): void {
+  //   this.factureService.deleteFacture(id).subscribe(() => this.loadFactures());
+  // }
 
-  updateFacture(id: string): void {
-    this.router.navigate(['/factures-edit', id]);
-  }
+  // updateFacture(id: string): void {
+  //   this.router.navigate(['/factures-edit', id]);
+  // }
 
-  goToFactureCreate() {
-    this.router.navigate(['/factures-create']);
-  }
+  // goToFactureCreate() {
+  //   this.router.navigate(['/factures-create']);
+  // }
 }

@@ -3,6 +3,7 @@
         <h3 class="subtitle has-text-weight-bold">
             Facture
         </h3>
+        <div class="field is-grouped"></div>
     </div>
     <div class="table-container">
         <table class="table is-fullwidth">
@@ -11,7 +12,7 @@
                     <th class="has-text-left">Date devis</th>
                     <th class="has-text-left">Date facture</th>
                     <th class="has-text-left">Tache</th>
-                    <td class="has-text-right">Montant total</td>
+                    <th class="has-text-right">Montant total</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,8 +21,19 @@
                     <td>{{ formatDate(facture.iddevis.date) }}</td>
                     <td>{{ formatDate(facture.createdAt) }}</td>
                     <td>
+                        <tr>
+                            <th class="has-text-left">Responsable</th>
+                            <th class="has-text-right">Heure</th>
+                            <th class="has-text-left">Role</th>
+                            <th class="has-text-left">Avancement</th>
+                        </tr>
                         @for (tache of facture.tache; track tache._id) {
-                            io
+                            <tr>
+                                <td class="has-text-left">{{ tache.idemploye }}</td>
+                                <td class="has-text-right">{{ tache.heure }}</td>
+                                <td class="has-text-left">{{ tache.idrole }}</td>
+                                <td class="has-text-left">{{ tache.statut }}</td>
+                            </tr>
                         }
                     </td>
                     <td class="has-text-right">{{ facture.montant }}</td>
