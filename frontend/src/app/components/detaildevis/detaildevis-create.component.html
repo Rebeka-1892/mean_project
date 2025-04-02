@@ -1,17 +1,17 @@
 <div class="box">
     <form method="post" (ngSubmit)="addDetaildevis()" #detaildevisForm="ngForm">
         <div class="field">
-            <label for="iddevis" class="label">
-                Iddevis
+            <label for="date" class="label">
+                Date
             </label>
             <div class="control">
-                <input type="text" class="input" id="iddevis" name="iddevis" [(ngModel)]="newDetaildevis.iddevis"
+                <input type="date" class="input" id="date" name="date" [(ngModel)]="newDetaildevis.date"
                     required />
             </div>
         </div>
         <div class="field">
             <label for="idservice" class="label">
-                Idservice
+                Choisir le(s) service(s)
             </label>
             <div class="control" *ngFor="let row of list">
                 <label for="checkbox" class="checkbox">

@@ -1,0 +1,62 @@
+<div class="box">
+    <form method="post" (ngSubmit)="addTache()" #tacheForm="ngForm">
+        <div class="field">
+            <label for="idfacture" class="label">
+                Idfacture
+            </label>
+            <div class="control">
+                <div class="select is-fullwidth">
+                    <select id="idfacture" name="idfacture" [(ngModel)]="newTache.idfacture">
+                        <option *ngIf="!newTache.idfacture" value="" disabled selected>Selectionner Idfacture</option>
+                        <option *ngFor="let row of list" [value]="row._id">
+                            {{ row.iddevis }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label for="idrole" class="label">
+                Idrole
+            </label>
+            <div class="control">
+                <input type="text" class="input" id="idrole" name="idrole" [(ngModel)]="newTache.idrole" required />
+            </div>
+        </div>
+        <div class="field">
+            <label for="idemploye" class="label">
+                Idemploye
+            </label>
+            <div class="control" *ngFor="let row of employes">
+                <label for="checkbox" class="checkbox">
+                    <input type="checkbox" name="idemploye[]" [value]="row._id" (change)="toggleTache(row._id, $event)"
+                        [checked]="newTache.idemploye.includes(row._id)" />
+                    {{ row.nom }}
+                </label>
+            </div>
+        </div>
+        <div class="field">
+            <label for="statut" class="label">
+                Statut
+            </label>
+            <div class="control">
+                <input type="number" class="input" id="statut" name="statut" [(ngModel)]="newTache.statut" required />
+            </div>
+        </div>
+        <div class="field">
+            <label for="heure" class="label">
+                Heure
+            </label>
+            <div class="control">
+                <input type="number" class="input" id="heure" name="heure" [(ngModel)]="newTache.heure" required />
+            </div>
+        </div>
+
+
+        <div class="buttons">
+            <button class="button is-link" type="submit" [disabled]="tacheForm.invalid">Ajouter</button>
+            <button class="button is-background-danger-40 has-text-white" type="button"
+                (click)="goBackToList()">Annuler</button>
+        </div>
+    </form>
+</div>

@@ -1,22 +1,6 @@
 <div class="box">
     <form method="post" (ngSubmit)="addDemande()" #demandeForm="ngForm">
         <div class="field">
-            <label for="idclient" class="label">
-                Idclient
-            </label>
-            <div class="control">
-                <div class="select is-fullwidth">
-                    <select id="idclient" name="idclient" [(ngModel)]="newDemande.idclient">
-                        <option *ngIf="!newDemande.idclient" value="" disabled selected>Selectionner Idclient</option>
-                        <option *ngFor="let row of list" [value]="row._id">
-                            {{ row.nom }}
-                        </option>
-                    </select>
-                </div>
-                
-            </div>
-        </div>
-        <div class="field">
             <label for="description" class="label">
                 Description
             </label>

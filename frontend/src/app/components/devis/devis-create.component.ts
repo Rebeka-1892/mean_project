@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { DevisService } from '../../services/devis.service';
 import { DemandeService } from '../../services/demande.service';
 import { ClientService } from '../../services/client.service';
+import { ServiceService } from '../../services/service.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -15,18 +16,31 @@ import { CommonModule } from '@angular/common';
 export class DevisCreateComponent implements OnInit{
     list : any;
     demandes : any;
-    newDevis = { idclient: '', iddemande: '', date: '', };
+    services : any;
+    newDevis = { idclient: '', iddemande: '', date: '', idservice: [] as string[] };
     
     constructor(
         private devisService: DevisService, 
         private demandeService: DemandeService,
         private clientService: ClientService, 
+        private serviceService: ServiceService,
         private router: Router
     ) { }
 
     ngOnInit(): void {
         this.demandeService.getDemandes().subscribe(data => this.demandes = data);    
         this.clientService.getClients().subscribe(data => this.list = data);
+        this.serviceService.getServices().subscribe(data => this.services = data);
+    }
+
+    toggleDetaildevis(id: string, event: Event) {
+        const inputElement = event.target as HTMLInputElement;
+        const isChecked = inputElement.checked;
+        if (isChecked) {
+            this.newDevis.idservice.push(id);
+        } else {
+            this.newDevis.idservice = this.newDevis.idservice.filter(serviceId => serviceId !== id);
+        }
     }
 
     addDevis(): void {

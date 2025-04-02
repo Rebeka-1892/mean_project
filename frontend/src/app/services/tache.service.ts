@@ -2,31 +2,25 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { jwtDecode } from 'jwt-decode';
 @Injectable({
   providedIn: 'root'
 })
-export class DemandeService {
-  private apiUrl = `${environment.apiUrl}/demandes`;
+export class TacheService {
+  private apiUrl = `${environment.apiUrl}/taches`;
   constructor(private http: HttpClient) { }
-  getDecodedToken(): any {
-    const token = localStorage.getItem('token'); // Ou récupérer depuis les cookies
-    if (!token) return null;
-    return jwtDecode(token);
-  }
-  getDemandes(): Observable<any> {
+  getTaches(): Observable<any> {
     return this.http.get(this.apiUrl, {withCredentials: true});
   }
-  getDemandeById(id: string): Observable<any> {
+  getTacheById(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`, {withCredentials: true});
   }
-  addDemande(demande: any): Observable<any> {
-    return this.http.post(this.apiUrl, demande, {withCredentials: true});
+  addTache(tache: any): Observable<any> {
+    return this.http.post(this.apiUrl, tache, {withCredentials: true});
   }
-  updateDemande(id: string, demande: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, demande, {withCredentials: true});
+  updateTache(id: string, tache: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, tache, {withCredentials: true});
   }
-  deleteDemande(id: string): Observable<any> {
+  deleteTache(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`, {withCredentials: true});
   }
   async getIds(): Promise<string[]> {
@@ -36,4 +30,4 @@ export class DemandeService {
     }
     return response.map(item => item._id);
   }
-}
+} 

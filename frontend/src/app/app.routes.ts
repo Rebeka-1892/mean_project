@@ -46,6 +46,9 @@ import { FactureEditComponent } from './components/facture/facture-edit.componen
 import { DetaildevisListComponent } from './components/detaildevis/detaildevis-list.component';
 import { DetaildevisCreateComponent } from './components/detaildevis/detaildevis-create.component';
 import { DetaildevisEditComponent } from './components/detaildevis/detaildevis-edit.component';
+import { TacheListComponent } from './components/tache/tache-list.component';
+import { TacheCreateComponent } from './components/tache/tache-create.component';
+import { TacheEditComponent } from './components/tache/tache-edit.component';
 //new_import
 export const routes: Routes = [
   { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
@@ -99,6 +102,9 @@ export const routes: Routes = [
       { path: 'detaildevis-edit/:id', component: DetaildevisEditComponent },
       { path: 'detaildevis-create', component: DetaildevisCreateComponent },
       { path: 'detaildevis', component: DetaildevisListComponent },
+      { path: 'taches-edit/:id', component: TacheEditComponent },
+      { path: 'taches-create', component: TacheCreateComponent },
+      { path: 'taches', component: TacheListComponent },
       //new_path
     ]
   },

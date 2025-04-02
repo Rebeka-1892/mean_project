@@ -33,6 +33,10 @@ export class DemandeListComponent implements OnInit {
     this.router.navigate(['/demandes-edit', id]);
   }
 
+  createDevis(id: string){
+    this.router.navigate(['/devis-create']);
+  }
+
   goToDemandeCreate() {
     this.router.navigate(['/demandes-create']);
   }

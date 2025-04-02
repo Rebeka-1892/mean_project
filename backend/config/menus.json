@@ -14,7 +14,8 @@
                 { "name": "Formules roles", "path": "/formuleroles" },
                 { "name": "Clients", "path": "/clients"},
                 { "name": "Demandes", "path": "/demandes"},
-                { "name": "Devis", "path": "/devis"}
+                { "name": "Devis", "path": "/devis"},
+                { "name": "Taches", "path": "/taches"}
             ]
         }
     ],
@@ -26,7 +27,7 @@
         {
             "name": "",
             "submenus": [
-                { "name": "Créer une demande", "path": "/devis-create" },
+                { "name": "Créer une demande", "path": "/demandes-create" },
                 { "name": "Services", "path": "/detaildevis-create" },
                 { "name": "Liste des devis", "path": "/devis-client" },
                 { "name": "Liste des factures", "path": "/devis-create" },
