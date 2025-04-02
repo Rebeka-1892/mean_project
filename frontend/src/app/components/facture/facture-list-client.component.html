@@ -29,10 +29,17 @@
                         </tr>
                         @for (tache of facture.tache; track tache._id) {
                             <tr>
-                                <td class="has-text-left">{{ tache.idemploye }}</td>
+                                <td class="has-text-left">{{ tache.employe.nom }}</td>
                                 <td class="has-text-right">{{ tache.heure }}</td>
-                                <td class="has-text-left">{{ tache.idrole }}</td>
-                                <td class="has-text-left">{{ tache.statut }}</td>
+                                <td class="has-text-left">{{ tache.role.nom }}</td>
+                                <td class="has-text-left">
+                                    @if (tache.statut == 1){
+                                        <button class="button is-success">Terminé</button>
+                                    }
+                                    @else{
+                                        <button class="button is-warning">En cours</button>
+                                    }                                    
+                                </td>
                             </tr>
                         }
                     </td>
