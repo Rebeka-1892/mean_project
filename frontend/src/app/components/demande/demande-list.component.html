@@ -41,11 +41,11 @@
 
                     <td>
                         <div class="buttons is-pulled-right">
-                            <a (click)="createDevis(demande._id)"
+                            <a (click)="createDevis(demande._id, demande.client._id)"
                                 class="button is-link has-text-white is-hidden-touch">
                                 <div class="icon-text">
                                     <span class="icon">
-                                        <i class="fa-solid fa-pen"></i>
+                                        <i class="fa-solid fa-plus"></i>
                                     </span>
                                     <span>
                                         Créer un devis

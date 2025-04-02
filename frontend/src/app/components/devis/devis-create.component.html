@@ -1,33 +1,16 @@
 <div class="box">
+    <h3 class="subtitle has-text-weight-bold">
+        Création Devis
+    </h3>
     <form method="post" (ngSubmit)="addDevis()" #devisForm="ngForm">
         <div class="field">
-            <label for="idclient" class="label">
-                Idclient
-            </label>
             <div class="control">
-                <div class="select is-fullwidth">
-                    <select id="idclient" name="idclient" [(ngModel)]="newDevis.idclient">
-                        <option *ngIf="!newDevis.idclient" value="" disabled selected>Selectionner Idclient</option>
-                        <option *ngFor="let row of list" [value]="row._id">
-                            {{ row.nom }}
-                        </option>
-                    </select>
-                </div>
+                <input type="hidden" class="input" id="idclient" name="idclient" [(ngModel)]="newDevis.idclient" required />
             </div>
         </div>
         <div class="field">
-            <label for="iddemande" class="label">
-                Iddemande
-            </label>
             <div class="control">
-                <div class="select is-fullwidth">
-                    <select id="iddemande" name="iddemande" [(ngModel)]="newDevis.iddemande">
-                        <option *ngIf="!newDevis.iddemande" value="" disabled selected>Selectionner Iddemande</option>
-                        <option *ngFor="let row of demandes" [value]="row._id">
-                            {{ row.description }}
-                        </option>
-                    </select>
-                </div>
+                <input type="hidden" class="input" id="iddemande" name="iddemande" [(ngModel)]="newDevis.iddemande" required />
             </div>
         </div>
         <div class="field">
