@@ -13,15 +13,13 @@
                 { "name": "Formules matériels", "path": "/formulemateriels" },
                 { "name": "Formules roles", "path": "/formuleroles" },
                 { "name": "Clients", "path": "/clients"},
-                { "name": "Demandes", "path": "/demandes"},
                 { "name": "Devis", "path": "/devis"},
                 { "name": "Taches", "path": "/taches"}
             ]
         }
     ],
     "mecanicien": [
-        { "name": "Dashboard", "path": "/dashboard" },
-        { "name": "Profile", "path": "/profile" }
+        { "name": "Liste des demandes", "path": "/demandes"}
     ],
     "client": [
         {
