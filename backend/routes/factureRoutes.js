@@ -58,7 +58,7 @@ router.get("/facture_sans_taches", async (req, res) => {
 
 router.get("/idclient/:id", async (req, res) => {
   try {
-    const factures = await Facture.find({ idclient: req.params.id })();
+    const factures = await Facture.find({ idclient: req.params.id }).populate('iddevis');
     const factureIds = factures.map((d) => d._id);
 
     const tacheList = await Tache.aggregate([
@@ -98,7 +98,7 @@ router.get("/idclient/:id", async (req, res) => {
       },
     ]);
 
-    const result = devis.map((d) => {
+    const result = factures.map((d) => {
       d = d.toObject(); // Convertir Mongoose Document en objet JS
       d.tache = tacheList.filter((dd) => dd.idfacture.equals(d._id)); // Associer les détails
       return d;

@@ -1,0 +1,33 @@
+<div class="box">
+    <div class="is-flex is-justify-content-space-between">
+        <h3 class="subtitle has-text-weight-bold">
+            Facture
+        </h3>
+    </div>
+    <div class="table-container">
+        <table class="table is-fullwidth">
+            <thead>
+                <tr>
+                    <th class="has-text-left">Date devis</th>
+                    <th class="has-text-left">Date facture</th>
+                    <th class="has-text-left">Tache</th>
+                    <td class="has-text-right">Montant total</td>
+                </tr>
+            </thead>
+            <tbody>
+                @for (facture of factures; track facture._id) {
+                <tr>
+                    <td>{{ formatDate(facture.iddevis.date) }}</td>
+                    <td>{{ formatDate(facture.createdAt) }}</td>
+                    <td>
+                        @for (tache of facture.tache; track tache._id) {
+                            io
+                        }
+                    </td>
+                    <td class="has-text-right">{{ facture.montant }}</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
