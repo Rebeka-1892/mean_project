@@ -34,10 +34,10 @@
                                 <td class="has-text-left">{{ tache.role.nom }}</td>
                                 <td class="has-text-left">
                                     @if (tache.statut == 1){
-                                        <button class="button is-success">Terminé</button>
+                                        <span class="tag is-success">Terminé</span>
                                     }
                                     @else{
-                                        <button class="button is-warning">En cours</button>
+                                        <span class="tag is-warning">En cours</span>
                                     }                                    
                                 </td>
                             </tr>
