@@ -27,6 +27,7 @@
             "name": "",
             "submenus": [
                 { "name": "Créer une demande", "path": "/devis-create" },
+                { "name": "Services", "path": "/detaildevis-create" },
                 { "name": "Liste des devis", "path": "/devis-client" },
                 { "name": "Liste des factures", "path": "/devis-create" },
                 { "name": "Liste des taches", "path": "/devis-create" }

@@ -28,6 +28,9 @@ export class DevisService {
   }
   updateDevis(id: string, devis: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/${id}`, devis, {withCredentials: true});
+  }  
+  updateStatutDevis(id: string, devis: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/devis/${id}`, devis, {withCredentials: true});
   }
   deleteDevis(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`, {withCredentials: true});

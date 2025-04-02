@@ -1,0 +1,34 @@
+<div class="box">
+    <form method="post" (ngSubmit)="addFacture()" #factureForm="ngForm">
+        <div class="field">
+    <label for="iddevis" class="label">
+        Iddevis
+    </label>
+    <div class="control">
+        <input type="text" class="input" id="iddevis" name="iddevis" [(ngModel)]="newFacture.iddevis" required />
+    </div>
+</div>
+<div class="field">
+    <label for="idclient" class="label">
+        Idclient
+    </label>
+    <div class="control">
+        <input type="text" class="input" id="idclient" name="idclient" [(ngModel)]="newFacture.idclient" required />
+    </div>
+</div>
+<div class="field">
+    <label for="montant" class="label">
+        Montant
+    </label>
+    <div class="control">
+        <input type="number" class="input" id="montant" name="montant" [(ngModel)]="newFacture.montant" required />
+    </div>
+</div>
+
+
+        <div class="buttons">
+            <button class="button is-link" type="submit" [disabled]="factureForm.invalid">Ajouter</button>
+            <button class="button is-background-danger-40 has-text-white" type="button" (click)="goBackToList()">Annuler</button>
+        </div>
+    </form>
+</div>

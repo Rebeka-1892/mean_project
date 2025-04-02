@@ -1,0 +1,33 @@
+<div class="box">
+    <form method="post" (ngSubmit)="updateDetaildevis()" #detaildevisForm="ngForm">
+        <div class="field">
+    <label for="iddevis" class="label">
+        Iddevis
+    </label>
+    <div class="control">
+        <input type="text" class="input" id="iddevis" name="iddevis" [(ngModel)]="newDetaildevis.iddevis" required />
+    </div>
+</div>
+<div class="field">
+    <label for="idservice" class="label">
+        Idservice
+    </label>
+    <div class="control">
+        <div class="select is-fullwidth">
+            <select id="idservice" name="idservice" [(ngModel)]="newDetaildevis.idservice" >
+                <option *ngIf="!newDetaildevis.idservice" value="" disabled selected>Selectionner Idservice</option>
+                <option *ngFor="let row of list" [value]="row._id">
+                    {{ row.nom }}
+                </option>
+            </select>
+        </div>
+    </div>
+</div>
+
+
+        <div class="buttons">
+            <button class="button is-link" type="submit" [disabled]="detaildevisForm.invalid">Modifier</button>
+            <button class="button is-background-danger-40 has-text-white" type="button" (click)="goBackToList()">Annuler</button>
+        </div>
+    </form>
+</div>

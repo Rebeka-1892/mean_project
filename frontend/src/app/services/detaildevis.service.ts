@@ -5,25 +5,22 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class ServiceService {
-  private apiUrl = `${environment.apiUrl}/services`;
+export class DetaildevisService {
+  private apiUrl = `${environment.apiUrl}/detaildevis`;
   constructor(private http: HttpClient) { }
-  getServices(): Observable<any> {
+  getDetaildevis(): Observable<any> {
     return this.http.get(this.apiUrl, {withCredentials: true});
   }
-  getMontantById(id: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/montant/${id}`, {withCredentials: true});
-  }
-  getServiceById(id: string): Observable<any> {
+  getDetaildevisById(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`, {withCredentials: true});
   }
-  addService(service: any): Observable<any> {
-    return this.http.post(this.apiUrl, service, {withCredentials: true});
+  addDetaildevis(detaildevis: any): Observable<any> {
+    return this.http.post(this.apiUrl, detaildevis, {withCredentials: true});
   }
-  updateService(id: string, service: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, service, {withCredentials: true});
+  updateDetaildevis(id: string, detaildevis: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, detaildevis, {withCredentials: true});
   }
-  deleteService(id: string): Observable<any> {
+  deleteDetaildevis(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`, {withCredentials: true});
   }
   async getIds(): Promise<string[]> {
@@ -33,4 +30,4 @@ export class ServiceService {
     }
     return response.map(item => item._id);
   }
-}
+} 

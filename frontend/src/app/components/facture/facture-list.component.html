@@ -14,13 +14,13 @@
     </div>
     <div class="is-flex is-justify-content-space-between">
         <h3 class="subtitle has-text-weight-bold">
-            Liste des devis
+            Facture
         </h3>
         <div class="field is-grouped">
             <div class="field">
                 <div class="control">
-                    <button class="button" (click)="goToDetailDevisCreate()">
-                        <span class="icon is-clickable add">
+                    <button class="button" (click)="goToFactureCreate()">
+                        <span class="icon is-clickable add" >
                             <i class="fas fa-add"></i>
                         </span>
                     </button>
@@ -32,9 +32,9 @@
         <table class="table is-fullwidth">
             <thead>
                 <tr>
-                    <th class="has-text-left">Demande</th>
-                    <th class="has-text-left">Service(s)</th>
-                    <th class="has-text-left">Date</th>
+                    <th class="has-text-left">Iddevis</th>
+<th class="has-text-left">Idclient</th>
+<th class="has-text-left">Montant</th>
 
                     <td>
                         <div class="field is-hidden-touch">
@@ -54,61 +54,45 @@
                 </tr>
             </thead>
             <tbody>
-                @for (devis of deviss; track devis._id) {
+                @for (facture of factures; track facture._id) {
                 <tr>
-                    <td>{{ devis.iddemande.description }}</td>
-                    <td>
-                        @for (detail of devis.detailDevis; track detail._id) {
-                            <tr class="is-flex is-justify-content-space-between">
-                                <td>
-                                    <strong>{{ detail.service.nom }}<br></strong>
-                                </td>
-                                <td>
-                                    <div class="buttons is-pulled-right">
-                                        <a (click)="deleteDetailDevis(detail._id)"
-                                            class="button is-warning is-background-warning has-text-white is-hidden-touch">
-                                            <div class="icon-text">
-                                                <span class="icon">
-                                                    <i class="fa-solid fa-trash-can"></i>
-                                                </span>
-                                            </div>
-                                        </a>
-                                        <a (click)="deleteDetailDevis(detail._id)"
-                                            class="button is-warning is-background-warning has-text-white is-hidden-desktop">
-                                            <span class="icon">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>                            
-                        }
-                    </td>
-                    <td>{{ formatDate(devis.date) }}</td>
+                    <td>{{ facture.iddevis }}</td>
+<td>{{ facture.idclient }}</td>
+<td>{{ facture.montant }}</td>
 
                     <td>
                         <div class="buttons is-pulled-right">
-                            <a (click)="insertFacture(devis._id, devis.idclient, devis.detailDevis)"
-                                class="button is-success has-text-white is-hidden-touch">
+                            <a (click)="updateFacture(facture._id)" class="button is-dark is-background-grey has-text-white is-hidden-touch">
                                 <div class="icon-text">
                                     <span class="icon">
-                                        <i class="fa-solid fa-check"></i>
+                                        <i class="fa-solid fa-pen"></i>
                                     </span>
                                     <span>
-                                        Accepter
+                                        Modifier
                                     </span>
                                 </div>
                             </a>
-                            <a (click)="updateStatutDevis(devis._id)"
+                            <a (click)="deleteFacture(facture._id)"
                                 class="button is-danger is-background-danger-40 has-text-white is-hidden-touch">
                                 <div class="icon-text">
                                     <span class="icon">
-                                        <i class="fa-solid fa-times"></i>
+                                        <i class="fa-solid fa-trash-can"></i>
                                     </span>
                                     <span>
-                                        Refuser
+                                        Supprimer
                                     </span>
                                 </div>
+                            </a>
+                            <a (click)="updateFacture(facture._id)" class="button is-dark is-background-grey has-text-white is-hidden-desktop">
+                                <span class="icon">
+                                    <i class="fa-solid fa-pen"></i>
+                                </span>
+                            </a>
+                            <a (click)="deleteFacture(facture._id)"
+                                class="button is-danger is-background-danger-40 has-text-white is-hidden-desktop">
+                                <span class="icon">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </span>
                             </a>
                         </div>
                     </td>

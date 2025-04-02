@@ -39,7 +39,13 @@ import { DevisCreateComponent } from './components/devis/devis-create.component'
 import { DevisEditComponent } from './components/devis/devis-edit.component';
 import { SignInLayoutComponent } from './layouts/sign-in-layout/sign-in-layout.component';
 import { SignUpLayoutComponent } from './layouts/sign-up-layout/sign-up-layout.component';
-import {DashboardComponent} from './components/dashboard/dashboard.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { FactureListComponent } from './components/facture/facture-list.component';
+import { FactureCreateComponent } from './components/facture/facture-create.component';
+import { FactureEditComponent } from './components/facture/facture-edit.component';
+import { DetaildevisListComponent } from './components/detaildevis/detaildevis-list.component';
+import { DetaildevisCreateComponent } from './components/detaildevis/detaildevis-create.component';
+import { DetaildevisEditComponent } from './components/detaildevis/detaildevis-edit.component';
 //new_import
 export const routes: Routes = [
   { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
@@ -87,6 +93,12 @@ export const routes: Routes = [
       { path: 'devis', component: DevisListComponent },
       { path: 'devis-client', component: DevisListClientComponent },
       { path: 'dashboard', component: DashboardComponent },
+      { path: 'factures-edit/:id', component: FactureEditComponent },
+      { path: 'factures-create', component: FactureCreateComponent },
+      { path: 'factures', component: FactureListComponent },
+      { path: 'detaildevis-edit/:id', component: DetaildevisEditComponent },
+      { path: 'detaildevis-create', component: DetaildevisCreateComponent },
+      { path: 'detaildevis', component: DetaildevisListComponent },
       //new_path
     ]
   },

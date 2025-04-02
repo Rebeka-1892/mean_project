@@ -129,6 +129,20 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+router.put("/devis/:id", async (req, res) => {
+  try {
+    const { statut } = req.body;
+    const updatedDevis = await Devis.findByIdAndUpdate(
+      req.params.id,
+      { statut },
+      { new: true }
+    );
+    res.json(updatedDevis);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
 router.delete("/:id", async (req, res) => {
   try {
     await Devis.findByIdAndDelete(req.params.id);
