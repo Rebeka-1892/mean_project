@@ -2,14 +2,23 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { jwtDecode } from 'jwt-decode';
 @Injectable({
   providedIn: 'root'
 })
 export class FactureService {
   private apiUrl = `${environment.apiUrl}/factures`;
   constructor(private http: HttpClient) { }
+  getDecodedToken(): any {
+    const token = localStorage.getItem('token'); // Ou récupérer depuis les cookies
+    if (!token) return null;
+    return jwtDecode(token);
+  }
   getFactures(): Observable<any> {
     return this.http.get(this.apiUrl, {withCredentials: true});
+  }
+  getFactureByIdclient(id: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/idclient/${id}`, {withCredentials: true});
   }
   getFactureById(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`, {withCredentials: true});

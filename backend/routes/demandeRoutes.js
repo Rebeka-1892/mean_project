@@ -25,8 +25,6 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    // const demandes = await Demande.find();
-    // res.json(demandes);
     const result = await Demande.aggregate([
       {
         $lookup: {

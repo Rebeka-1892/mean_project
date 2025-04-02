@@ -49,6 +49,7 @@ import { DetaildevisEditComponent } from './components/detaildevis/detaildevis-e
 import { TacheListComponent } from './components/tache/tache-list.component';
 import { TacheCreateComponent } from './components/tache/tache-create.component';
 import { TacheEditComponent } from './components/tache/tache-edit.component';
+import { FactureListClientComponent } from './components/facture/facture-list-client.component';
 //new_import
 export const routes: Routes = [
   { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
@@ -99,6 +100,7 @@ export const routes: Routes = [
       { path: 'factures-edit/:id', component: FactureEditComponent },
       { path: 'factures-create', component: FactureCreateComponent },
       { path: 'factures', component: FactureListComponent },
+      { path: 'factures-client', component: FactureListClientComponent },
       { path: 'detaildevis-edit/:id', component: DetaildevisEditComponent },
       { path: 'detaildevis-create', component: DetaildevisCreateComponent },
       { path: 'detaildevis', component: DetaildevisListComponent },
