@@ -35,6 +35,29 @@ router.get("/", async (req, res) => {
   }
 });
 
+// montant par mois
+router.get("/montant-par-mois", async (req, res) => {
+  try {
+    const result = await Facture.aggregate([
+      {
+        $group: {
+          _id: { 
+            year: { $year: "$createdAt" },
+            month: { $month: "$createdAt" }
+          },
+          totalMontant: { $sum: "$montant" }
+        }
+      },
+      {
+        $sort: { "_id.year": 1, "_id.month": 1 } // Trier par année et mois croissant
+      }
+    ]);
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 router.get("/facture_sans_taches", async (req, res) => {
   try {
     const factures = await Facture.aggregate([

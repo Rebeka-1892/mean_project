@@ -67,6 +67,16 @@ router.get('/', async (req, res) => {
 	}
 });
 
+// nombre client
+router.get('/nombre', async (req, res) => {
+	try {
+		const clients = await Client.countDocuments();
+		res.json(clients);
+	} catch (error) {
+		res.status(500).json({message: error.message});
+	}
+});
+
 router.get('/:id', async (req, res) => {
 	try {
 		const client = await Client.findById(req.params.id);

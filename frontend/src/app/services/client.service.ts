@@ -19,6 +19,9 @@ export class ClientService {
   }
   getClients(): Observable<any> {
     return this.http.get(this.apiUrl, {withCredentials: true});
+  }  
+  getNombreClients(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/nombre`, {withCredentials: true});
   }
   getClientById(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`, {withCredentials: true});
