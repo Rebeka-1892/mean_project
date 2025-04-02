@@ -26,7 +26,10 @@ export class EmployeEditComponent implements OnInit {
         const id = this.route.snapshot.paramMap.get('id');
         if (id) {
             this.employeService.getEmployeById(id).subscribe(data => this.newEmploye = data);
-            this.roleService.getRoles().subscribe(data => this.list = data);
+            this.roleService.getRoles({ nom: 'mecanicien' }).subscribe(data => {
+              this.list = data;
+              this.newEmploye.idrole = data[0]._id;
+            });
         }
     }
 

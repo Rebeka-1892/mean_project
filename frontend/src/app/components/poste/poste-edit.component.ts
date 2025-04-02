@@ -19,7 +19,7 @@ export class PosteEditComponent implements OnInit {
 
     constructor(
         private posteService: PosteService,
-        private employeService: EmployeService, 
+        private employeService: EmployeService,
         private roleService: RoleService,
         private route: ActivatedRoute,
         private router: Router
@@ -29,8 +29,14 @@ export class PosteEditComponent implements OnInit {
         const id = this.route.snapshot.paramMap.get('id');
         if(id) {
             this.posteService.getPosteById(id).subscribe(data => this.newPoste = data);
-            this.employeService.getEmployes().subscribe(data => this.list = data);     
-            this.roleService.getRoles().subscribe(data => this.roles = data);       
+            this.employeService.getEmployes().subscribe(data => this.list = data);
+            this.roleService.getRoles({ nom: 'mecanicien' }).subscribe(data => {
+                if (data.length > 0) {
+                    this.roleService.getRoles({ idrole: data[0]._id }).subscribe(subRoles =>
+                      this.roles = subRoles
+                    );
+                }
+            });
         }
     }
 

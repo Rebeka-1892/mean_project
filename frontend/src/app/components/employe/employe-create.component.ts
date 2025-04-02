@@ -21,7 +21,10 @@ export class EmployeCreateComponent implements OnInit {
         private router: Router) { }
 
     ngOnInit(): void {
-        this.roleService.getRoles().subscribe(data => this.list = data);
+        this.roleService.getRoles({ nom: 'mecanicien' }).subscribe(data => {
+          this.list = data;
+          this.newEmploye.idrole = data[0]._id;
+        });
     }
 
     addEmploye(): void {

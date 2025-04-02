@@ -26,7 +26,13 @@ export class PosteCreateComponent implements OnInit {
 
     ngOnInit(): void {
         this.employeService.getEmployes().subscribe(data => this.list = data);
-        this.roleService.getRoles().subscribe(data => this.roles = data);
+        this.roleService.getRoles({ nom: 'mecanicien' }).subscribe(data => {
+            if (data.length > 0) {
+                this.roleService.getRoles({ idrole: data[0]._id }).subscribe(subRoles =>
+                  this.roles = subRoles
+                );
+            }
+        });
     }
 
     toggleRole(id: string, event: Event) {
