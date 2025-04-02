@@ -11,6 +11,9 @@ import {FormuleroleService} from './services/formulerole.service';
 import {ClientService} from './services/client.service';
 import {DemandeService} from './services/demande.service';
 import {DevisService} from './services/devis.service';
+import {TacheService} from './services/tache.service';
+import {FactureService} from './services/facture.service';
+import {DetaildevisService} from './services/detaildevis.service';
 
 export const serverRoutes: ServerRoute[] = [
   {
@@ -144,6 +147,42 @@ export const serverRoutes: ServerRoute[] = [
       }
       return ids.map(id => ({ id: id?.toString() || '' }));
     },
+  },
+  {
+    path: 'factures-edit/:id',
+    renderMode: RenderMode.Prerender,
+    async getPrerenderParams() {
+      const dataService = inject(FactureService);
+      const ids = await dataService.getIds();
+      if (!Array.isArray(ids) || ids.length === 0) {
+        return [{ id: '' }];
+      }
+      return ids.map(id => ({ id: id?.toString() || '' }));
+    }
+  },
+  {
+    path: 'detaildevis-edit/:id',
+    renderMode: RenderMode.Prerender,
+    async getPrerenderParams() {
+      const dataService = inject(DetaildevisService);
+      const ids = await dataService.getIds();
+      if (!Array.isArray(ids) || ids.length === 0) {
+        return [{ id: '' }];
+      }
+      return ids.map(id => ({ id: id?.toString() || '' }));
+    }
+  },
+  {
+    path: 'taches-edit/:id',
+    renderMode: RenderMode.Prerender,
+    async getPrerenderParams() {
+      const dataService = inject(TacheService);
+      const ids = await dataService.getIds();
+      if (!Array.isArray(ids) || ids.length === 0) {
+        return [{ id: '' }];
+      }
+      return ids.map(id => ({ id: id?.toString() || '' }));
+    }
   },
   {
     path: '**',
