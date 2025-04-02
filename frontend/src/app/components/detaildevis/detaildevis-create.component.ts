@@ -8,6 +8,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { jwtDecode } from 'jwt-decode';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import {DemandeService} from '../../services/demande.service';
 
 @Component({
     selector: 'app-detaildevis-create',
@@ -22,6 +23,7 @@ export class DetaildevisCreateComponent implements OnInit {
     constructor(
         private detaildevisService: DetaildevisService,
         private devisService: DevisService,
+        private demandeService: DemandeService,
         private factureService: FactureService,
         private cookie: CookieService,
         private serviceService: ServiceService,
@@ -43,36 +45,27 @@ export class DetaildevisCreateComponent implements OnInit {
     }
 
     addDetaildevis(): void {
-        if (this.newDetaildevis.date && this.newDetaildevis.idservice.length > 0) {
-            const token = this.cookie.get('token');
-            const decodedToken: any = jwtDecode(token);
-            let montant = 0;
+    if (this.newDetaildevis.date && this.newDetaildevis.idservice.length > 0) {
+      const token = this.cookie.get('token');
+      const decodedToken: any = jwtDecode(token);
+      let montant = 0;
 
-            this.devisService.addDevis({ idclient: decodedToken.id, date: this.newDetaildevis.date, statut: 1 })
-                .toPromise()
-                .then(devis => {
+      this.demandeService.addDemande({ idclient: decodedToken.id, description: 'Service personalisé', date: this.newDetaildevis.date }).subscribe((demande) => {
+        this.devisService.addDevis({ idclient: decodedToken.id, iddemande: demande._id, date: this.newDetaildevis.date, statut: 1 }).subscribe((devis) => {
+          const requests = this.newDetaildevis.idservice.map(id => {
+            return this.serviceService.getMontantById(id).toPromise().then((response) => {
+              montant += response;
+              return this.detaildevisService.addDetaildevis({ iddevis: devis._id, idservice: id }).toPromise();
+            });
+          });
 
-                    const requests = this.newDetaildevis.idservice.map(id => {
-                        this.serviceService.getMontantById(id).toPromise()
-                            .then((response: number) => {
-                                montant += response;  // Ajouter le montant à la variable
-                                return id;
-                            });
-                        return this.detaildevisService.addDetaildevis({ iddevis: devis._id, idservice: id }).toPromise();
-                    });
-
-                    Promise.all(requests).then(() => {
-                        return this.factureService.addFacture({ iddevis: devis._id, idclient: devis.idclient, montant: montant });
-                    })
-                })
-                .then(() => {
-                    this.router.navigate(['/detaildevis']);
-                })
-                .catch(error => console.error('Erreur lors de l’ajout des detaildevis :', error));
-        }
+          Promise.all(requests).then(() => {
+            this.factureService.addFacture({ iddevis: devis._id, idclient: devis.idclient, montant: montant }).subscribe(() => {
+              this.router.navigate(['/factures-client']);
+            });
+          }).catch(error => console.error('Erreur lors de l’ajout des detaildevis :', error));
+        });
+      });
     }
-
-    goBackToList() {
-        this.router.navigate(['/detaildevis']);
-    }
+  }
 }

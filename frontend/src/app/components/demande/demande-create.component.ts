@@ -19,7 +19,7 @@ export class DemandeCreateComponent implements OnInit {
 
     constructor(
         private demandeService: DemandeService,
-        private clientService: ClientService, 
+        private clientService: ClientService,
         private cookie: CookieService,
         private router: Router
     ) { }
@@ -29,16 +29,12 @@ export class DemandeCreateComponent implements OnInit {
     }
 
     addDemande(): void {
-        if (this.newDemande.description && this.newDemande.date) {            
+        if (this.newDemande.description && this.newDemande.date) {
             const token = this.cookie.get('token');
             const decodedToken: any = jwtDecode(token);
             this.demandeService.addDemande({ idclient: decodedToken.id, description: this.newDemande.description, date: this.newDemande.date}).subscribe(() => {
-                this.router.navigate(['/demandes']);
+                this.router.navigate(['/devis-client']);
             });
         }
-    }
-
-    goBackToList() {
-        this.router.navigate(['/demandes']);
     }
 }

@@ -1,4 +1,7 @@
 <div class="box">
+    <h3 class="subtitle has-text-weight-bold">
+      Service
+    </h3>
     <form method="post" (ngSubmit)="addDetaildevis()" #detaildevisForm="ngForm">
         <div class="field">
             <label for="date" class="label">
@@ -10,24 +13,20 @@
             </div>
         </div>
         <div class="field">
-            <label for="idservice" class="label">
+            <label class="label">
                 Choisir le(s) service(s)
             </label>
             <div class="control" *ngFor="let row of list">
                 <label for="checkbox" class="checkbox">
-                    <input type="checkbox" name="idservice[]" [value]="row._id"
+                    <input type="checkbox" id="checkbox" name="idservice[]" [value]="row._id"
                         (change)="toggleDetaildevis(row._id, $event)"
                         [checked]="newDetaildevis.idservice.includes(row._id)" />
                     {{ row.nom }}
                 </label>
             </div>
         </div>
-
-
         <div class="buttons">
             <button class="button is-link" type="submit" [disabled]="detaildevisForm.invalid">Ajouter</button>
-            <button class="button is-background-danger-40 has-text-white" type="button"
-                (click)="goBackToList()">Annuler</button>
         </div>
     </form>
 </div>

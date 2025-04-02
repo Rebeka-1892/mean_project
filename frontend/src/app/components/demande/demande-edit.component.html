@@ -1,4 +1,7 @@
 <div class="box">
+    <h3 class="subtitle has-text-weight-bold">
+        Demande
+    </h3>
     <form method="post" (ngSubmit)="updateDemande()" #demandeForm="ngForm">
         <div class="field">
             <label for="idclient" class="label">
@@ -13,7 +16,7 @@
                         </option>
                     </select>
                 </div>
-                
+
             </div>
         </div>
         <div class="field">
@@ -23,7 +26,7 @@
             <div class="control">
                 <input type="text" class="input" id="description" name="description"
                     [(ngModel)]="newDemande.description" required />
-                
+
             </div>
         </div>
         <div class="field">
@@ -32,11 +35,9 @@
             </label>
             <div class="control">
                 <input type="date" class="input" id="date" name="date" [(ngModel)]="newDemande.date" required />
-                
+
             </div>
         </div>
-
-
         <div class="buttons">
             <button class="button is-link" type="submit" [disabled]="demandeForm.invalid">Modifier</button>
             <button class="button is-background-danger-40 has-text-white" type="button"
