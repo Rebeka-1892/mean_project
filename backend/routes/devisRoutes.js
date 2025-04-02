@@ -56,6 +56,7 @@ router.get("/", async (req, res) => {
           "client.nom": 1,
           "client._id": 1,
           date: 1,
+          statut: 1,
           "demande.description": 1,
           "demande.date": 1,
           "demande._id": 1,
@@ -70,7 +71,7 @@ router.get("/", async (req, res) => {
 
 router.get("/idclient/:id", async (req, res) => {
   try {
-    const devis = await Devis.find({ idclient: req.params.id }).populate(
+    const devis = await Devis.find({ idclient: req.params.id, statut : 0 }).populate(
       "iddemande"
     );
     const devisIds = devis.map((d) => d._id);
