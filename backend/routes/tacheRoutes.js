@@ -27,7 +27,13 @@ router.post('/', async (req, res) => {
 // Lire tous les détails de tache
 router.get('/', async (req, res) => {
     try {
-        const tache = await Tache.find();
+        const filters = {};
+        for (const key in req.query) {
+            if (req.query.hasOwnProperty(key)) {
+                filters[key] = req.query[key];
+            }
+        }
+        const tache = await Tache.find(filters).populate('idrole').populate('idemploye');
         res.json(tache);
     } catch (error) {
         res.status(500).json({ message: error.message });

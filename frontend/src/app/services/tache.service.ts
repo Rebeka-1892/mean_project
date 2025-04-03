@@ -8,8 +8,8 @@ import { environment } from '../../environments/environment';
 export class TacheService {
   private apiUrl = `${environment.apiUrl}/taches`;
   constructor(private http: HttpClient) { }
-  getTaches(): Observable<any> {
-    return this.http.get(this.apiUrl, {withCredentials: true});
+  getTaches(params?: any): Observable<any> {
+    return this.http.get(this.apiUrl, {withCredentials: true, params: params});
   }
   getTacheById(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`, {withCredentials: true});
@@ -30,4 +30,4 @@ export class TacheService {
     }
     return response.map(item => item._id);
   }
-} 
+}

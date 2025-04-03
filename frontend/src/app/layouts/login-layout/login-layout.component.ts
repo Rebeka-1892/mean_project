@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import {NgIf} from '@angular/common';
 import {ActivatedRoute, Router} from '@angular/router';
 import BaseComponent from '../../components/BaseComponent';
+import {CookieService} from 'ngx-cookie-service';
+import {jwtDecode} from 'jwt-decode';
 
   @Component({
     selector: 'app-login',
@@ -19,15 +21,18 @@ import BaseComponent from '../../components/BaseComponent';
     utilisateur: any = {};
     returnUrl: string;
 
-    constructor(private loginService: LoginService, private route: ActivatedRoute, private router: Router) {
+    constructor(private loginService: LoginService, private cookieService: CookieService, private route: ActivatedRoute, private router: Router) {
       super();
-      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
+      this.returnUrl = this.route.snapshot.queryParams['returnUrl'];
     }
 
     login(): void {
       this.loginService.login(this.utilisateur).subscribe(
-        data => {
-          this.router.navigate([this.returnUrl]);
+        () => {
+          const token = this.cookieService.get('token');
+          const decodedToken: any = jwtDecode(token);
+          const url = decodedToken.role === 'manager' ? '/dashboard' : '/taches';
+          this.router.navigate([this.returnUrl ?? url]);
         },
         error => {
           this.error = error.error.message;
