@@ -63,8 +63,8 @@ router.get("/montant-par-mois", async (req, res) => {
       {
         $group: {
           _id: { 
-            year: { $year: "$createdAt" },
-            month: { $month: "$createdAt" }
+            year: { $year: "$date" },
+            month: { $month: "$date" }
           },
           totalMontant: { $sum: "$montant" }
         }

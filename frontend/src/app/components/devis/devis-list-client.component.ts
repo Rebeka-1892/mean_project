@@ -51,6 +51,11 @@ export class DevisListClientComponent implements OnInit {
   insertFacture(iddevis: string, idclient: string, idservices: any[]): void {
     // statut = 1 : accepter
     this.devisService.updateStatutDevis(iddevis, {statut: 1}).subscribe(() => this.loadDeviss());
+    let date: any;
+    this.devisService.getDevisById(iddevis).subscribe((data) => {
+      date = data.date;
+    });
+
     let montant = 0;
     let benefice = 0;
     // Utiliser Promise.all pour attendre la résolution de toutes les promesses
@@ -68,7 +73,8 @@ export class DevisListClientComponent implements OnInit {
         iddevis: iddevis,
         idclient: idclient,
         montant: montant,
-        benefice: benefice
+        benefice: benefice, 
+        date: date
       }).subscribe(() => this.loadDeviss());
     }).catch(error => {
       console.error('Erreur lors de la récupération des montants:', error);

@@ -62,7 +62,7 @@ export class DetaildevisCreateComponent implements OnInit {
           });
 
           Promise.all(requests).then(() => {
-            this.factureService.addFacture({ iddevis: devis._id, idclient: devis.idclient, montant: montant, benefice: benefice }).subscribe(() => {
+            this.factureService.addFacture({ iddevis: devis._id, idclient: devis.idclient, montant: montant, benefice: benefice, date: this.newDetaildevis.date }).subscribe(() => {
               this.router.navigate(['/factures-client']);
             });
           }).catch(error => console.error('Erreur lors de l’ajout des detaildevis :', error));
