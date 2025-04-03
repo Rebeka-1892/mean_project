@@ -28,39 +28,40 @@
             </div>
         </div>
     </nav>
-    
     <canvas id="chart"></canvas>
+</div>
 
-    <div class="is-flex is-justify-content-space-between">
-        <h3 class="subtitle has-text-weight-bold">
-            Stock
-        </h3>
-        <div class="field is-grouped">
-            <div class="field">
-            </div>
-        </div>
+<div class="box">
+  <div class="is-flex is-justify-content-space-between">
+    <h3 class="subtitle has-text-weight-bold">
+      Stock
+    </h3>
+    <div class="field is-grouped">
+      <div class="field">
+      </div>
     </div>
-    <div class="table-container">
-        <table class="table is-fullwidth">
-            <thead>
-                <tr>
-                    <th class="has-text-left">Matériel</th>
-                    <th class="has-text-left">Entrée</th>
-                    <th class="has-text-left">Sortie</th>
-                    <th class="has-text-left">Reste</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for (stock of stocks; track stock._id) {
-                <tr>
-                    <td>{{ stock.nomMateriel }}</td>
-                    <td>{{ stock.totalEntree }}</td>
-                    <td>{{ stock.totalSortie }}</td>
-                    <td>{{ stock.reste }}</td>
-                    <td></td>
-                </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+  </div>
+  <div class="table-container">
+    <table class="table is-fullwidth">
+      <thead>
+      <tr>
+        <th class="has-text-left">Matériel</th>
+        <th class="has-text-left">Entrée</th>
+        <th class="has-text-left">Sortie</th>
+        <th class="has-text-left">Reste</th>
+      </tr>
+      </thead>
+      <tbody>
+        @for (stock of stocks; track stock._id) {
+          <tr>
+            <td>{{ stock.nomMateriel }}</td>
+            <td>{{ stock.totalEntree }}</td>
+            <td>{{ stock.totalSortie }}</td>
+            <td>{{ stock.reste }}</td>
+            <td></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
 </div>
