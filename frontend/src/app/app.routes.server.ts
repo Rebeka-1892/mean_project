@@ -14,6 +14,7 @@ import {DevisService} from './services/devis.service';
 import {TacheService} from './services/tache.service';
 import {FactureService} from './services/facture.service';
 import {DetaildevisService} from './services/detaildevis.service';
+import {StockService} from './services/stock.service';
 
 export const serverRoutes: ServerRoute[] = [
   {
@@ -177,6 +178,35 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
       const dataService = inject(TacheService);
+      const ids = await dataService.getIds();
+      if (!Array.isArray(ids) || ids.length === 0) {
+        return [{ id: '' }];
+      }
+      return ids.map(id => ({ id: id?.toString() || '' }));
+    }
+  },
+  {
+    path: 'devis-create/:iddemande/:idclient',
+    renderMode: RenderMode.Prerender,
+    async getPrerenderParams() {
+      const dataService = inject(DevisService);
+      const demandes = await dataService.getIds();
+      const clients = await dataService.getIds();
+
+      if (!Array.isArray(demandes) || demandes.length === 0 || !Array.isArray(clients) || clients.length === 0) {
+        return [{ iddemande: '', idclient: '' }];
+      }
+
+      return demandes.flatMap(demande =>
+        clients.map(client => ({ iddemande: demande?.toString() || '', idclient: client?.toString() || '' }))
+      );
+    }
+  },
+  {
+    path: 'stocks-edit/:id',
+    renderMode: RenderMode.Prerender,
+    async getPrerenderParams() {
+      const dataService = inject(StockService);
       const ids = await dataService.getIds();
       if (!Array.isArray(ids) || ids.length === 0) {
         return [{ id: '' }];
