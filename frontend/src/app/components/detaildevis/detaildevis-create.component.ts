@@ -49,18 +49,20 @@ export class DetaildevisCreateComponent implements OnInit {
       const token = this.cookie.get('token');
       const decodedToken: any = jwtDecode(token);
       let montant = 0;
+      let benefice = 0;
 
       this.demandeService.addDemande({ idclient: decodedToken.id, description: 'Service personalisé', date: this.newDetaildevis.date }).subscribe((demande) => {
         this.devisService.addDevis({ idclient: decodedToken.id, iddemande: demande._id, date: this.newDetaildevis.date, statut: 1 }).subscribe((devis) => {
           const requests = this.newDetaildevis.idservice.map(id => {
             return this.serviceService.getMontantById(id).toPromise().then((response) => {
-              montant += response;
+              montant += response.total;
+              benefice += response.benefice;
               return this.detaildevisService.addDetaildevis({ iddevis: devis._id, idservice: id }).toPromise();
             });
           });
 
           Promise.all(requests).then(() => {
-            this.factureService.addFacture({ iddevis: devis._id, idclient: devis.idclient, montant: montant }).subscribe(() => {
+            this.factureService.addFacture({ iddevis: devis._id, idclient: devis.idclient, montant: montant, benefice: benefice }).subscribe(() => {
               this.router.navigate(['/factures-client']);
             });
           }).catch(error => console.error('Erreur lors de l’ajout des detaildevis :', error));

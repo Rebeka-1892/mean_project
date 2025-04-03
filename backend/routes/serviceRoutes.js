@@ -71,7 +71,10 @@ router.get("/montant/:id", async (req, res) => {
 
     const service = await Service.findById(req.params.id);
     const total = role + mat;
-    res.json(total + total * service.marge / 100);
+    res.json({
+      total: total + total * service.marge / 100,
+      benefice: total * service.marge / 100
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
