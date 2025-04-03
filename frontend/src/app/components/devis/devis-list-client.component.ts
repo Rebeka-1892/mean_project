@@ -1,11 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {DevisService} from '../../services/devis.service';
-import {ServiceService} from '../../services/service.service';
-import {CookieService} from 'ngx-cookie-service';
-import {jwtDecode} from 'jwt-decode';
-import {FactureService} from '../../services/facture.service';
-import {DetaildevisService} from '../../services/detaildevis.service';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DevisService } from '../../services/devis.service';
+import { ServiceService } from '../../services/service.service';
+import { CookieService } from 'ngx-cookie-service';
+import { jwtDecode } from 'jwt-decode';
+import { FactureService } from '../../services/facture.service';
+import { DetaildevisService } from '../../services/detaildevis.service';
+import { FormulematerielService } from '../../services/formulemateriel.service';
+import { StockService } from '../../services/stock.service';
 
 @Component({
   selector: 'app-devis-list',
@@ -17,6 +19,8 @@ export class DevisListClientComponent implements OnInit {
   deviss: any[] = [];
 
   constructor(
+    private formulematerielService: FormulematerielService,
+    private stockService: StockService,
     private devisService: DevisService,
     private serviceService: ServiceService,
     private factureService: FactureService,
@@ -50,7 +54,12 @@ export class DevisListClientComponent implements OnInit {
 
   insertFacture(iddevis: string, idclient: string, idservices: any[]): void {
     // statut = 1 : accepter
-    this.devisService.updateStatutDevis(iddevis, {statut: 1}).subscribe(() => this.loadDeviss());
+    this.devisService.updateStatutDevis(iddevis, { statut: 1 }).subscribe(() => this.loadDeviss());
+    let date: any;
+    this.devisService.getDevisById(iddevis).subscribe((data) => {
+      date = data.date;
+    });
+
     let montant = 0;
     let benefice = 0;
     // Utiliser Promise.all pour attendre la résolution de toutes les promesses
@@ -68,7 +77,8 @@ export class DevisListClientComponent implements OnInit {
         iddevis: iddevis,
         idclient: idclient,
         montant: montant,
-        benefice: benefice
+        benefice: benefice,
+        date: date
       }).subscribe(() => this.loadDeviss());
     }).catch(error => {
       console.error('Erreur lors de la récupération des montants:', error);
@@ -77,7 +87,7 @@ export class DevisListClientComponent implements OnInit {
 
   updateStatutDevis(id: string): void {
     this.devisService.deleteDevis(id).subscribe(() =>
-      this.detaildevisService.getDetaildevis({iddevis: id}).subscribe((detailDevis) =>
+      this.detaildevisService.getDetaildevis({ iddevis: id }).subscribe((detailDevis) =>
         this.detaildevisService.deleteDetaildevis(detailDevis[0]._id).subscribe(() => this.loadDeviss()))
     );
   }
