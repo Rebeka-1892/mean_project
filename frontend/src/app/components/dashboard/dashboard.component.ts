@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../../services/client.service';
 import { FactureService } from '../../services/facture.service';
 import { EmployeService } from '../../services/employe.service';
+import { StockService } from '../../services/stock.service';
 import { Chart } from 'chart.js/auto';
 
 @Component({
@@ -15,13 +16,15 @@ export class DashboardComponent implements OnInit {
   total: any;
   employes : any;
   benefice : any;
+  stocks : any[] = [];
   montants: any[] = [];
   chart: any;
 
   constructor(
     private factureService: FactureService,
     private clientService: ClientService,
-    private employeService: EmployeService
+    private employeService: EmployeService,
+    private stockService: StockService
   ) { }
 
   ngOnInit(): void {
@@ -37,6 +40,7 @@ export class DashboardComponent implements OnInit {
     this.factureService.getMontantTotal().subscribe(data => this.total = data.total);
     this.factureService.getMontantTotal().subscribe(data => this.benefice = data.benefice);
     this.employeService.getNombreEmployes().subscribe(data => this.employes = data);
+    this.stockService.getEtat().subscribe(data => this.stocks = data);
   }
 
   createChart(): void {

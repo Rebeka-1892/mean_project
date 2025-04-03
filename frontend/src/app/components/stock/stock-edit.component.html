@@ -1,0 +1,46 @@
+<div class="box">
+    <form method="post" (ngSubmit)="updateStock()" #stockForm="ngForm">
+        <div class="field">
+    <label for="date" class="label">
+        Date
+    </label>
+    <div class="control">
+        <input type="date" class="input" id="date" name="date" [(ngModel)]="newStock.date" required />
+    </div>
+</div>
+<div class="field">
+    <label for="idmateriel" class="label">
+        Idmateriel
+    </label>
+    <div class="control">
+        <div class="select is-fullwidth">
+            <select id="idmateriel" name="idmateriel" [(ngModel)]="newStock.idmateriel" >
+                <option *ngIf="!newStock.idmateriel" value="" disabled selected>Selectionner Idmateriel</option>
+                <option *ngFor="let row of list" [value]="row._id">
+                    {{ row.nom }}
+                </option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="field">
+    <label for="entree" class="label">
+        Entree
+    </label>
+    <div class="control">
+        <input type="number" class="input" id="entree" name="entree" [(ngModel)]="newStock.entree" required />
+    </div>
+</div>
+<div class="field">
+    <div class="control">
+        <input type="hidden" class="input" id="sortie" name="sortie" [(ngModel)]="newStock.sortie" required />
+    </div>
+</div>
+
+
+        <div class="buttons">
+            <button class="button is-link" type="submit" [disabled]="stockForm.invalid">Modifier</button>
+            <button class="button is-background-danger-40 has-text-white" type="button" (click)="goBackToList()">Annuler</button>
+        </div>
+    </form>
+</div>

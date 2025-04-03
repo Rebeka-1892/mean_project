@@ -28,7 +28,8 @@
             "name" : "Gestion de stock",
             "submenus": [
                 { "name": "Unités", "path": "/unites" },
-                { "name": "Matériels", "path": "/materiels" }
+                { "name": "Matériels", "path": "/materiels" },
+                { "name": "Stock", "path": "/stocks" }
             ]
         }
     ],

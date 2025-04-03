@@ -1,0 +1,53 @@
+<div class="box">
+    <div class="field has-addons has-addons-centered is-hidden-desktop">
+        <div class="control has-icons-left has-icons-right">
+            <label>
+                <input type="text" class="input" placeholder="Rechercher..." />
+            </label>
+            <span class="icon is-left is-ghost">
+                <i class="fas fa-magnifying-glass"></i>
+            </span>
+            <span class="icon is-right is-clickable is-ghost reset">
+                <i class="fas fa-delete-left"></i>
+            </span>
+        </div>
+    </div>
+    <div class="is-flex is-justify-content-space-between">
+        <h3 class="subtitle has-text-weight-bold">
+            Stock
+        </h3>
+        <div class="field is-grouped">
+            <div class="field">
+                <div class="control">
+                    <button class="button" (click)="goToStockCreate()">
+                        <span class="icon is-clickable add">
+                            <i class="fas fa-add"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-container">
+        <table class="table is-fullwidth">
+            <thead>
+                <tr>
+                    <th class="has-text-left">Date</th>
+                    <th class="has-text-left">Matériel</th>
+                    <th class="has-text-left">Entree</th>
+                    <th class="has-text-left">Sortie</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (stock of stocks; track stock._id) {
+                <tr>
+                    <td>{{ formatDate(stock.date) }}</td>
+                    <td>{{ stock.nomMateriel }}</td>
+                    <td>{{ stock.totalEntree }}</td>
+                    <td>{{ stock.totalSortie }}</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

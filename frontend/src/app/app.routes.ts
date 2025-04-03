@@ -50,6 +50,9 @@ import { TacheListComponent } from './components/tache/tache-list.component';
 import { TacheCreateComponent } from './components/tache/tache-create.component';
 import { TacheEditComponent } from './components/tache/tache-edit.component';
 import { FactureListClientComponent } from './components/facture/facture-list-client.component';
+import { StockListComponent } from './components/stock/stock-list.component';
+import { StockCreateComponent } from './components/stock/stock-create.component';
+import { StockEditComponent } from './components/stock/stock-edit.component';
 //new_import
 export const routes: Routes = [
   { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
@@ -107,6 +110,9 @@ export const routes: Routes = [
       { path: 'taches-edit/:id', component: TacheEditComponent },
       { path: 'taches-create', component: TacheCreateComponent },
       { path: 'taches', component: TacheListComponent },
+      { path: 'stocks-edit/:id', component: StockEditComponent },
+      { path: 'stocks-create', component: StockCreateComponent },
+      { path: 'stocks', component: StockListComponent },
       //new_path
     ]
   },
