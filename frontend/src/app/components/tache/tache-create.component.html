@@ -1,50 +1,31 @@
 <div class="box">
-    <form method="post" (ngSubmit)="addTache()" #tacheForm="ngForm">
-      <div class="field">
-        <label for="idfacture" class="label">Idfacture</label>
-        <div class="control">
-          <div class="select is-fullwidth">
-            <select id="idfacture" name="idfacture" [(ngModel)]="newTache.idfacture" (ngModelChange)="onFactureChange()">
-              <option *ngIf="!newTache.idfacture" value="" disabled selected>Selectionner Idfacture</option>
-              <option *ngFor="let row of list" [value]="row._id">
-                {{ row.iddevis }}
-              </option>
-            </select>
-          </div>
+  <form method="post" (ngSubmit)="addTache()" #tacheForm="ngForm">
+    <div class="field">
+      <label for="idfacture" class="label">Idfacture</label>
+      <div class="control">
+        <div class="select is-fullwidth">
+          <select id="idfacture" name="idfacture" [(ngModel)]="newTache.idfacture" (ngModelChange)="onFactureChange()">
+            <option *ngIf="!newTache.idfacture" value="" disabled selected>Selectionner Idfacture</option>
+            <option *ngFor="let row of factures" [value]="row._id">
+              {{ row.iddevis }}
+            </option>
+          </select>
         </div>
       </div>
-      <div class="field">
-        <label for="idrole" class="label">Idrole</label>
-        <div class="control">
-          <div class="select is-fullwidth">
-            <select id="idrole" name="idrole" [(ngModel)]="newTache.idrole" (ngModelChange)="onRoleChange()">
-              <option *ngIf="!newTache.idrole" value="" disabled selected>Selectionner Role</option>
-              <option *ngFor="let row of roles" [value]="row._id">
-                {{ row.nom }}
-              </option>
-            </select>
-          </div>
-        </div>
+    </div>
+    <div *ngFor="let role of roles" class="field">
+      <label class="label">{{ role.role.nom }}</label>
+      <div class="control" *ngFor="let employe of role.employes">
+        <label for="checkbox-{{ role.role._id }}-{{ employe._id }}" class="checkbox">
+          <input type="checkbox" id="checkbox-{{ role.role._id }}-{{ employe._id }}" name="{{role.role.nom}}[]" [value]="employe._id" (change)="toggleTache(role.role._id, employe._id, $event)" [checked]="newTache.idemploye.includes(employe._id)" />
+          {{ employe.nom }}
+        </label>
       </div>
-        <div class="field">
-            <label class="label">
-                Idemploye
-            </label>
-            <div class="control" *ngFor="let row of employes">
-                <label for="checkbox" class="checkbox">
-                    <input type="checkbox" id="checkbox" name="idemploye[]" [value]="row._id" (change)="toggleTache(row._id, $event)"
-                        [checked]="newTache.idemploye.includes(row._id)" />
-                    {{ row.nom }}
-                </label>
-            </div>
-        </div>
-      <div class="field">
-        <p class="help has-text-danger-40">{{error}}</p>
-      </div>
-        <div class="buttons">
-            <button class="button is-link" type="submit" [disabled]="tacheForm.invalid">Ajouter</button>
-            <button class="button is-background-danger-40 has-text-white" type="button"
-                (click)="goBackToList()">Annuler</button>
-        </div>
-    </form>
+      <p class="help has-text-danger-40">{{role.error}}</p>
+    </div>
+    <div class="buttons">
+      <button class="button is-link" type="submit" [disabled]="tacheForm.invalid">Ajouter</button>
+      <button class="button is-background-danger-40 has-text-white" type="button" (click)="goBackToList()">Annuler</button>
+    </div>
+  </form>
 </div>
