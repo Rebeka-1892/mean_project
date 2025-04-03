@@ -11,6 +11,9 @@ export class FormulematerielService {
   getFormulemateriels(): Observable<any> {
     return this.http.get(this.apiUrl, {withCredentials: true});
   }
+  getFormulematerielByService(id: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/service/${id}`, {withCredentials: true});
+  }
   getFormulematerielById(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`, {withCredentials: true});
   }

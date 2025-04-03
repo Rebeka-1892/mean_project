@@ -8,43 +8,47 @@ import { CookieService } from 'ngx-cookie-service';
 import { jwtDecode } from 'jwt-decode';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import {DemandeService} from '../../services/demande.service';
+import { DemandeService } from '../../services/demande.service';
+import { FormulematerielService } from '../../services/formulemateriel.service';
+import { StockService } from '../../services/stock.service';
 
 @Component({
-    selector: 'app-detaildevis-create',
-    imports: [CommonModule, FormsModule],
-    templateUrl: './detaildevis-create.component.html',
-    standalone: true
+  selector: 'app-detaildevis-create',
+  imports: [CommonModule, FormsModule],
+  templateUrl: './detaildevis-create.component.html',
+  standalone: true
 })
 export class DetaildevisCreateComponent implements OnInit {
-    list: any;
-    newDetaildevis = { date: '', idservice: [] as string[] };
+  list: any;
+  newDetaildevis = { date: '', idservice: [] as string[] };
 
-    constructor(
-        private detaildevisService: DetaildevisService,
-        private devisService: DevisService,
-        private demandeService: DemandeService,
-        private factureService: FactureService,
-        private cookie: CookieService,
-        private serviceService: ServiceService,
-        private router: Router
-    ) { }
+  constructor(
+    private formulematerielService: FormulematerielService,
+    private stockService: StockService,
+    private detaildevisService: DetaildevisService,
+    private devisService: DevisService,
+    private demandeService: DemandeService,
+    private factureService: FactureService,
+    private cookie: CookieService,
+    private serviceService: ServiceService,
+    private router: Router
+  ) { }
 
-    ngOnInit(): void {
-        this.serviceService.getServices().subscribe(data => this.list = data);
+  ngOnInit(): void {
+    this.serviceService.getServices().subscribe(data => this.list = data);
+  }
+
+  toggleDetaildevis(id: string, event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const isChecked = inputElement.checked;
+    if (isChecked) {
+      this.newDetaildevis.idservice.push(id);
+    } else {
+      this.newDetaildevis.idservice = this.newDetaildevis.idservice.filter(serviceId => serviceId !== id);
     }
+  }
 
-    toggleDetaildevis(id: string, event: Event) {
-        const inputElement = event.target as HTMLInputElement;
-        const isChecked = inputElement.checked;
-        if (isChecked) {
-            this.newDetaildevis.idservice.push(id);
-        } else {
-            this.newDetaildevis.idservice = this.newDetaildevis.idservice.filter(serviceId => serviceId !== id);
-        }
-    }
-
-    addDetaildevis(): void {
+  addDetaildevis(): void {
     if (this.newDetaildevis.date && this.newDetaildevis.idservice.length > 0) {
       const token = this.cookie.get('token');
       const decodedToken: any = jwtDecode(token);
@@ -57,6 +61,8 @@ export class DetaildevisCreateComponent implements OnInit {
             return this.serviceService.getMontantById(id).toPromise().then((response) => {
               montant += response.total;
               benefice += response.benefice;
+              // this.formulematerielService.getFormulematerielByService(id);
+              // this.stockService.addStock({idmateriel : '', date : this.newDetaildevis.date, entree : 0, sortie : ''});
               return this.detaildevisService.addDetaildevis({ iddevis: devis._id, idservice: id }).toPromise();
             });
           });
