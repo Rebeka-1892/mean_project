@@ -8,8 +8,8 @@ import { environment } from '../../environments/environment';
 export class FormuleroleService {
   private apiUrl = `${environment.apiUrl}/formuleroles`;
   constructor(private http: HttpClient) { }
-  getFormuleroles(): Observable<any> {
-    return this.http.get(this.apiUrl, {withCredentials: true});
+  getFormuleroles(params?: any): Observable<any> {
+    return this.http.get(this.apiUrl, {withCredentials: true, params: params});
   }
   getFormuleroleById(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`, {withCredentials: true});
