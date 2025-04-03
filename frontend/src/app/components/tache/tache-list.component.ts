@@ -21,6 +21,10 @@ export class TacheListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.loadTaches();
+  }
+
+  loadTaches(): void {
     const token = this.cookieService.get('token');
     const decodedToken: any = jwtDecode(token);
     this.role = decodedToken.role
@@ -32,7 +36,7 @@ export class TacheListComponent implements OnInit {
     this.tacheService.getTacheById(id).subscribe(data => {
       data.statut = 1;
       this.tacheService.updateTache(data._id, data).subscribe(() => {
-        this.router.navigate(['/taches']);
+        this.loadTaches();
       });
     });
   }
