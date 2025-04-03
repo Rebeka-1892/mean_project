@@ -4,6 +4,8 @@ import BaseComponent from '../../components/BaseComponent';
 import {LoginService} from '../../services/login.service';
 import {MenuService} from '../../services/menu.service';
 import {NgForOf, NgIf} from '@angular/common';
+import {jwtDecode} from 'jwt-decode';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-main-layout',
@@ -19,7 +21,7 @@ import {NgForOf, NgIf} from '@angular/common';
 })
 export class MainLayoutComponent extends BaseComponent implements OnInit {
   menus: any[] = [];
-  constructor(private loginService: LoginService, private menuService: MenuService, private router: Router) {
+  constructor(private loginService: LoginService, private menuService: MenuService, private cookieService: CookieService, private router: Router) {
     super();
   }
 
@@ -28,9 +30,12 @@ export class MainLayoutComponent extends BaseComponent implements OnInit {
   }
 
   logout(): void {
+    const token = this.cookieService.get('token');
+    const decodedToken: any = jwtDecode(token);
+    const url = decodedToken.role === 'client' ? '/' : '/login';
     this.loginService.logout().subscribe(
       data => {
-        this.router.navigate(['/']);
+        this.router.navigate([url]);
       },
       error => {
         this.error = error.error.message;

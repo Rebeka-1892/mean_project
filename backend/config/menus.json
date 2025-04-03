@@ -4,7 +4,6 @@
             "name": "Général",
             "submenus": [
                 { "name": "Dashboard", "path": "/dashboard" },
-                { "name": "Clients", "path": "/clients"},
                 { "name": "Taches", "path": "/taches"}
             ]
         },

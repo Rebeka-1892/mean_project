@@ -9,6 +9,7 @@ import {catchError, of, switchMap} from 'rxjs';
 import {RoleService} from '../../services/role.service';
 import BaseComponent from '../BaseComponent';
 import {FormuleroleService} from '../../services/formulerole.service';
+import {map} from 'rxjs/operators';
 
 @Component({
     selector: 'app-tache-create',
@@ -33,25 +34,40 @@ export class TacheCreateComponent extends BaseComponent implements OnInit {
       super();
     }
 
-    ngOnInit(): void {
-      this.factureService.getFactures().pipe(
-        switchMap(factures => {
-          this.list = factures;
+  ngOnInit(): void {
+    this.tacheService.getTaches().pipe(
+      switchMap((taches: any[]) => {
+        const tacheFactureIds = taches.map((tache: any) => tache.idfacture);
+        return this.factureService.getFactures().pipe(
+          map((factures: any[]) => factures.filter((facture: any) => !tacheFactureIds.includes(facture._id)))
+        );
+      }),
+      switchMap((factures: any[]) => {
+        this.list = factures;
+        if (factures.length > 0) {
           this.newTache.idfacture = factures[0]._id;
           return this.roleService.getRoleByIdFacture(factures[0]._id);
-        }),
-        switchMap(roles => {
-          this.roles = roles;
+        } else {
+          return of([]);
+        }
+      }),
+      switchMap((roles: any[]) => {
+        this.roles = roles;
+        if (roles.length > 0) {
           this.newTache.idrole = roles[0]._id;
           return this.employeService.getEmployeByIdFactureAndByIdRole(this.newTache.idfacture, this.newTache.idrole);
-        }),
-        catchError(error => {
+        } else {
           return of([]);
-        })
-      ).subscribe(employes => {
-        this.employes = employes;
-      });
-    }
+        }
+      }),
+      catchError(error => {
+        console.error(error);
+        return of([]);
+      })
+    ).subscribe((employes: any[]) => {
+      this.employes = employes;
+    });
+  }
 
     toggleTache(id: string, event: Event) {
         const inputElement = event.target as HTMLInputElement;
