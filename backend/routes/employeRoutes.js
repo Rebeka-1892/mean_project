@@ -5,6 +5,11 @@ const Employe = require('../models/Employe');
 const jwt = require('jsonwebtoken');
 
 const Role = require('../models/Role');
+const Facture = require("../models/Facture");
+const Devis = require("../models/Devis");
+const DetailDevis = require("../models/DetailDevis");
+const FormuleRole = require("../models/FormuleRole");
+const Poste = require("../models/Poste");
 
 // Récupérer tous les IDs
 router.get('/ids', async (req, res) => {
@@ -96,6 +101,38 @@ router.delete('/:id', async (req, res) => {
 		res.json({message: "Employé supprimé"});
 	} catch (error) {
 		res.status(500).json({message: error.message});
+	}
+});
+
+// Avoir les employés par facture et par rôle
+router.get('/facture/:idfacture/role/:idrole', async (req, res) => {
+	try {
+		const { idfacture, idrole } = req.params;
+
+		const facture = await Facture.findById(idfacture);
+		if (!facture) {
+			return res.status(404).json({ message: 'Facture non trouvée' });
+		}
+
+		const devis = await Devis.findById(facture.iddevis);
+		if (!devis) {
+			return res.status(404).json({ message: 'Devis non trouvé' });
+		}
+
+		const detailDevis = await DetailDevis.find({ iddevis: devis._id });
+		const serviceIds = detailDevis.map(detail => detail.idservice);
+
+		const formuleRoles = await FormuleRole.find({ idservice: { $in: serviceIds }, idrole: idrole });
+		const roleIds = formuleRoles.map(formule => formule.idrole);
+
+		const postes = await Poste.find({ idrole: { $in: roleIds } });
+		const employeIds = postes.map(poste => poste.idemploye);
+
+		const employes = await Employe.find({ _id: { $in: employeIds } });
+
+		res.json(employes);
+	} catch (error) {
+		res.status(500).json({ message: error.message });
 	}
 });
 

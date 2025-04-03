@@ -16,6 +16,9 @@ export class RoleService {
   getRoleById(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`, {withCredentials: true});
   }
+  getRoleByIdFacture(id: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${id}/roles`, {withCredentials: true});
+  }
   addRole(role: any): Observable<any> {
     return this.http.post(this.apiUrl, role, {withCredentials: true});
   }

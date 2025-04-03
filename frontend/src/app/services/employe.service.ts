@@ -14,6 +14,9 @@ export class EmployeService {
   getEmployeById(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`, {withCredentials: true});
   }
+  getEmployeByIdFactureAndByIdRole(idfacture: string, idrole: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/facture/${idfacture}/role/${idrole}`, {withCredentials: true});
+  }
   addEmploye(employe: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, employe, {withCredentials: true});
   }
