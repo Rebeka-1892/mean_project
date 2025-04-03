@@ -71,7 +71,7 @@ router.get('/', async (req, res) => {
 // Lire une formule de matériel
 router.get('/service/:id', async (req, res) => {
     try {
-        const formuleMateriel = await FormuleMateriel.findById(req.params.id);
+        const formuleMateriel = await FormuleMateriel.find({ idservice: req.params.id });
         res.json(formuleMateriel);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -81,7 +81,7 @@ router.get('/service/:id', async (req, res) => {
 // Lire une formule de matériel
 router.get('/:id', async (req, res) => {
     try {
-        const formuleMateriel = await FormuleMateriel.find({ idservice: req.params.id });
+        const formuleMateriel = await FormuleMateriel.findById(req.params.id);
         res.json(formuleMateriel);
     } catch (error) {
         res.status(500).json({ message: error.message });

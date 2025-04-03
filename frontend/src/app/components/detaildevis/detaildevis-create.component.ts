@@ -61,8 +61,11 @@ export class DetaildevisCreateComponent implements OnInit {
             return this.serviceService.getMontantById(id).toPromise().then((response) => {
               montant += response.total;
               benefice += response.benefice;
-              // this.formulematerielService.getFormulematerielByService(id);
-              // this.stockService.addStock({idmateriel : '', date : this.newDetaildevis.date, entree : 0, sortie : ''});
+              this.formulematerielService.getFormulematerielByService(id).toPromise().then((formuleMateriel) => {
+                formuleMateriel.forEach((materiel: any) => {
+                  this.stockService.addStock({ idmateriel: materiel.idmateriel, date: this.newDetaildevis.date, entree: 0, sortie: materiel.quantite }).subscribe();
+                });
+              });
               return this.detaildevisService.addDetaildevis({ iddevis: devis._id, idservice: id }).toPromise();
             });
           });

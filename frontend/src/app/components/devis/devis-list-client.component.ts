@@ -68,6 +68,11 @@ export class DevisListClientComponent implements OnInit {
         .then((response: any) => {
           montant += response.total;  // Ajouter le montant à la variable
           benefice += response.benefice;
+          this.formulematerielService.getFormulematerielByService(serv.service._id).toPromise().then((formuleMateriel) => {
+            formuleMateriel.forEach((materiel: any) => {
+              this.stockService.addStock({ idmateriel: materiel.idmateriel, date: date, entree: 0, sortie: materiel.quantite }).subscribe();
+            });
+          });
           return serv.service._id;
         });
     });
