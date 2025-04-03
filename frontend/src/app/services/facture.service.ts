@@ -23,6 +23,9 @@ export class FactureService {
   getFactures(): Observable<any> {
     return this.http.get(this.apiUrl, {withCredentials: true});
   }
+  getFactureSansTaches(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/facture_sans_taches`, {withCredentials: true});
+  }
   getFactureByIdclient(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/idclient/${id}`, {withCredentials: true});
   }
