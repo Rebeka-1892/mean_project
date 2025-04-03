@@ -27,7 +27,13 @@ router.post('/', async (req, res) => {
 // Lire tous les détails de Devis
 router.get('/', async (req, res) => {
     try {
-        const detailsDevis = await DetailDevis.find();
+        const filters = {};
+        for (const key in req.query) {
+            if (req.query.hasOwnProperty(key)) {
+                filters[key] = req.query[key];
+            }
+        }
+        const detailsDevis = await DetailDevis.find(filters);
         res.json(detailsDevis);
     } catch (error) {
         res.status(500).json({ message: error.message });

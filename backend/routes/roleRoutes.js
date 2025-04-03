@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Role = require('../models/Role');
+const Facture = require("../models/Facture");
+const Devis = require("../models/Devis");
+const DetailDevis = require("../models/DetailDevis");
+const FormuleRole = require("../models/FormuleRole");
 
 // Récupérer tous les IDs
 router.get('/ids', async (req, res) => {
@@ -65,6 +69,31 @@ router.delete('/:id', async (req, res) => {
 	try {
 		await Role.findByIdAndDelete(req.params.id);
 		res.json({ message: "Rôle supprimé" });
+	} catch (error) {
+		res.status(500).json({ message: error.message });
+	}
+});
+
+router.get('/:id/roles', async (req, res) => {
+	try {
+		const facture = await Facture.findById(req.params.id);
+		if (!facture) {
+			return res.status(404).json({ message: 'Facture non trouvée' });
+		}
+
+		const devis = await Devis.findById(facture.iddevis);
+		if (!devis) {
+			return res.status(404).json({ message: 'Devis non trouvé' });
+		}
+
+		const detailDevis = await DetailDevis.find({ iddevis: devis._id });
+		const serviceIds = detailDevis.map(detail => detail.idservice);
+
+		const formuleRoles = await FormuleRole.find({ idservice: { $in: serviceIds } });
+		const roleIds = formuleRoles.map(formule => formule.idrole);
+
+		const roles = await Role.find({ _id: { $in: roleIds } });
+		res.json(roles);
 	} catch (error) {
 		res.status(500).json({ message: error.message });
 	}

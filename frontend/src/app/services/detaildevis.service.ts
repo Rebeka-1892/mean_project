@@ -14,8 +14,8 @@ export class DetaildevisService {
     if (!token) return null;
     return jwtDecode(token);
   }
-  getDetaildevis(): Observable<any> {
-    return this.http.get(this.apiUrl, {withCredentials: true});
+  getDetaildevis(params?: any): Observable<any> {
+    return this.http.get(this.apiUrl, {withCredentials: true, params: params});
   }
   getDetaildevisById(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`, {withCredentials: true});
@@ -36,4 +36,4 @@ export class DetaildevisService {
     }
     return response.map(item => item._id);
   }
-} 
+}

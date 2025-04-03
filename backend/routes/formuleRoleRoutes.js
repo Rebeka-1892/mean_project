@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const FormuleRole = require('../models/FormuleRole');
+const Facture = require("../models/Facture");
+const Devis = require("../models/Devis");
+const DetailDevis = require("../models/DetailDevis");
 
 // Récupérer tous les IDs
 router.get('/ids', async (req, res) => {
@@ -98,5 +101,37 @@ router.delete('/:id', async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 });
+
+// Avoir les formule par facture et par rôle
+router.get('/facture/:idfacture/role/:idrole', async (req, res) => {
+    try {
+        const { idfacture, idrole } = req.params;
+
+        const facture = await Facture.findById(idfacture);
+
+        if (!facture) {
+            return res.status(404).json({ message: 'Facture non trouvée' });
+        }
+
+        const devis = await Devis.findById(facture.iddevis);
+        if (!devis) {
+            return res.status(404).json({ message: 'Devis non trouvé' });
+        }
+
+        const detailDevis = await DetailDevis.find({ iddevis: devis._id });
+        const serviceIds = detailDevis.map(detail => detail.idservice);
+
+        const formuleRoles = await FormuleRole.find({ idservice: { $in: serviceIds }, idrole: idrole });
+        // const result = formuleRoles.map(formule => ({
+        //     nombre: formule.nombre,
+        //     heure: formule.heure
+        // }));
+
+        res.json(formuleRoles);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 
 module.exports = router;

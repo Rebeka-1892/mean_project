@@ -64,13 +64,13 @@ export class DevisCreateComponent implements OnInit {
                     return Promise.all(requests);
                 })
                 .then(() => {
-                    this.router.navigate(['/devis']);
+                    this.router.navigate(['/demandes']);
                 })
                 .catch(error => console.error('Erreur lors de l’ajout des detaildevis :', error));
         }
     }
 
     goBackToList() {
-        this.router.navigate(['/devis']);
+        this.router.navigate(['/demandes']);
     }
 }

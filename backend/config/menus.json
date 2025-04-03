@@ -21,7 +21,8 @@
         {
             "name": "",
             "submenus": [
-                { "name": "Liste des demandes", "path": "/demandes"}
+                { "name": "Liste des demandes", "path": "/demandes"},
+                { "name": "Liste des taches", "path": "/taches"}
             ]
         }
     ],
