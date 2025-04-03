@@ -18,7 +18,7 @@ import {jwtDecode} from 'jwt-decode';
     styleUrl: './login-layout.component.css'
   })
   export class LoginComponent extends BaseComponent {
-    utilisateur: any = {};
+    utilisateur: any = {nom: 'admin', motdepasse: '1234'};
     returnUrl: string;
 
     constructor(private loginService: LoginService, private cookieService: CookieService, private route: ActivatedRoute, private router: Router) {
