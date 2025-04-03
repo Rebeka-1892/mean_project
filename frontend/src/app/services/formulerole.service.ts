@@ -14,6 +14,9 @@ export class FormuleroleService {
   getFormuleroleById(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`, {withCredentials: true});
   }
+  getFormuleroleByIdFactureAndByIdRole(idfacture: string, idrole: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/facture/${idfacture}/role/${idrole}`, {withCredentials: true});
+  }
   addFormulerole(formulerole: any): Observable<any> {
     return this.http.post(this.apiUrl, formulerole, {withCredentials: true});
   }
