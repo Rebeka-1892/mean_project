@@ -4,16 +4,25 @@
             "name": "Général",
             "submenus": [
                 { "name": "Dashboard", "path": "/dashboard" },
-                { "name": "Roles", "path": "/roles" },
-                { "name": "Employés", "path": "/employes" },
-                { "name": "Unités", "path": "/unites" },
-                { "name": "Matériels", "path": "/materiels" },
-                { "name": "Services", "path": "/services" },
-                { "name": "Postes", "path": "/postes" },
-                { "name": "Formules matériels", "path": "/formulemateriels" },
-                { "name": "Formules roles", "path": "/formuleroles" },
                 { "name": "Clients", "path": "/clients"},
                 { "name": "Taches", "path": "/taches"}
+            ],
+            "name": "Gestion de ressources humaines",
+            "submenus": [
+                { "name": "Roles", "path": "/roles" },
+                { "name": "Employés", "path": "/employes" },
+                { "name": "Postes", "path": "/postes" }
+            ],
+            "name": "Gestion de service",
+            "submenus": [
+                { "name": "Services", "path": "/services" },
+                { "name": "Formules matériels", "path": "/formulemateriels" },
+                { "name": "Formules roles", "path": "/formuleroles" }
+            ],
+            "name" : "Gestion de stock",
+            "submenus": [
+                { "name": "Unités", "path": "/unites" },
+                { "name": "Matériels", "path": "/materiels" }
             ]
         }
     ],
