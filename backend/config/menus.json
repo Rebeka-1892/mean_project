@@ -6,19 +6,25 @@
                 { "name": "Dashboard", "path": "/dashboard" },
                 { "name": "Clients", "path": "/clients"},
                 { "name": "Taches", "path": "/taches"}
-            ],
+            ]
+        },
+        {
             "name": "Gestion de ressources humaines",
             "submenus": [
                 { "name": "Roles", "path": "/roles" },
                 { "name": "Employés", "path": "/employes" },
                 { "name": "Postes", "path": "/postes" }
-            ],
+            ]
+        },
+        {
             "name": "Gestion de service",
             "submenus": [
                 { "name": "Services", "path": "/services" },
                 { "name": "Formules matériels", "path": "/formulemateriels" },
                 { "name": "Formules roles", "path": "/formuleroles" }
-            ],
+            ]
+        },
+        {
             "name" : "Gestion de stock",
             "submenus": [
                 { "name": "Unités", "path": "/unites" },
