@@ -10,6 +10,9 @@ export class EmployeService {
   constructor(private http: HttpClient) { }
   getEmployes(): Observable<any> {
     return this.http.get(this.apiUrl, {withCredentials: true});
+  }  
+  getNombreEmployes(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/nombre`, {withCredentials: true});
   }
   getEmployeById(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`, {withCredentials: true});

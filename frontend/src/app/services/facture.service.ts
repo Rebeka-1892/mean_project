@@ -14,6 +14,9 @@ export class FactureService {
     if (!token) return null;
     return jwtDecode(token);
   }
+  getMontantTotal(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/montant-total`, {withCredentials: true});
+  }
   getMontantParMois(): Observable<any> {
     return this.http.get(`${this.apiUrl}/montant-par-mois`, {withCredentials: true});
   }

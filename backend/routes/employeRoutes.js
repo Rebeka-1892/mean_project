@@ -74,6 +74,16 @@ router.get('/', async (req, res) => {
 	}
 });
 
+// nombre employe
+router.get('/nombre', async (req, res) => {
+	try {
+		const employes = await Employe.countDocuments();
+		res.json(employes);
+	} catch (error) {
+		res.status(500).json({message: error.message});
+	}
+});
+
 // Lire un employé
 router.get('/:id', async (req, res) => {
 	try {

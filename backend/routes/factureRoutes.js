@@ -35,6 +35,27 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/montant-total", async (req, res) => {
+  try {
+    const totalMontant = await Facture.aggregate([
+      {
+        $group: {
+          _id: null, // Pas besoin de groupement par champ spécifique
+          total: { $sum: "$montant" }, // Somme de tous les montants
+          benefice: { $sum: "$benefice" } 
+        }
+      }
+    ]);
+
+    res.json({ 
+      total: totalMontant.length > 0 ? totalMontant[0].total : 0, 
+      benefice : totalMontant.length > 0 ? totalMontant[0].benefice : 0
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 // montant par mois
 router.get("/montant-par-mois", async (req, res) => {
   try {
