@@ -1,1 +1,33 @@
-<p>dashboard works!</p>
+<div class="box">
+    <h3 class="subtitle has-text-weight-bold">
+        Dashboard
+    </h3>
+    <nav class="level">
+        <div class="level-item has-text-centered">
+            <div>
+                <p class="heading">Total</p>
+                <p class="title">{{ total }} Ar</p>
+            </div>
+        </div>
+        <div class="level-item has-text-centered">
+            <div>
+                <p class="heading">Bénéfices</p>
+                <p class="title">{{ benefice }} Ar</p>
+            </div>
+        </div>
+        <div class="level-item has-text-centered">
+            <div>
+                <p class="heading">Nombre de clients</p>
+                <p class="title">{{ clients }}</p>
+            </div>
+        </div>
+        <div class="level-item has-text-centered">
+            <div>
+                <p class="heading">Nombre d'employés</p>
+                <p class="title">{{ employes }}</p>
+            </div>
+        </div>
+    </nav>
+    
+    <canvas id="chart"></canvas>
+</div>
