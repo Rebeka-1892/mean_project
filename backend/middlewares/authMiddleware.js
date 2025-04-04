@@ -12,8 +12,7 @@ const authMiddleware = (rolesAutorises = []) => {
 
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      console.log('Token valid:', decoded);
-      req.user = decoded;
+      // req.user = decoded;
       
       if (rolesAutorises.length && !rolesAutorises.includes(decoded.role)) {
         res.setHeader('X-Redirect', '/unauthorized');
