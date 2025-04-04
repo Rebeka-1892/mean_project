@@ -28,7 +28,7 @@ export class SignInLayoutComponent extends BaseComponent {
   login(): void {
     this.clientService.login(this.utilisateur).subscribe(
       data => {
-        this.router.navigate([this.returnUrl]);
+        this.router.navigate(['/factures-client']);
       },
       error => {
         this.error = error.error.message;
