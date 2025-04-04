@@ -13,7 +13,7 @@ const authMiddleware = (rolesAutorises = []) => {
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       req.user = decoded;
-      
+      console.log('Decoded token: ', decoded)
       if (rolesAutorises.length && !rolesAutorises.includes(decoded.role)) {
         res.setHeader('X-Redirect', '/unauthorized');
         return res.status(200).json({ message: 'Forbidden' });
