@@ -29,11 +29,10 @@ import {jwtDecode} from 'jwt-decode';
     login(): void {
       this.loginService.login(this.utilisateur).subscribe(
         () => {
-          // const token = this.cookieService.get('token');
-          // const decodedToken: any = jwtDecode(token);
-          // const url = decodedToken.role === 'manager' ? '/dashboard' : '/taches';
-          // this.router.navigate([this.returnUrl ?? url]);
-          this.router.navigate([this.returnUrl ?? '/dashboard']);
+          const token = this.cookieService.get('token');
+          const decodedToken: any = jwtDecode(token);
+          const url = decodedToken.role === 'manager' ? '/dashboard' : '/taches';
+          this.router.navigate([this.returnUrl ?? url]);
         },
         error => {
           this.error = error.error.message;
