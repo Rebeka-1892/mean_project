@@ -4,7 +4,6 @@ import BaseComponent from '../../components/BaseComponent';
 import {ClientService} from '../../services/client.service';
 import {FormsModule} from '@angular/forms';
 import {NgIf} from '@angular/common';
-import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-sign-in-layout',
@@ -21,15 +20,14 @@ export class SignInLayoutComponent extends BaseComponent {
   utilisateur: any = {nom: 'Solo', motdepasse: '1234'};
   returnUrl: string;
 
-  constructor(private clientService: ClientService, private cookieService: CookieService, private route: ActivatedRoute, private router: Router) {
+  constructor(private clientService: ClientService, private route: ActivatedRoute, private router: Router) {
     super();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/factures-client';
   }
 
   login(): void {
     this.clientService.login(this.utilisateur).subscribe(
-      (data) => {
-        this.cookieService.set('token', data);
+      () => {
         this.router.navigate([this.returnUrl]);
       },
       error => {
