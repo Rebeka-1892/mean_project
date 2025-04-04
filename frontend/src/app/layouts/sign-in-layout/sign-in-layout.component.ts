@@ -25,7 +25,7 @@ export class SignInLayoutComponent extends BaseComponent {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/factures-client';
   }
 
-  async login(): void {
+  login(): void {
     this.clientService.login(this.utilisateur).subscribe(
       data => {
         this.router.navigate([this.returnUrl]);
