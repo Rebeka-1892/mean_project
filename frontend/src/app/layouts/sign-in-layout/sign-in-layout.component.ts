@@ -26,19 +26,13 @@ export class SignInLayoutComponent extends BaseComponent {
   }
 
   async login(): void {
-    // this.clientService.login(this.utilisateur).subscribe(
-    //   data => {
-    //     this.router.navigate(['/factures-client']);
-    //   },
-    //   error => {
-    //     this.error = error.error.message;
-    //   }
-    // );
-    try {
-      await this.clientService.login(this.utilisateur).toPromise();
-      this.router.navigate(['/factures-client']);
-    } catch (error) {
-      this.error = error.error.message;
-    }
+    this.clientService.login(this.utilisateur).subscribe(
+      data => {
+        this.router.navigate([this.returnUrl]);
+      },
+      error => {
+        this.error = error.error.message;
+      }
+    );
   }
 }
