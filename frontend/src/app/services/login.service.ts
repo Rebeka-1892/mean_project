@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Observable, timeout} from 'rxjs';
+import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 
@@ -12,7 +12,7 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   login(user: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, user, { withCredentials: true }).pipe(timeout(10000));
+    return this.http.post(`${this.apiUrl}/login`, user, { withCredentials: true });
   }
 
   logout(): Observable<any> {

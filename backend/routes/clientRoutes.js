@@ -28,7 +28,7 @@ router.post('/login', async (req, res) => {
 
 		const role = "client";
 		const token = jwt.sign({id: client._id, role: role}, process.env.JWT_SECRET, {expiresIn: '1h'});
-		res.cookie('token', token, {httpOnly: false, secure: true, sameSite: 'none', maxAge: 3600000});
+		res.cookie('token', token, {httpOnly: false, secure: true, sameSite: 'strict', maxAge: 3600000});
 		res.status(200).end();
 	} catch (error) {
 		res.status(400).json({message: error.message});
