@@ -17,7 +17,7 @@ import {NgIf} from '@angular/common';
   styleUrl: './sign-in-layout.component.css'
 })
 export class SignInLayoutComponent extends BaseComponent {
-  utilisateur: any = {};
+  utilisateur: any = {nom: 'Solo', motdepasse: '1234'};
   returnUrl: string;
 
   constructor(private clientService: ClientService, private route: ActivatedRoute, private router: Router) {
