@@ -25,14 +25,20 @@ export class SignInLayoutComponent extends BaseComponent {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/factures-client';
   }
 
-  login(): void {
-    this.clientService.login(this.utilisateur).subscribe(
-      data => {
-        this.router.navigate(['/factures-client']);
-      },
-      error => {
-        this.error = error.error.message;
-      }
-    );
+  async login(): void {
+    // this.clientService.login(this.utilisateur).subscribe(
+    //   data => {
+    //     this.router.navigate(['/factures-client']);
+    //   },
+    //   error => {
+    //     this.error = error.error.message;
+    //   }
+    // );
+    try {
+      await this.clientService.login(this.utilisateur).toPromise();
+      this.router.navigate(['/factures-client']);
+    } catch (error) {
+      this.error = error.error.message;
+    }
   }
 }
