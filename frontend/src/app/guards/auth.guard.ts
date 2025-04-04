@@ -6,9 +6,8 @@ export const authGuard: CanActivateFn = (route, state) => {
   const cookieService = inject(CookieService);
   const router = inject(Router);
   if (cookieService.get('token')) {
-    console.log('authorized');
     return true;
   }
-  // router.navigate(['/sign-in'], { queryParams: { returnUrl: state.url } });
-  return true;
+  router.navigate(['/sign-in'], { queryParams: { returnUrl: state.url } });
+  return false;
 };
