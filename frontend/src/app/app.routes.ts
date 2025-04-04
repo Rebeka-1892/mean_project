@@ -62,7 +62,7 @@ export const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
-    // canActivate: [authGuard],
+    canActivate: [authGuard],
     children: [
       { path: 'unauthorized', component: UnauthorizedComponent },
       { path: 'roles-edit/:id', component: RoleEditComponent },
