@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Observable, timeout} from 'rxjs';
 import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ export class ClientService {
   private apiUrl = `${environment.apiUrl}/clients`;
   constructor(private http: HttpClient) { }
   login(user: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, user, { withCredentials: true });
+    return this.http.post(`${this.apiUrl}/login`, user, { withCredentials: true }).pipe(timeout(10000));
   }
   logout(): Observable<any> {
     return this.http.get(`${this.apiUrl}/logout`, { withCredentials: true });
@@ -19,7 +19,7 @@ export class ClientService {
   }
   getClients(): Observable<any> {
     return this.http.get(this.apiUrl, {withCredentials: true});
-  }  
+  }
   getNombreClients(): Observable<any> {
     return this.http.get(`${this.apiUrl}/nombre`, {withCredentials: true});
   }
